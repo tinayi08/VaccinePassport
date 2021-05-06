@@ -34,10 +34,10 @@ public class DBManager {
         //practice purposes only - will use text file or DB later on
 
         Person one = new Person("Tina", "Lee", 4, 3, 1993);
-        Person two = new Person("Angie", "Lee", 11, 4, 1994);
-        Person three = new Person("Alex", "Yi", 9, 22, 1998);
-        Person four = new Person("Jason", "Yi", 5, 22, 1965);
-        Person five = new Person("Akemi", "Yi", 1, 22, 1965);
+        Person two = new Person("Angela", "Lee", 11, 4, 1994);
+        Person three = new Person("Alexa", "lee", 9, 22, 1998);
+        Person four = new Person("Jay", "Lee", 5, 22, 1965);
+        Person five = new Person("Amy", "Lee", 1, 22, 1965);
         Person six = new Person("Jordan", "Clarke", 11, 27, 1990);
         Person seven = new Person("Kameron"," Clarke", 4, 2, 1991);
 
