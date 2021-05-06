@@ -33,11 +33,11 @@ public class DBManager {
         //add people into the array to have some people in there
         //practice purposes only - will use text file or DB later on
 
-        Person one = new Person("Tina", "Yi", 8, 27, 1992);
-        Person two = new Person("Angie", "Yi", 12, 7, 1990);
-        Person three = new Person("Alex", "Yi", 9, 30, 1996);
-        Person four = new Person("Jason", "Yi", 5, 10, 1962);
-        Person five = new Person("Akemi", "Yi", 1, 25, 1962);
+        Person one = new Person("Tina", "Lee", 4, 3, 1993);
+        Person two = new Person("Angie", "Lee", 11, 4, 1994);
+        Person three = new Person("Alex", "Yi", 9, 22, 1998);
+        Person four = new Person("Jason", "Yi", 5, 22, 1965);
+        Person five = new Person("Akemi", "Yi", 1, 22, 1965);
         Person six = new Person("Jordan", "Clarke", 11, 27, 1990);
         Person seven = new Person("Kameron"," Clarke", 4, 2, 1991);
 

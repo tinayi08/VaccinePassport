@@ -48,11 +48,11 @@ public class Doctor {
         System.out.println("What is your last name?");
         String lName = "Y"; //scan.next();
         System.out.println("What is your birthday month? Enter 01-12");
-        int mM = 8; //scan.nextInt();
+        int mM = 5; //scan.nextInt();
         System.out.println("What is your birth date?");
-        int dD = 27; //scan.nextInt();
+        int dD = 3; //scan.nextInt();
         System.out.println("What is your birth year?");
-        int year = 1992; //scan.nextInt();
+        int year = 1990; //scan.nextInt();
 
         Person newPerson = new Person(fName, lName, mM, dD, year);
         return newPerson;
