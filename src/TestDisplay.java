@@ -49,7 +49,7 @@ public class TestDisplay {
         Person eight = new Person("Amy", "Lee", 1, 22, 1965);
 
         //change methods
-        //dbManger.addPersonEntry(one);
+        data.add(one);
         data.add(two);
         data.add(three);
         data.add(four);
@@ -72,5 +72,10 @@ public class TestDisplay {
         Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();
         return option;
+    }
+
+    public void duplicateEntry() {
+        System.out.println("This entry already exists. Please select from the following options:");
+        System.out.println("1. Enter a new individual to the database.");
     }
 }

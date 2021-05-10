@@ -20,6 +20,7 @@ public class DBManager {
 
         return returnPerson;
     }
+
     /*
 
     This method asks the user to enter a first name and a last name.
@@ -47,7 +48,10 @@ public class DBManager {
         //does this person exist already? - do a check
         //if exists, are you changing profile or adding another person
         //updating profile should be different method
+
         data.add(person);
+
+        //Add validator
     }
 
 }
