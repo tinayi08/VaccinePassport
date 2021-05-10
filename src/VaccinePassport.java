@@ -2,8 +2,8 @@ public class VaccinePassport {
 
     public static void main(String[] args) {
 
-        Doctor doctor = new Doctor();
-
+        DoctorController doctorController = new DoctorController();
+        doctorController.startVaccine();
     }
 
 

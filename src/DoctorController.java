@@ -1,15 +1,23 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Doctor {
+public class DoctorController {
+    //  CONTROLLER
+
 
     //vendor - compares the "ID" with the DB to pull information. Once it pulls one person,
     //ready to check the next person
     DBManager dbPerson;
-    VaccineInfoController vaxController;
-    public Doctor() {
-        dbPerson = new DBManager();
+    TestDisplay testDisplay;
 
+    public DoctorController() {
+        dbPerson = new DBManager();
+        testDisplay = new TestDisplay();
+    }
+
+    public void startVaccine() {
         boolean b = true;
         while (b) {
             Person person = obtainUserInfo();
@@ -20,18 +28,25 @@ public class Doctor {
             }
             b = false;
             dbPerson.addPersonEntry(person);
-            dbPerson.setUpDataTesting();
-            dbPerson.printDataArray();
+            testDisplay.setUpDataTesting(dbPerson.getData());
+            testDisplay.displayPerson(dbPerson.getData(), "Entries:");
 
             //this method should probably go in a different class?
             Person searchingPerson = dbPerson.searchIndividual();
-            vaxController.returnSearchResults(searchingPerson, dbPerson.data);
-//            if (isPersonVaccinated(dbPerson)) {
-//                System.out.println(" is vaccinated");
-//            } else
-//                System.out.println(" is not vaccinated");
-        }
 
+            ArrayList<Person> searchResults = returnSearchResults(searchingPerson, dbPerson.getData());
+            testDisplay.displayPerson(searchResults, "Search Results:");
+        }
+    }
+
+    public ArrayList<Person> returnSearchResults(Person searchPerson, ArrayList<Person> data) {
+        ArrayList<Person> searchResults = new ArrayList<>();
+        for (Person p : data) {
+            if (searchPerson.getfName().equalsIgnoreCase(p.getfName()) && searchPerson.getlName().equalsIgnoreCase(p.getlName())) {
+                searchResults.add(p);
+            }
+        }
+        return searchResults;
     }
 
     public boolean isPersonVaccinated(Person person) {

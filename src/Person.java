@@ -7,6 +7,10 @@ public class Person {
 
     @Override
     public String toString() {
+        if (dob == null) {
+            return "First Name: " + fName +
+                    ", Last Name: " + lName;
+        }
         return "First Name: " + fName +
                 ", Last Name: " + lName +
                 //", vaccine=" + vaccine +
