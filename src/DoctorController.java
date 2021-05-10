@@ -6,7 +6,7 @@ public class Doctor {
     //vendor - compares the "ID" with the DB to pull information. Once it pulls one person,
     //ready to check the next person
     DBManager dbPerson;
-
+    VaccineInfoController vaxController;
     public Doctor() {
         dbPerson = new DBManager();
 
@@ -24,8 +24,8 @@ public class Doctor {
             dbPerson.printDataArray();
 
             //this method should probably go in a different class?
-            dbPerson.searchIndividual();
-
+            Person searchingPerson = dbPerson.searchIndividual();
+            vaxController.returnSearchResults(searchingPerson, dbPerson.data);
 //            if (isPersonVaccinated(dbPerson)) {
 //                System.out.println(" is vaccinated");
 //            } else
