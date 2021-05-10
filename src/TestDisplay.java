@@ -1,9 +1,12 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class TestDisplay {
 
-    public TestDisplay() {
+    DBManager dbManger;
 
+    public TestDisplay() {
+        dbManger = new DBManager();
     }
 
     /*
@@ -46,7 +49,7 @@ public class TestDisplay {
         Person eight = new Person("Amy", "Lee", 1, 22, 1965);
 
         //change methods
-        //addPersonEntry(one);
+        //dbManger.addPersonEntry(one);
         data.add(two);
         data.add(three);
         data.add(four);
@@ -55,5 +58,19 @@ public class TestDisplay {
         data.add(seven);
         data.add(eight);
 
+    }
+
+    /*
+
+    Initial start of program. User has an option to select what the program does
+     */
+    public int menu() {
+        System.out.println("Please select from the following options:");
+        System.out.println("1. Enter a new individual to the database");
+        System.out.println("2. Search for an individual on the database");
+        System.out.println("3. Update an existing individual on the database");
+        Scanner scan = new Scanner(System.in);
+        int option = scan.nextInt();
+        return option;
     }
 }
