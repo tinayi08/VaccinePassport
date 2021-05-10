@@ -30,6 +30,12 @@ public class Person {
         return dob;
     }
 
+
+    public Person(String fName, String lName) {
+        this.fName = fName;
+        this.lName = lName;
+
+    }
     public Person(String fName, String lName, int month, int day, int year) {
 
         this.fName = fName;
