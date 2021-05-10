@@ -6,6 +6,12 @@ public class TestDisplay {
 
     }
 
+    /*
+
+    This method will take in a ArrayList and a string for a title.
+    It will iterate through the ArrayList of data.
+    It will display all elements of the ArrayList
+     */
     public void displayPerson(ArrayList<Person> data, String title) {
         System.out.println(title);
         if (data == null) {
