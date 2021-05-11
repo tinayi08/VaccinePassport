@@ -4,9 +4,11 @@ import java.util.Scanner;
 public class TestDisplay {
 
     DBManager dbManger;
+    DoctorController drController;
 
     public TestDisplay() {
         dbManger = new DBManager();
+        drController = new DoctorController();
     }
 
     /*
@@ -73,6 +75,24 @@ public class TestDisplay {
         int option = scan.nextInt();
         return option;
     }
+
+    public boolean returnToMainMenu() {
+        System.out.println("Would you like to return to the main menu?");
+        Scanner scan = new Scanner(System.in);
+        String returnToMain = scan.next();
+        if(returnToMain.equalsIgnoreCase("Yes")) {
+            return true;
+        }
+        return false;
+    }
+
+//    public void run() {
+//        do {
+//            navigateMainMenu(DoctorController.navigateOption());
+//        } while (returnToMainMenu());
+//
+//    }
+
 
     public void duplicateEntry() {
         System.out.println("This entry already exists. Please select from the following options:");
