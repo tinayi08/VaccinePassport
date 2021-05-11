@@ -41,12 +41,13 @@ public class DoctorController {
     This method will update the details of a existing Person object in the Arraylist
      */
     public void navigateOptionThreeUpdate() {
+        dbPerson.searchIndividual();
         System.out.println("Update individual");
         //Need to figure out how to update an existing object in the ArrayList
     }
 
     /*
-    This method will search for an individul and display the results
+    This method will search for an individual and display the results
      */
     public void navigateOptionTwoSearching() {
         //Person object of the person searching for
@@ -62,14 +63,17 @@ public class DoctorController {
     This method will ask obtain information of a new user and add it to the ArrayList
      */
     public void navigateOptionOneAddNew() {
+        testDisplay.setUpDataTesting(dbPerson.getData());
         Person person = obtainUserInfo();
+
         while (!validator.duplicateEntry(person, dbPerson.getData())) {
             dbPerson.addPersonEntry(person);
             System.out.println("The following entry has been added:");
             System.out.println(person.toString());
             return;
         }
-        System.out.println("This entry already exists. Please enter a new entry or select 3 to update an existing entry.");
+
+        System.out.println("This entry already exists.");
         //NEED TO ADD LOOP SO IT GOES BACK TO THE TOP
     }
 
@@ -93,16 +97,16 @@ public class DoctorController {
 
         Scanner scan = new Scanner(System.in);
         System.out.println("What is your first name?");
-        String fName = "T"; //scan.next();
+        String fName = scan.next();
         //if first name is blank, return null
         System.out.println("What is your last name?");
-        String lName = "Y"; //scan.next();
+        String lName = scan.next();
         System.out.println("What is your birthday month? Enter 01-12");
-        int mM = 5; //scan.nextInt();
+        int mM = scan.nextInt();
         System.out.println("What is your birth date?");
-        int dD = 3; //scan.nextInt();
+        int dD = scan.nextInt();
         System.out.println("What is your birth year?");
-        int year = 1990; //scan.nextInt();
+        int year = scan.nextInt();
 
         Person newPerson = new Person(fName, lName, mM, dD, year);
         return newPerson;
