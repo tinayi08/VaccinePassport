@@ -19,7 +19,6 @@ public class DoctorController {
 
     public int navigateOption() {
         int navigate = validator.startDataInputValidEntry(testDisplay.menu());
-
         return navigate;
     }
     /*
@@ -27,7 +26,7 @@ public class DoctorController {
     This method will be the logic of the program. It goes through the menu
      */
     public void navigateMainMenu(int navigate) {
-        if(navigate == 1) {
+        if (navigate == 1) {
             navigateOptionOneAddNew();
         } else if (navigate == 2) {
             navigateOptionTwoSearching();
@@ -64,7 +63,7 @@ public class DoctorController {
      */
     public void navigateOptionOneAddNew() {
         Person person = obtainUserInfo();
-        while(!validator.duplicateEntry(person, dbPerson.getData())) {
+        while (!validator.duplicateEntry(person, dbPerson.getData())) {
             dbPerson.addPersonEntry(person);
             System.out.println("The following entry has been added:");
             System.out.println(person.toString());
