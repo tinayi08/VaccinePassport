@@ -17,42 +17,62 @@ public class DoctorController {
         validator = new Validator();
     }
 
-    public void startDataInput() {
+    public int navigateOption() {
         int navigate = validator.startDataInputValidEntry(testDisplay.menu());
+
+        return navigate;
+    }
+    /*
+
+    This method will be the logic of the program. It goes through the menu
+     */
+    public void navigateMainMenu(int navigate) {
         if(navigate == 1) {
-            Person person = obtainUserInfo();
-            while(!validator.duplicateEntry(person, dbPerson.getData())) {
-                dbPerson.addPersonEntry(person);
-                System.out.println("The following entry has been added:");
-                System.out.println(person.toString());
-                return;
-            }
-            System.out.println("This entry already exists. Please enter a new entry or select 3 to update an existing entry.");
-            //NEED TO ADD LOOP SO IT GOES BACK TO THE TOP
+            navigateOptionOneAddNew();
         } else if (navigate == 2) {
-            //Person object of the person searching for
-            Person searchingPerson = dbPerson.searchIndividual();
-            //returns the ArrayList of people with matching names
-            ArrayList<Person> searchResults = returnSearchResults(searchingPerson, dbPerson.getData());
-            //Displays ArrayList of people with matching names
-            testDisplay.displayPerson(searchResults, "Search Results:");
+            navigateOptionTwoSearching();
         } else if (navigate == 3) {
-            System.out.println("Update individual");
+            navigateOptionThreeUpdate();
         }
             //NEED TO ADD LOOP SO THEY HAVE TO ENTER CORRECT ENTRY
 
+    }
+    /*
 
-
-
-//            //displays the initial batch of data
-//            testDisplay.setUpDataTesting(dbPerson.getData());
-//            //displays the data from ArrayList
-//            testDisplay.displayPerson(dbPerson.getData(), "Entries:");
-
-
-
+    This method will update the details of a existing Person object in the Arraylist
+     */
+    public void navigateOptionThreeUpdate() {
+        System.out.println("Update individual");
+        //Need to figure out how to update an existing object in the ArrayList
     }
 
+    /*
+    This method will search for an individul and display the results
+     */
+    public void navigateOptionTwoSearching() {
+        //Person object of the person searching for
+        Person searchingPerson = dbPerson.searchIndividual();
+        //returns the ArrayList of people with matching names
+        ArrayList<Person> searchResults = returnSearchResults(searchingPerson, dbPerson.getData());
+        //Displays ArrayList of people with matching names
+        testDisplay.displayPerson(searchResults, "Search Results:");
+    }
+
+    /*
+
+    This method will ask obtain information of a new user and add it to the ArrayList
+     */
+    public void navigateOptionOneAddNew() {
+        Person person = obtainUserInfo();
+        while(!validator.duplicateEntry(person, dbPerson.getData())) {
+            dbPerson.addPersonEntry(person);
+            System.out.println("The following entry has been added:");
+            System.out.println(person.toString());
+            return;
+        }
+        System.out.println("This entry already exists. Please enter a new entry or select 3 to update an existing entry.");
+        //NEED TO ADD LOOP SO IT GOES BACK TO THE TOP
+    }
 
 
     public ArrayList<Person> returnSearchResults(Person searchPerson, ArrayList<Person> data) {
