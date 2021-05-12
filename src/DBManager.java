@@ -22,21 +22,7 @@ public class DBManager {
         return returnPerson;
     }
 
-    /*
 
-    This method asks the user to enter a first name and a last name.
-    The name will be added to a Person object and method will return a person.
-     */
-    public Person searchIndividual() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter the first name of the individual you are searching for:");
-        String searchFName = scan.next();
-        System.out.println("Please enter the last name of the individual you are searching for:");
-        String searchLName = scan.next();
-        Person searchPerson = new Person (searchFName, searchLName);
-
-        return searchPerson;
-    }
 
 
     /*
@@ -46,8 +32,8 @@ public class DBManager {
      */
     public void addPersonEntry(Person person) {
             data.add(person);
-        }
-
     }
+
+
 
 }

@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -8,40 +9,19 @@ public class DoctorController {
     //vendor - compares the "ID" with the DB to pull information. Once it pulls one person,
     //ready to check the next person
     DBManager dbPerson;
-    TestDisplay testDisplay;
     Validator validator;
 
     public DoctorController() {
         dbPerson = new DBManager();
-        testDisplay = new TestDisplay();
         validator = new Validator();
     }
 
-    public int navigateOption() {
-        int navigate = validator.startDataInputValidEntry(testDisplay.menu());
-        return navigate;
-    }
-    /*
-
-    This method will be the logic of the program. It goes through the menu
-     */
-    public void navigateMainMenu(int navigate) {
-        if (navigate == 1) {
-            navigateOptionOneAddNew();
-        } else if (navigate == 2) {
-            navigateOptionTwoSearching();
-        } else if (navigate == 3) {
-            navigateOptionThreeUpdate();
-        }
-            //NEED TO ADD LOOP SO THEY HAVE TO ENTER CORRECT ENTRY
-
-    }
     /*
 
     This method will update the details of a existing Person object in the Arraylist
      */
-    public void navigateOptionThreeUpdate() {
-        dbPerson.searchIndividual();
+    public void navigateOptionThreeUpdate(Person person) {
+
         System.out.println("Update individual");
         //Need to figure out how to update an existing object in the ArrayList
     }
@@ -49,13 +29,14 @@ public class DoctorController {
     /*
     This method will search for an individual and display the results
      */
-    public void navigateOptionTwoSearching() {
-        //Person object of the person searching for
-        Person searchingPerson = dbPerson.searchIndividual();
+    public ArrayList<Person> navigateOptionTwoSearching(Person person, ArrayList<Person> data) {
+
+
         //returns the ArrayList of people with matching names
-        ArrayList<Person> searchResults = returnSearchResults(searchingPerson, dbPerson.getData());
+        ArrayList<Person> searchResults = returnSearchResults(person, data);
         //Displays ArrayList of people with matching names
-        testDisplay.displayPerson(searchResults, "Search Results:");
+        return searchResults;
+        //testDisplay.displayPerson(searchResults, "Search Results:");
     }
 
     /*
@@ -63,7 +44,7 @@ public class DoctorController {
     This method will ask obtain information of a new user and add it to the ArrayList
      */
     public void navigateOptionOneAddNew() {
-        testDisplay.setUpDataTesting(dbPerson.getData());
+
         Person person = obtainUserInfo();
 
         while (!validator.duplicateEntry(person, dbPerson.getData())) {
@@ -80,6 +61,7 @@ public class DoctorController {
 
     public ArrayList<Person> returnSearchResults(Person searchPerson, ArrayList<Person> data) {
         ArrayList<Person> searchResults = new ArrayList<>();
+        //System.out.println(data.size() + " data size in returnSearchResults");
         for (Person p : data) {
             if (searchPerson.getfName().equalsIgnoreCase(p.getfName()) && searchPerson.getlName().equalsIgnoreCase(p.getlName())) {
                 searchResults.add(p);

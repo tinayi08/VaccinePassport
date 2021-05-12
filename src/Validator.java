@@ -29,15 +29,5 @@ public class Validator {
 
     }
 
-    public int startDataInputValidEntry(int navigate) {
-        Scanner scan = new Scanner(System.in);
 
-        while(navigate == 0 || navigate > 3) {
-            System.out.println("Please select a valid entry.");
-            navigate = scan.nextInt();
-        }
-        return navigate;
-
-
-    }
 }

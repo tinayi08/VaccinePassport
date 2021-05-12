@@ -6,7 +6,9 @@ public class TestDisplay {
     DBManager dbManger;
     DoctorController drController;
 
+
     public TestDisplay() {
+
         dbManger = new DBManager();
         drController = new DoctorController();
     }
@@ -64,6 +66,22 @@ public class TestDisplay {
 
     /*
 
+    This method asks the user to enter a first name and a last name.
+    The name will be added to a Person object and method will return a person.
+     */
+    public Person searchIndividual() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Please enter the first name of the individual you are searching for:");
+        String searchFName = scan.next();
+        System.out.println("Please enter the last name of the individual you are searching for:");
+        String searchLName = scan.next();
+        Person searchPerson = new Person (searchFName, searchLName);
+        //System.out.println(searchPerson + " Inside searchIndividual()");
+        return searchPerson;
+    }
+
+    /*
+
     Initial start of program. User has an option to select what the program does
      */
     public int menu() {
@@ -73,6 +91,10 @@ public class TestDisplay {
         System.out.println("3. Update an existing individual on the database");
         Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();
+        while(option == 0 || option > 3) {
+            System.out.println("Please select a valid entry: 1 - 3");
+            option = scan.nextInt();
+        }
         return option;
     }
 
@@ -86,13 +108,31 @@ public class TestDisplay {
         return false;
     }
 
-//    public void run() {
-//        do {
-//            navigateMainMenu(DoctorController.navigateOption());
-//        } while (returnToMainMenu());
-//
-//    }
+    public void run() {
+        //do {
 
+
+            navigateMainMenu(menu());
+        //} while (returnToMainMenu());
+
+
+    }
+
+    public void navigateMainMenu(int navigate) {
+        setUpDataTesting(dbManger.getData());
+        if (navigate == 1) {
+            drController.navigateOptionOneAddNew();
+        } else if (navigate == 2) {
+
+            ArrayList<Person> searchResults = drController.navigateOptionTwoSearching(searchIndividual(), dbManger.getData());
+            //System.out.println("Listed at navigation main menu" + searchResults.size());
+            displayPerson(searchResults, "Search Results");
+        } else if (navigate == 3) {
+            drController.navigateOptionThreeUpdate(searchIndividual());
+        }
+        //NEED TO ADD LOOP SO THEY HAVE TO ENTER CORRECT ENTRY
+
+    }
 
     public void duplicateEntry() {
         System.out.println("This entry already exists. Please select from the following options:");
