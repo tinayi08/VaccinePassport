@@ -1,10 +1,10 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class DBManager {
     private  ArrayList<Person> data;
     Person person;
-    Validator validator;
+
 
     public ArrayList<Person> getData() {
         return data;
@@ -21,9 +21,6 @@ public class DBManager {
 
         return returnPerson;
     }
-
-
-
 
     /*
 
