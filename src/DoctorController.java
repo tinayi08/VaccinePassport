@@ -22,8 +22,15 @@ public class DoctorController {
      */
     public void navigateOptionThreeUpdate(Person person) {
 
-        System.out.println("Update individual");
-        //Need to figure out how to update an existing object in the ArrayList
+        System.out.println("What information would you like to update?");
+        //information in Person object should not be changed. Changed info should be
+        //vaccine information...
+
+        //Use Setters to  update Person object?
+    }
+
+    public void updatePerson() {
+
     }
 
     /*

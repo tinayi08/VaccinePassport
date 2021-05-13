@@ -22,6 +22,7 @@ public class TestDisplay {
     Later will be displayed by a GUI
      */
     public void displayPerson(ArrayList<Person> data, String title) {
+        System.out.println();
         System.out.println(title);
         if (data == null || data.isEmpty()) {
             System.out.println("There are no matching results.");
@@ -110,21 +111,20 @@ public class TestDisplay {
     }
 
     public void run() {
-        //do {
-
+        setUpDataTesting(dbManger.getData());
+        do {
 
             navigateMainMenu(menu());
-        //} while (returnToMainMenu());
+        } while (returnToMainMenu());
 
 
     }
 
     public void navigateMainMenu(int navigate) {
-        setUpDataTesting(dbManger.getData());
+
         //System.out.println("after setUpDataTesting" + dbManger.getData());
         if (navigate == 1) {
             drController.navigateOptionOneAddNew(dbManger.getData());
-            System.out.println();
             displayPerson(dbManger.getData(), "Entries:");
         } else if (navigate == 2) {
             displayPerson(dbManger.getData(), "Entries:");
@@ -132,6 +132,7 @@ public class TestDisplay {
             //System.out.println("Listed at navigation main menu" + searchResults.size());
             displayPerson(searchResults, "Search Results");
         } else if (navigate == 3) {
+            displayPerson(dbManger.getData(), "Entries:");
             drController.navigateOptionThreeUpdate(searchIndividual());
         }
         //NEED TO ADD LOOP SO THEY HAVE TO ENTER CORRECT ENTRY
