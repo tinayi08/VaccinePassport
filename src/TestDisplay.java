@@ -39,15 +39,15 @@ public class TestDisplay {
 
     Need to later change this into SQL
      */
-    public void setUpDataTesting(ArrayList<Person> data) {
+    public ArrayList<Person> setUpDataTesting(ArrayList<Person> data) {
         //add people into the array to have some people in there
         //practice purposes only - will use text file or DB later on
 
         Person one = new Person("Tina", "Lee", 4, 3, 1993);
-        Person two = new Person("Angela", "Lee", 11, 4, 1994);
-        Person three = new Person("Alexa", "lee", 9, 22, 1998);
-        Person four = new Person("Jay", "Lee", 5, 22, 1965);
-        Person five = new Person("Amy", "Lee", 1, 22, 1965);
+        Person two = new Person("Angela", "Jones", 11, 4, 1994);
+        Person three = new Person("Alexa", "Smith", 9, 22, 1998);
+        Person four = new Person("Jay", "Kealy", 5, 22, 1965);
+        Person five = new Person("Amy", "Perry", 1, 22, 1965);
         Person six = new Person("Jordan", "Clarke", 11, 27, 1990);
         Person seven = new Person("Kameron"," Clarke", 4, 2, 1991);
         Person eight = new Person("Amy", "Lee", 1, 22, 1965);
@@ -62,6 +62,7 @@ public class TestDisplay {
         data.add(seven);
         data.add(eight);
 
+        return data;
     }
 
     /*
@@ -120,10 +121,13 @@ public class TestDisplay {
 
     public void navigateMainMenu(int navigate) {
         setUpDataTesting(dbManger.getData());
+        //System.out.println("after setUpDataTesting" + dbManger.getData());
         if (navigate == 1) {
-            drController.navigateOptionOneAddNew();
+            drController.navigateOptionOneAddNew(dbManger.getData());
+            System.out.println();
+            displayPerson(dbManger.getData(), "Entries:");
         } else if (navigate == 2) {
-
+            displayPerson(dbManger.getData(), "Entries:");
             ArrayList<Person> searchResults = drController.navigateOptionTwoSearching(searchIndividual(), dbManger.getData());
             //System.out.println("Listed at navigation main menu" + searchResults.size());
             displayPerson(searchResults, "Search Results");

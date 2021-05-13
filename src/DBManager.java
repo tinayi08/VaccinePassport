@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -27,8 +28,9 @@ public class DBManager {
     This method takes in a Person object.
     It will add a person into the ArrayList of data.
      */
-    public void addPersonEntry(Person person) {
-            data.add(person);
+    public void addPersonEntry(Person person, ArrayList<Person> data) {
+        data.add(person);
+        //System.out.println("Inside addPersonEntry()" + data);
     }
 
 

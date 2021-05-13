@@ -27,35 +27,39 @@ public class DoctorController {
     }
 
     /*
+
     This method will search for an individual and display the results
      */
     public ArrayList<Person> navigateOptionTwoSearching(Person person, ArrayList<Person> data) {
-
 
         //returns the ArrayList of people with matching names
         ArrayList<Person> searchResults = returnSearchResults(person, data);
         //Displays ArrayList of people with matching names
         return searchResults;
-        //testDisplay.displayPerson(searchResults, "Search Results:");
+
     }
 
     /*
 
     This method will ask obtain information of a new user and add it to the ArrayList
      */
-    public void navigateOptionOneAddNew() {
-
+    public void navigateOptionOneAddNew(ArrayList<Person> data) {
+        //System.out.println("before obtainUserInfo() " + data);
         Person person = obtainUserInfo();
 
-        while (!validator.duplicateEntry(person, dbPerson.getData())) {
-            dbPerson.addPersonEntry(person);
-            System.out.println("The following entry has been added:");
-            System.out.println(person.toString());
-            return;
-        }
+        while (validator.duplicateEntry(person, data)) {
 
-        System.out.println("This entry already exists.");
-        //NEED TO ADD LOOP SO IT GOES BACK TO THE TOP
+            System.out.println("This entry already exists.");
+            person = obtainUserInfo();
+
+        }
+        //System.out.println("after while loop" + data);
+        dbPerson.addPersonEntry(person, data);
+        System.out.println("The following entry has been added:");
+        System.out.println(person.toString());
+        //System.out.println(data + "after to String()");
+
+
     }
 
 
