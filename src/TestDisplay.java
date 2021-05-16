@@ -3,13 +3,12 @@ import java.util.Scanner;
 
 public class TestDisplay {
 
-    DBManager dbManger;
+    //DBManager dbManger;
     DoctorController drController;
 
 
     public TestDisplay() {
-
-        dbManger = new DBManager();
+        //dbManger = new DBManager();
         drController = new DoctorController();
     }
 
@@ -40,7 +39,7 @@ public class TestDisplay {
 
     Need to later change this into SQL
      */
-    public ArrayList<Person> setUpDataTesting(ArrayList<Person> data) {
+    public void setUpDataTesting() {
         //add people into the array to have some people in there
         //practice purposes only - will use text file or DB later on
 
@@ -53,17 +52,16 @@ public class TestDisplay {
         Person seven = new Person("Kameron"," Clarke", 4, 2, 1991);
         Person eight = new Person("Amy", "Lee", 1, 22, 1965);
 
-        //change methods
-        data.add(one);
-        data.add(two);
-        data.add(three);
-        data.add(four);
-        data.add(five);
-        data.add(six);
-        data.add(seven);
-        data.add(eight);
+        drController.dbPerson.addPersonEntry(one);
+        drController.dbPerson.addPersonEntry(two);
+        drController.dbPerson.addPersonEntry(three);
+        drController.dbPerson.addPersonEntry(four);
+        drController.dbPerson.addPersonEntry(five);
+        drController.dbPerson.addPersonEntry(six);
+        drController.dbPerson.addPersonEntry(seven);
+        drController.dbPerson.addPersonEntry(eight);
 
-        return data;
+        //return data;
     }
 
     /*
@@ -112,7 +110,8 @@ public class TestDisplay {
     }
 
     public void run() {
-        setUpDataTesting(dbManger.getData());
+
+        setUpDataTesting();//drController.dbPerson.getData());
         do {
 
             navigateMainMenu(menu());
@@ -124,15 +123,15 @@ public class TestDisplay {
 
         //System.out.println("after setUpDataTesting" + dbManger.getData());
         if (navigate == 1) {
-            drController.navigateOptionOneAddNew(dbManger.getData());
-            displayPerson(dbManger.getData(), "Entries:");
+            drController.navigateOptionOneAddNew(drController.dbPerson.getData());
+            displayPerson(drController.dbPerson.getData(), "Entries:");
         } else if (navigate == 2) {
-            displayPerson(dbManger.getData(), "Entries:");
+            displayPerson(drController.dbPerson.getData(), "Entries:");
             ArrayList<Person> searchResults = drController.navigateOptionTwoSearching(searchIndividual());
             //System.out.println("Listed at navigation main menu" + searchResults.size());
             displayPerson(searchResults, "Search Results");
         } else if (navigate == 3) {
-            displayPerson(dbManger.getData(), "Entries:");
+            displayPerson(drController.dbPerson.getData(), "Entries:");
             //add a validator so it only pulls info on people on the list
             Person updatePerson = searchIndividual();
             drController.navigateOptionThreeUpdate(searchIndividual());
