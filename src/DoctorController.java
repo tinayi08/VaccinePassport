@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -22,25 +21,39 @@ public class DoctorController {
      */
     public void navigateOptionThreeUpdate(Person person) {
 
-        System.out.println("What information would you like to update?");
-        //information in Person object should not be changed. Changed info should be
-        //vaccine information...
 
-        //Use Setters to  update Person object?
+        //System.out.println("What information would you like to update?");
+        //here are the current details of there person
+        //add new shot?
+        // if first shot != null then add to 2nd shot
+        System.out.println("---");
+        updatePerson(person);
+        System.out.println(person);
+        //information in Person object should not be changed. Changed info should be
+
     }
 
-    public void updatePerson() {
-
+    public Person updatePerson(Person person) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("What is the Vaccine brand?");
+        String vaxBrand = scan.next();
+        System.out.println("How many shots are required?");
+        int numShots = scan.nextInt();
+        Vaccine vaxInfo = new Vaccine(vaxBrand, numShots, null, null);
+        person.setVaccine(vaxInfo);
+        System.out.println(person.getVaccine());
+        System.out.println(person.toStringVax());
+        return person;
     }
 
     /*
 
     This method will search for an individual and display the results
      */
-    public ArrayList<Person> navigateOptionTwoSearching(Person person, ArrayList<Person> data) {
+    public ArrayList<Person> navigateOptionTwoSearching(Person person) {
 
         //returns the ArrayList of people with matching names
-        ArrayList<Person> searchResults = returnSearchResults(person, data);
+        ArrayList<Person> searchResults = dbPerson.returnSearchResults(person);
         //Displays ArrayList of people with matching names
         return searchResults;
 
@@ -54,31 +67,19 @@ public class DoctorController {
         //System.out.println("before obtainUserInfo() " + data);
         Person person = obtainUserInfo();
 
-        while (validator.duplicateEntry(person, data)) {
+        while (validator.doesPersonExist(person, data)) {
 
             System.out.println("This entry already exists.");
             person = obtainUserInfo();
 
         }
         //System.out.println("after while loop" + data);
-        dbPerson.addPersonEntry(person, data);
+        dbPerson.addPersonEntry(person); //, data);
         System.out.println("The following entry has been added:");
         System.out.println(person.toString());
         //System.out.println(data + "after to String()");
 
 
-    }
-
-
-    public ArrayList<Person> returnSearchResults(Person searchPerson, ArrayList<Person> data) {
-        ArrayList<Person> searchResults = new ArrayList<>();
-        //System.out.println(data.size() + " data size in returnSearchResults");
-        for (Person p : data) {
-            if (searchPerson.getfName().equalsIgnoreCase(p.getfName()) && searchPerson.getlName().equalsIgnoreCase(p.getlName())) {
-                searchResults.add(p);
-            }
-        }
-        return searchResults;
     }
 
     public boolean isPersonVaccinated(Person person) {

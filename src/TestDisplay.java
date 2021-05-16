@@ -79,6 +79,7 @@ public class TestDisplay {
         String searchLName = scan.next();
         Person searchPerson = new Person (searchFName, searchLName);
         //System.out.println(searchPerson + " Inside searchIndividual()");
+
         return searchPerson;
     }
 
@@ -117,7 +118,6 @@ public class TestDisplay {
             navigateMainMenu(menu());
         } while (returnToMainMenu());
 
-
     }
 
     public void navigateMainMenu(int navigate) {
@@ -128,11 +128,13 @@ public class TestDisplay {
             displayPerson(dbManger.getData(), "Entries:");
         } else if (navigate == 2) {
             displayPerson(dbManger.getData(), "Entries:");
-            ArrayList<Person> searchResults = drController.navigateOptionTwoSearching(searchIndividual(), dbManger.getData());
+            ArrayList<Person> searchResults = drController.navigateOptionTwoSearching(searchIndividual());
             //System.out.println("Listed at navigation main menu" + searchResults.size());
             displayPerson(searchResults, "Search Results");
         } else if (navigate == 3) {
             displayPerson(dbManger.getData(), "Entries:");
+            //add a validator so it only pulls info on people on the list
+            Person updatePerson = searchIndividual();
             drController.navigateOptionThreeUpdate(searchIndividual());
         }
         //NEED TO ADD LOOP SO THEY HAVE TO ENTER CORRECT ENTRY

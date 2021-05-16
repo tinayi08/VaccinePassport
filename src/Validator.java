@@ -11,7 +11,7 @@ public class Validator {
     This method checks the ArrayList to see if the newly created Person object
     is a duplicate
      */
-    public boolean duplicateEntry(Person person, ArrayList<Person> data) {
+    public boolean doesPersonExist(Person person, ArrayList<Person> data) {
         String fName = person.getfName();
         String lName = person.getlName();
         int month = person.getDob().month;
@@ -28,6 +28,5 @@ public class Validator {
         return false;
 
     }
-
 
 }

@@ -5,15 +5,39 @@ public class Person {
     Vaccine vaccine;
     DOB dob;
 
-    @Override
+
+    public  String toStringVax() {
+        if (vaccine.twoShotDate == null) {
+            return "First Name: " + fName +
+                    ", Last Name: " + lName +
+                    ", Vaccine Brand: " + vaccine.brand +
+                    ", Required Shots: " + vaccine.requiredShots +
+                    ", Date of First Shot: " + vaccine.oneShotDate +
+                    //", Date of Second Shot: " + vaccine.twoShotDate +
+                    ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
+        }
+        return "First Name: " + fName +
+                ", Last Name: " + lName +
+                ", Vaccine Brand: " + vaccine.brand +
+                ", Required Shots: " + vaccine.requiredShots +
+                ", Date of First Shot: " + vaccine.oneShotDate +
+                ", Date of Second Shot: " + vaccine.twoShotDate +
+                ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
+    }
+
     public String toString() {
         if (dob == null) {
             return "First Name: " + fName +
                     ", Last Name: " + lName;
+        } else if (vaccine == null) {
+            return "First Name: " + fName +
+                    ", Last Name: " + lName +
+                    //", vaccine: " + vaccine +
+                    ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
         }
         return "First Name: " + fName +
                 ", Last Name: " + lName +
-                //", vaccine=" + vaccine +
+                ", vaccine=" + vaccine +
                 ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
 
     }
@@ -34,6 +58,9 @@ public class Person {
         return dob;
     }
 
+    public void setVaccine(Vaccine vaccine) {
+        this.vaccine = vaccine;
+    }
 
     public Person(String fName, String lName) {
         this.fName = fName;
