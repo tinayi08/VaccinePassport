@@ -3,12 +3,11 @@ import java.util.Scanner;
 
 public class TestDisplay {
 
-    //DBManager dbManger;
     DoctorController drController;
 
 
     public TestDisplay() {
-        //dbManger = new DBManager();
+
         drController = new DoctorController();
     }
 

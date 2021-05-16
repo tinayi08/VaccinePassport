@@ -8,11 +8,10 @@ public class DoctorController {
     //vendor - compares the "ID" with the DB to pull information. Once it pulls one person,
     //ready to check the next person
     DBManager dbPerson;
-    Validator validator;
 
     public DoctorController() {
         dbPerson = new DBManager();
-        validator = new Validator();
+
     }
 
     /*
@@ -67,7 +66,7 @@ public class DoctorController {
         //System.out.println("before obtainUserInfo() " + data);
         Person person = obtainUserInfo();
 
-        while (validator.doesPersonExist(person, data)) {
+        while (dbPerson.doesPersonExist(person, data)) {
 
             System.out.println("This entry already exists.");
             person = obtainUserInfo();
