@@ -7,14 +7,23 @@ public class Person {
 
 
     public  String toStringVax() {
-        if (vaccine.twoShotDate == null) {
+        if (vaccine == null) {
+            return "First Name: " + fName +
+                    ", Last Name: " + lName +
+                    //", Vaccine Brand: " + vaccine.brand +
+                    //", Required Shots: " + vaccine.requiredShots +
+                    //", Date of First Shot: " + vaccine.oneShotDate +
+                    //", Date of Second Shot: " + "N/A"; //+
+                    ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
+
+        } else if (vaccine.twoShotDate == null && vaccine.oneShotDate == null) {
             return "First Name: " + fName +
                     ", Last Name: " + lName +
                     ", Vaccine Brand: " + vaccine.brand +
                     ", Required Shots: " + vaccine.requiredShots +
-                    ", Date of First Shot: " + vaccine.oneShotDate +
-                    //", Date of Second Shot: " + vaccine.twoShotDate +
-                    ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
+                    //", Date of First Shot: " + vaccine.oneShotDate +
+                    //", Date of Second Shot: " + "N/A" +
+                    ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year;
         }
         return "First Name: " + fName +
                 ", Last Name: " + lName +
@@ -22,22 +31,18 @@ public class Person {
                 ", Required Shots: " + vaccine.requiredShots +
                 ", Date of First Shot: " + vaccine.oneShotDate +
                 ", Date of Second Shot: " + vaccine.twoShotDate +
-                ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
+                ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year;
     }
 
     public String toString() {
         if (dob == null) {
             return "First Name: " + fName +
                     ", Last Name: " + lName;
-        } else if (vaccine == null) {
-            return "First Name: " + fName +
-                    ", Last Name: " + lName +
-                    //", vaccine: " + vaccine +
-                    ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
+
         }
         return "First Name: " + fName +
                 ", Last Name: " + lName +
-                ", vaccine=" + vaccine +
+                //", vaccine=" + vaccine +
                 ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
 
     }
@@ -76,10 +81,10 @@ public class Person {
     }
 
 
-    public Person(String fName, String lName, Vaccine vaccine, DOB dob) {
+    public Person(String fName, String lName, String brand, int requiredshots, String one, String two, DOB dob) {
         this.fName = fName;
         this.lName = lName;
-        this.vaccine = vaccine;
+        this.vaccine = new Vaccine(brand, requiredshots, one, two);
         this.dob = dob;
     }
 

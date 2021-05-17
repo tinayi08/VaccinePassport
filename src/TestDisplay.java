@@ -27,7 +27,12 @@ public class TestDisplay {
             return;
         }
         for (Person person : data) {
-            System.out.println(person.toString());
+            if (person.vaccine == null) {
+                System.out.println(person.toString());
+            } else if (person.vaccine != null) {
+                System.out.println(person.toStringVax());
+            }
+
         }
     }
 
@@ -74,10 +79,18 @@ public class TestDisplay {
         String searchFName = scan.next();
         System.out.println("Please enter the last name of the individual you are searching for:");
         String searchLName = scan.next();
-        Person searchPerson = new Person (searchFName, searchLName);
+        //Person searchPerson = new Person (searchFName, searchLName);
+        int object = 0;
+        for (Person p : drController.dbPerson.getData()) {
+            if (searchFName.equalsIgnoreCase(p.getfName()) && searchLName.equalsIgnoreCase(p.getlName())) {
+                //need to capture this index so we know thats the object we want to update
+                object = drController.dbPerson.getData().indexOf(p);
+                
+            }
+        }
         //System.out.println(searchPerson + " Inside searchIndividual()");
-
-        return searchPerson;
+        return drController.dbPerson.getData().get(object);
+        
     }
 
     /*
@@ -132,15 +145,11 @@ public class TestDisplay {
         } else if (navigate == 3) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
             //add a validator so it only pulls info on people on the list
-            Person updatePerson = searchIndividual();
+            //Person updatePerson = searchIndividual();
             drController.navigateOptionThreeUpdate(searchIndividual());
         }
         //NEED TO ADD LOOP SO THEY HAVE TO ENTER CORRECT ENTRY
 
     }
 
-    public void duplicateEntry() {
-        System.out.println("This entry already exists. Please select from the following options:");
-        System.out.println("1. Enter a new individual to the database.");
-    }
 }

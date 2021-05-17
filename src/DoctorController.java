@@ -25,9 +25,9 @@ public class DoctorController {
         //here are the current details of there person
         //add new shot?
         // if first shot != null then add to 2nd shot
-        System.out.println("---");
-        updatePerson(person);
-        System.out.println(person);
+
+        Person updated = updatePerson(person);
+        System.out.println(updated.toStringVax());
         //information in Person object should not be changed. Changed info should be
 
     }
@@ -38,10 +38,10 @@ public class DoctorController {
         String vaxBrand = scan.next();
         System.out.println("How many shots are required?");
         int numShots = scan.nextInt();
+
         Vaccine vaxInfo = new Vaccine(vaxBrand, numShots, null, null);
         person.setVaccine(vaxInfo);
-        System.out.println(person.getVaccine());
-        System.out.println(person.toStringVax());
+
         return person;
     }
 
@@ -66,7 +66,7 @@ public class DoctorController {
         //System.out.println("before obtainUserInfo() " + data);
         Person person = obtainUserInfo();
 
-        while (dbPerson.doesPersonExist(person, data)) {
+        while (dbPerson.doesPersonExist(person)) {
 
             System.out.println("This entry already exists.");
             person = obtainUserInfo();

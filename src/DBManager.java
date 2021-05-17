@@ -42,12 +42,18 @@ public class DBManager {
         return searchResults;
     }
 
+
+    public void search(Person target) {
+
+    }
+
     /*
 
-This method checks the ArrayList to see if the newly created Person object
-is a duplicate
- */
-    public boolean doesPersonExist(Person person, ArrayList<Person> data) {
+    This method checks the ArrayList to see if the newly created Person object
+    is a duplicate
+    */
+    public boolean doesPersonExist(Person person) {
+
         String fName = person.getfName();
         String lName = person.getlName();
         int month = person.getDob().month;
@@ -55,8 +61,12 @@ is a duplicate
         int year = person.getDob().year;
 
         for (Person p : data) {
+
             if (fName.equalsIgnoreCase(p.getfName()) && lName.equalsIgnoreCase(p.getlName()) && month == p.getDob().month &&
                     day == p.getDob().day && year == p.getDob().year) {
+                //need to capture this index so we know thats the object we want to update
+                int object = data.indexOf(p);
+                System.out.println(object + " Found at index of");
                 return true;
             }
         }
