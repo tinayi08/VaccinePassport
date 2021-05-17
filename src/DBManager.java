@@ -66,7 +66,7 @@ public class DBManager {
                     day == p.getDob().day && year == p.getDob().year) {
                 //need to capture this index so we know thats the object we want to update
                 int object = data.indexOf(p);
-                System.out.println(object + " Found at index of");
+                //System.out.println(object + " Found at index of");
                 return true;
             }
         }

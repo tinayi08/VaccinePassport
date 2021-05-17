@@ -6,7 +6,7 @@ public class Person {
     DOB dob;
 
 
-    public  String toStringVax() {
+    public  String toString() {
         if (vaccine == null) {
             return "First Name: " + fName +
                     ", Last Name: " + lName +
@@ -32,19 +32,6 @@ public class Person {
                 ", Date of First Shot: " + vaccine.oneShotDate +
                 ", Date of Second Shot: " + vaccine.twoShotDate +
                 ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year;
-    }
-
-    public String toString() {
-        if (dob == null) {
-            return "First Name: " + fName +
-                    ", Last Name: " + lName;
-
-        }
-        return "First Name: " + fName +
-                ", Last Name: " + lName +
-                //", vaccine=" + vaccine +
-                ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
-
     }
 
     public String getfName() {

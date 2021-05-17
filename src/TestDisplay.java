@@ -30,7 +30,7 @@ public class TestDisplay {
             if (person.vaccine == null) {
                 System.out.println(person.toString());
             } else if (person.vaccine != null) {
-                System.out.println(person.toStringVax());
+                System.out.println(person.toString());
             }
 
         }
@@ -55,6 +55,8 @@ public class TestDisplay {
         Person six = new Person("Jordan", "Clarke", 11, 27, 1990);
         Person seven = new Person("Kameron"," Clarke", 4, 2, 1991);
         Person eight = new Person("Amy", "Lee", 1, 22, 1965);
+        Person nine = new Person("Amy", "Lee", 3, 22, 1994);
+        Person ten = new Person("amy", "lee", 3, 4, 1999);
 
         drController.dbPerson.addPersonEntry(one);
         drController.dbPerson.addPersonEntry(two);
@@ -64,8 +66,8 @@ public class TestDisplay {
         drController.dbPerson.addPersonEntry(six);
         drController.dbPerson.addPersonEntry(seven);
         drController.dbPerson.addPersonEntry(eight);
-
-        //return data;
+        drController.dbPerson.addPersonEntry(nine);
+        drController.dbPerson.addPersonEntry(ten);
     }
 
     /*
@@ -79,16 +81,16 @@ public class TestDisplay {
         String searchFName = scan.next();
         System.out.println("Please enter the last name of the individual you are searching for:");
         String searchLName = scan.next();
-        //Person searchPerson = new Person (searchFName, searchLName);
+
         int object = 0;
         for (Person p : drController.dbPerson.getData()) {
             if (searchFName.equalsIgnoreCase(p.getfName()) && searchLName.equalsIgnoreCase(p.getlName())) {
-                //need to capture this index so we know thats the object we want to update
+
                 object = drController.dbPerson.getData().indexOf(p);
                 
             }
         }
-        //System.out.println(searchPerson + " Inside searchIndividual()");
+
         return drController.dbPerson.getData().get(object);
         
     }

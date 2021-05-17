@@ -26,13 +26,13 @@ public class DoctorController {
         //add new shot?
         // if first shot != null then add to 2nd shot
 
-        Person updated = updatePerson(person);
-        System.out.println(updated.toStringVax());
+        Person updated = addVaxInfo(person);
+        System.out.println(updated.toString());
         //information in Person object should not be changed. Changed info should be
 
     }
 
-    public Person updatePerson(Person person) {
+    public Person addVaxInfo(Person person) {
         Scanner scan = new Scanner(System.in);
         System.out.println("What is the Vaccine brand?");
         String vaxBrand = scan.next();
