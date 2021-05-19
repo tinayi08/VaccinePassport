@@ -15,24 +15,25 @@ public class Person {
         } else if (vaccine.twoShotDate == null && vaccine.oneShotDate == null) {
             return "First Name: " + fName +
                     ", Last Name: " + lName +
+                    ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year +
                     ", Vaccine Brand: " + vaccine.brand +
-                    ", Required Shots: " + vaccine.requiredShots +
-                    ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year;
+                    ", Required Shots: " + vaccine.requiredShots;
+
         } else if (vaccine.twoShotDate == null) {
             return "First Name: " + fName +
                     ", Last Name: " + lName +
+                    ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year +
                     ", Vaccine Brand: " + vaccine.brand +
                     ", Required Shots: " + vaccine.requiredShots +
-                    ", Date of First Shot: " + vaccine.oneShotDate +
-                    ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year;
+                    ", Date of First Shot: " + vaccine.oneShotDate;
         }
-            return "First Name: " + fName +
-                ", Last Name: " + lName +
-                ", Vaccine Brand: " + vaccine.brand +
-                ", Required Shots: " + vaccine.requiredShots +
-                ", Date of First Shot: " + vaccine.oneShotDate +
-                ", Date of Second Shot: " + vaccine.twoShotDate +
-                ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year;
+        return "First Name: " + fName +
+            ", Last Name: " + lName +
+            ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year +
+            ", Vaccine Brand: " + vaccine.brand +
+            ", Required Shots: " + vaccine.requiredShots +
+            ", Date of First Shot: " + vaccine.oneShotDate +
+            ", Date of Second Shot: " + vaccine.twoShotDate;
 
     }
 
