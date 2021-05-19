@@ -165,8 +165,8 @@ public class TestDisplay {
             //Person updatePerson = searchIndividual();
             drController.navigateOptionThreeUpdate(searchIndividual());
         } else if (navigate == 4) {
-            drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual());
             displayPerson(drController.dbPerson.getData(), "Entries:");
+            drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual());
         }
 
         while(navigate == 0 || navigate > 4) {
