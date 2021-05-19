@@ -76,18 +76,42 @@ public class TestDisplay {
     The name will be added to a Person object and method will return a person.
      */
     public Person searchIndividual() {
+        Person search;
+//        do {
+//            Scanner scan = new Scanner(System.in);
+//            System.out.println("Please enter the first name of the individual you are searching for:");
+//            String searchFName = scan.next();
+//            System.out.println("Please enter the last name of the individual you are searching for:");
+//            String searchLName = scan.next();
+//            System.out.println("Please enter the birth month:");
+//            int searchMonth = scan.nextInt();
+//            System.out.println("Please enter the birth day:");
+//            int searchDay = scan.nextInt();
+//            System.out.println("Please enter the year:");
+//            int searchYear = scan.nextInt();
+//            search = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+//        } while (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, please re-enter your search."));
+
+
         Scanner scan = new Scanner(System.in);
         System.out.println("Please enter the first name of the individual you are searching for:");
         String searchFName = scan.next();
         System.out.println("Please enter the last name of the individual you are searching for:");
         String searchLName = scan.next();
+        System.out.println("Please enter the birth month:");
+        int searchMonth = scan.nextInt();
+        System.out.println("Please enter the birth day:");
+        int searchDay = scan.nextInt();
+        System.out.println("Please enter the year:");
+        int searchYear = scan.nextInt();
+        search = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
 
         int object = 0;
         for (Person p : drController.dbPerson.getData()) {
-            if (searchFName.equalsIgnoreCase(p.getfName()) && searchLName.equalsIgnoreCase(p.getlName())) {
+            if (search.getfName().equalsIgnoreCase(p.getfName()) && search.getlName().equalsIgnoreCase(p.getlName())) {
 
                 object = drController.dbPerson.getData().indexOf(p);
-                
+
             }
         }
 
@@ -104,10 +128,11 @@ public class TestDisplay {
         System.out.println("1. Enter a new individual to the database");
         System.out.println("2. Search for an individual on the database");
         System.out.println("3. Update an existing individual on the database");
+        System.out.println("4. Delete an entry from the database");
         Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();
-        while(option == 0 || option > 3) {
-            System.out.println("Please select a valid entry: 1 - 3");
+        while(option == 0 || option > 4) {
+            System.out.println("Please select a valid entry: 1 - 4");
             option = scan.nextInt();
         }
         return option;
@@ -149,6 +174,9 @@ public class TestDisplay {
             //add a validator so it only pulls info on people on the list
             //Person updatePerson = searchIndividual();
             drController.navigateOptionThreeUpdate(searchIndividual());
+        } else if (navigate == 4) {
+            drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual());
+            displayPerson(drController.dbPerson.getData(), "Entries:");
         }
         //NEED TO ADD LOOP SO THEY HAVE TO ENTER CORRECT ENTRY
 

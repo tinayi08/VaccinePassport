@@ -81,6 +81,13 @@ public class DoctorController {
 
     }
 
+    public void navigateOptionFourDelete(ArrayList<Person> data, Person person) {
+        dbPerson.deletePersonEntry(person);
+        System.out.println(person.getfName() + " " + person.getlName() + " has been deleted.");
+
+    }
+
+
     public boolean isPersonVaccinated(Person person) {
         Random rd = new Random();
         return rd.nextBoolean();

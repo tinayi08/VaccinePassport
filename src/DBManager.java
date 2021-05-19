@@ -31,6 +31,10 @@ public class DBManager {
         //System.out.println("Inside addPersonEntry()" + data);
     }
 
+    public void deletePersonEntry(Person person) {
+        data.remove(person);
+    }
+
     public ArrayList<Person> returnSearchResults(Person searchPerson) {
         ArrayList<Person> searchResults = new ArrayList<Person>();
         //System.out.println(data.size() + " data size in returnSearchResults");
@@ -52,6 +56,31 @@ public class DBManager {
     This method checks the ArrayList to see if the newly created Person object
     is a duplicate
     */
+    public boolean doesPersonExist(Person person, String title) {
+
+        String fName = person.getfName();
+        String lName = person.getlName();
+        int month = person.getDob().month;
+        int day = person.getDob().day;
+        int year = person.getDob().year;
+
+        for (Person p : data) {
+
+            if (fName.equalsIgnoreCase(p.getfName()) && lName.equalsIgnoreCase(p.getlName()) && month == p.getDob().month &&
+                    day == p.getDob().day && year == p.getDob().year) {
+                //need to capture this index so we know thats the object we want to update
+                int object = data.indexOf(p);
+                //System.out.println(object + " Found at index of");
+                System.out.println("match");
+                return true;
+            }
+        }
+        System.out.println("no match");
+        System.out.println(title);
+        return false;
+
+    }
+
     public boolean doesPersonExist(Person person) {
 
         String fName = person.getfName();
