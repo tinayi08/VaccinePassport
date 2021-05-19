@@ -10,10 +10,6 @@ public class Person {
         if (vaccine == null) {
             return "First Name: " + fName +
                     ", Last Name: " + lName +
-                    //", Vaccine Brand: " + vaccine.brand +
-                    //", Required Shots: " + vaccine.requiredShots +
-                    //", Date of First Shot: " + vaccine.oneShotDate +
-                    //", Date of Second Shot: " + "N/A"; //+
                     ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
 
         } else if (vaccine.twoShotDate == null && vaccine.oneShotDate == null) {
@@ -21,8 +17,6 @@ public class Person {
                     ", Last Name: " + lName +
                     ", Vaccine Brand: " + vaccine.brand +
                     ", Required Shots: " + vaccine.requiredShots +
-                    //", Date of First Shot: " + vaccine.oneShotDate +
-                    //", Date of Second Shot: " + "N/A" +
                     ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year;
         }
         return "First Name: " + fName +
