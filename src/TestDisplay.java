@@ -77,34 +77,26 @@ public class TestDisplay {
      */
     public Person searchIndividual() {
         Person search;
-//        do {
-//            Scanner scan = new Scanner(System.in);
-//            System.out.println("Please enter the first name of the individual you are searching for:");
-//            String searchFName = scan.next();
-//            System.out.println("Please enter the last name of the individual you are searching for:");
-//            String searchLName = scan.next();
-//            System.out.println("Please enter the birth month:");
-//            int searchMonth = scan.nextInt();
-//            System.out.println("Please enter the birth day:");
-//            int searchDay = scan.nextInt();
-//            System.out.println("Please enter the year:");
-//            int searchYear = scan.nextInt();
-//            search = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
-//        } while (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, please re-enter your search."));
+        String searchFName;
+        String searchLName;
+        int searchMonth;
+        int searchDay;
+        int searchYear;
 
-
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Please enter the first name of the individual you are searching for:");
-        String searchFName = scan.next();
-        System.out.println("Please enter the last name of the individual you are searching for:");
-        String searchLName = scan.next();
-        System.out.println("Please enter the birth month:");
-        int searchMonth = scan.nextInt();
-        System.out.println("Please enter the birth day:");
-        int searchDay = scan.nextInt();
-        System.out.println("Please enter the year:");
-        int searchYear = scan.nextInt();
-        search = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+        do {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Please enter the first name of the individual you are searching for:");
+            searchFName = scan.next();
+            System.out.println("Please enter the last name of the individual you are searching for:");
+            searchLName = scan.next();
+            System.out.println("Please enter the birth month:");
+            searchMonth = scan.nextInt();
+            System.out.println("Please enter the birth day:");
+            searchDay = scan.nextInt();
+            System.out.println("Please enter the year:");
+            searchYear = scan.nextInt();
+            search = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+        } while (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, please re-enter your search."));
 
         int object = 0;
         for (Person p : drController.dbPerson.getData()) {
@@ -166,7 +158,6 @@ public class TestDisplay {
         } else if (navigate == 2) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
             ArrayList<Person> searchResults = drController.navigateOptionTwoSearching(searchIndividual());
-            //System.out.println("Listed at navigation main menu" + searchResults.size());
             displayPerson(searchResults, "Search Results");
         } else if (navigate == 3) {
             displayPerson(drController.dbPerson.getData(), "Entries:");

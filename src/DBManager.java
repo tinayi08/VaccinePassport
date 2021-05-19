@@ -44,7 +44,9 @@ public class DBManager {
         ArrayList<Person> searchResults = new ArrayList<Person>();
         //System.out.println(data.size() + " data size in returnSearchResults");
         for (Person p : data) {
-            if (searchPerson.getfName().equalsIgnoreCase(p.getfName()) && searchPerson.getlName().equalsIgnoreCase(p.getlName())) {
+            if (searchPerson.getfName().equalsIgnoreCase(p.getfName()) && searchPerson.getlName().equalsIgnoreCase(p.getlName()) &&
+                searchPerson.getDob().month == p.getDob().month && searchPerson.getDob().day == p.getDob().day
+                && searchPerson.getDob().year == p.getDob().year) {
                 searchResults.add(p);
             }
         }
@@ -79,11 +81,11 @@ public class DBManager {
                 //need to capture this index so we know thats the object we want to update
                 int object = data.indexOf(p);
                 //System.out.println(object + " Found at index of");
-                System.out.println("match");
+
                 return true;
             }
         }
-        System.out.println("no match");
+
         System.out.println(title);
         return false;
 
