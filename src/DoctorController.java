@@ -80,7 +80,12 @@ public class DoctorController {
 
 
     }
+    /*
 
+    This method navigates to option 4 which deletes a person from the database.
+
+    Takes in the database ArrayList and a Person object to delete.
+     */
     public void navigateOptionFourDelete(ArrayList<Person> data, Person person) {
         dbPerson.deletePersonEntry(person);
         System.out.println(person.getfName() + " " + person.getlName() + " has been deleted.");
@@ -93,6 +98,11 @@ public class DoctorController {
         return rd.nextBoolean();
     }
 
+    /*
+    This method takes in the user's basic information.
+
+    Returns a new Person object
+     */
     public Person obtainUserInfo() {
 
         Scanner scan = new Scanner(System.in);
