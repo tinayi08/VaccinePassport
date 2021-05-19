@@ -178,8 +178,16 @@ public class TestDisplay {
             drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual());
             displayPerson(drController.dbPerson.getData(), "Entries:");
         }
+
+        while(navigate == 0 || navigate > 4) {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Please select a valid entry: 1 - 4");
+            navigate = scan.nextInt();
+        }
         //NEED TO ADD LOOP SO THEY HAVE TO ENTER CORRECT ENTRY
 
     }
+
+
 
 }
