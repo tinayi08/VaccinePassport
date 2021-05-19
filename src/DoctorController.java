@@ -34,14 +34,23 @@ public class DoctorController {
 
     public Person addVaxInfo(Person person) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("What is the Vaccine brand?");
-        String vaxBrand = scan.next();
-        System.out.println("How many shots are required?");
-        int numShots = scan.nextInt();
+        if (person.vaccine == null) {
+            System.out.println("What is the Vaccine brand?");
+            String vaxBrand = scan.next();
+            System.out.println("How many shots are required?");
+            int numShots = scan.nextInt();
+            System.out.println("Please enter the date of the first injection (Format: MM/DD/YYYY)");
+            String oneShotDate = scan.next();
+            Vaccine vaxInfo = new Vaccine(vaxBrand, numShots, oneShotDate, null);
+            person.setVaccine(vaxInfo);
 
-        Vaccine vaxInfo = new Vaccine(vaxBrand, numShots, null, null);
+            return person;
+        }
+
+        System.out.println("Please enter the date of the second injection (Format: MM/DD/YYYY)");
+        String twoShotDate = scan.next();
+        Vaccine vaxInfo = new Vaccine(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, twoShotDate);
         person.setVaccine(vaxInfo);
-
         return person;
     }
 

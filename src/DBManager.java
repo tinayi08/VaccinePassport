@@ -31,6 +31,11 @@ public class DBManager {
         //System.out.println("Inside addPersonEntry()" + data);
     }
 
+    /*
+
+    This method takes in a Person object.
+    It will delete the object from the database
+     */
     public void deletePersonEntry(Person person) {
         data.remove(person);
     }
@@ -53,8 +58,11 @@ public class DBManager {
 
     /*
 
-    This method checks the ArrayList to see if the newly created Person object
-    is a duplicate
+    This method takes in a Person object and a String for the
+    This method checks the database to see if the person exists already.
+
+    Returns true if person does exist.
+    Returns false if person does not exist.
     */
     public boolean doesPersonExist(Person person, String title) {
 
@@ -80,6 +88,13 @@ public class DBManager {
         return false;
 
     }
+    /*
+
+    This method checks the database to see if the person exists already.
+
+    Returns true if person does exist.
+    Returns false if person does not exist.
+     */
 
     public boolean doesPersonExist(Person person) {
 
@@ -99,9 +114,7 @@ public class DBManager {
                 return true;
             }
         }
-
         return false;
-
     }
 
 }

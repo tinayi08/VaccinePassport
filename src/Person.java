@@ -18,14 +18,22 @@ public class Person {
                     ", Vaccine Brand: " + vaccine.brand +
                     ", Required Shots: " + vaccine.requiredShots +
                     ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year;
+        } else if (vaccine.twoShotDate == null) {
+            return "First Name: " + fName +
+                    ", Last Name: " + lName +
+                    ", Vaccine Brand: " + vaccine.brand +
+                    ", Required Shots: " + vaccine.requiredShots +
+                    ", Date of First Shot: " + vaccine.oneShotDate +
+                    ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year;
         }
-        return "First Name: " + fName +
+            return "First Name: " + fName +
                 ", Last Name: " + lName +
                 ", Vaccine Brand: " + vaccine.brand +
                 ", Required Shots: " + vaccine.requiredShots +
                 ", Date of First Shot: " + vaccine.oneShotDate +
                 ", Date of Second Shot: " + vaccine.twoShotDate +
                 ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year;
+
     }
 
     public String getfName() {

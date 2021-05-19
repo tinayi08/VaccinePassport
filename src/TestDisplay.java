@@ -53,7 +53,7 @@ public class TestDisplay {
         Person four = new Person("Jay", "Kealy", 5, 22, 1965);
         Person five = new Person("Amy", "Perry", 1, 22, 1965);
         Person six = new Person("Jordan", "Clarke", 11, 27, 1990);
-        Person seven = new Person("Kameron"," Clarke", 4, 2, 1991);
+        Person seven = new Person("Kameron","Clarke", 4, 2, 1991);
         Person eight = new Person("Amy", "Lee", 1, 22, 1965);
         Person nine = new Person("Amy", "Lee", 3, 22, 1994);
         Person ten = new Person("amy", "lee", 3, 4, 1999);
@@ -108,10 +108,9 @@ public class TestDisplay {
 
         int object = 0;
         for (Person p : drController.dbPerson.getData()) {
-            if (search.getfName().equalsIgnoreCase(p.getfName()) && search.getlName().equalsIgnoreCase(p.getlName())) {
-
+            if (searchFName.equalsIgnoreCase(p.getfName()) && searchLName.equalsIgnoreCase(p.getlName()) &&
+                    searchMonth == p.getDob().month && searchDay == p.getDob().day && searchYear == p.getDob().year) {
                 object = drController.dbPerson.getData().indexOf(p);
-
             }
         }
 
@@ -160,7 +159,7 @@ public class TestDisplay {
 
     public void navigateMainMenu(int navigate) {
 
-        //System.out.println("after setUpDataTesting" + dbManger.getData());
+
         if (navigate == 1) {
             drController.navigateOptionOneAddNew(drController.dbPerson.getData());
             displayPerson(drController.dbPerson.getData(), "Entries:");
