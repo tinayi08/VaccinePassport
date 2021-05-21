@@ -45,6 +45,10 @@ public class DoctorController {
             person.setVaccine(vaxInfo);
 
             return person;
+
+        } else if (person.vaccine.requiredShots == 1) {
+            System.out.println("No additional shots necessary at this time");
+            return person;
         }
 
         System.out.println("Please enter the date of the second injection (Format: MM/DD/YYYY)");
@@ -52,6 +56,11 @@ public class DoctorController {
         Vaccine vaxInfo = new Vaccine(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, twoShotDate);
         person.setVaccine(vaxInfo);
         return person;
+    }
+
+    public boolean isFullyVax(Person person) {
+
+        return true;
     }
 
     /*

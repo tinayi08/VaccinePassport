@@ -71,10 +71,10 @@ public class Person {
     }
 
 
-    public Person(String fName, String lName, String brand, int requiredshots, String one, String two, DOB dob) {
+    public Person(String fName, String lName, String brand, int requiredShots, String one, String two, DOB dob) {
         this.fName = fName;
         this.lName = lName;
-        this.vaccine = new Vaccine(brand, requiredshots, one, two);
+        this.vaccine = new Vaccine(brand, requiredShots, one, two);
         this.dob = dob;
     }
 
