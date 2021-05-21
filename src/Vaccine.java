@@ -4,9 +4,18 @@ public class Vaccine {
     int requiredShots;
     String oneShotDate;
     String twoShotDate;
+    String fullyVaxDate;
 
     public String getBrand() {
         return brand;
+    }
+
+    public String getFullyVaxDate() {
+        return fullyVaxDate;
+    }
+
+    public void setFullyVaxDate(String fullyVaxDate) {
+        this.fullyVaxDate = fullyVaxDate;
     }
 
     public void setBrand(String brand) {
@@ -37,10 +46,19 @@ public class Vaccine {
         this.twoShotDate = twoShotDate;
     }
 
+    public Vaccine(String brand, int requiredShots, String oneShotDate, String twoShotDate, String fullyVaxDate) {
+        this.brand = brand;
+        this.requiredShots = requiredShots;
+        this.oneShotDate = oneShotDate;
+        this.twoShotDate = twoShotDate;
+        this.fullyVaxDate = fullyVaxDate;
+    }
+
     public Vaccine(String brand, int requiredShots, String oneShotDate, String twoShotDate) {
         this.brand = brand;
         this.requiredShots = requiredShots;
         this.oneShotDate = oneShotDate;
         this.twoShotDate = twoShotDate;
+
     }
 }
