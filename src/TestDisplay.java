@@ -164,6 +164,7 @@ public class TestDisplay {
             //add a validator so it only pulls info on people on the list
             //Person updatePerson = searchIndividual();
             drController.navigateOptionThreeUpdate(searchIndividual());
+
         } else if (navigate == 4) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
             drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual());

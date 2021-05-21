@@ -28,6 +28,7 @@ public class DoctorController {
 
         Person updated = addVaxInfo(person);
         System.out.println(updated.toString());
+        fullyVaxDate(person);
         //information in Person object should not be changed. Changed info should be
 
     }
@@ -58,9 +59,34 @@ public class DoctorController {
         return person;
     }
 
-    public boolean isFullyVax(Person person) {
+    /*
 
-        return true;
+
+    Fully Vaccinated will be 1 month after last required injection
+
+     */
+    public void fullyVaxDate(Person person) {
+        String month;
+        String dayYear;
+        int fullyVaxMonth;
+        String fullyVaxDate;
+        if (person.vaccine.requiredShots == 1 && person.vaccine.oneShotDate != null) {
+            month = person.getVaccine().getOneShotDate().substring(0,2);
+            dayYear = person.getVaccine().getOneShotDate().substring(2,person.getVaccine().getOneShotDate().length());
+            fullyVaxMonth = Integer.valueOf(month) + 1;
+            fullyVaxDate = String.valueOf(fullyVaxMonth) + dayYear;
+            System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate);
+        } else if (person.vaccine.requiredShots == 2 && person.vaccine.twoShotDate != null) {
+            month = person.getVaccine().getTwoShotDate().substring(0,2);
+            dayYear = person.getVaccine().getTwoShotDate().substring(2,person.getVaccine().getTwoShotDate().length());
+            fullyVaxMonth = Integer.valueOf(month) + 1;
+            fullyVaxDate = String.valueOf(fullyVaxMonth) + dayYear;
+            System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate);
+        } else {
+            System.out.println(person.getfName() + " " + person.getlName() + " will need a 2nd injection between 3 to 5 weeks in order to determine fully vaccinated date.");
+        }
+
+
     }
 
     /*
