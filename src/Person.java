@@ -7,6 +7,12 @@ public class Person {
 
 
     public  String toString() {
+        return "First Name: " + fName +
+                ", Last Name: " + lName +
+                ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
+    }
+
+    public  String toStringVaxInfo() {
         if (vaccine == null) {
             return "First Name: " + fName +
                     ", Last Name: " + lName +
@@ -14,29 +20,29 @@ public class Person {
 
         } else if (vaccine.requiredShots == 1 & vaccine.oneShotDate != null) {
             return "First Name: " + fName +
-                    ", Last Name: " + lName +
-                    ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year +
-                    ", Vaccine Brand: " + vaccine.brand +
-                    ", Required Shots: " + vaccine.requiredShots +
-                    ", Date of First Shot: " + vaccine.oneShotDate +
-                    ", Fully Vaccinated Date: " + vaccine.fullyVaxDate;
+                    "\nLast Name: " + lName +
+                    "\nDOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year +
+                    "\nVaccine Brand: " + vaccine.brand +
+                    "\nRequired Shots: " + vaccine.requiredShots +
+                    "\nDate of First Shot: " + vaccine.oneShotDate +
+                    "\nFully Vaccinated Date: " + vaccine.fullyVaxDate;
 
         } else if (vaccine.twoShotDate == null) {
             return "First Name: " + fName +
-                    ", Last Name: " + lName +
-                    ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year +
-                    ", Vaccine Brand: " + vaccine.brand +
-                    ", Required Shots: " + vaccine.requiredShots +
-                    ", Date of First Shot: " + vaccine.oneShotDate;
+                    "\nLast Name: " + lName +
+                    "\nDOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year +
+                    "\nVaccine Brand: " + vaccine.brand +
+                    "\nRequired Shots: " + vaccine.requiredShots +
+                    "\nDate of First Shot: " + vaccine.oneShotDate;
         }
         return "First Name: " + fName +
-            ", Last Name: " + lName +
-            ", DOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year +
-            ", Vaccine Brand: " + vaccine.brand +
-            ", Required Shots: " + vaccine.requiredShots +
-            ", Date of First Shot: " + vaccine.oneShotDate +
-            ", Date of Second Shot: " + vaccine.twoShotDate +
-            ", Fully Vaccinated Date: " + vaccine.fullyVaxDate;
+            "\nLast Name: " + lName +
+            "\nDOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year +
+            "\nVaccine Brand: " + vaccine.brand +
+            "\nRequired Shots: " + vaccine.requiredShots +
+            "\nDate of First Shot: " + vaccine.oneShotDate +
+            "\nDate of Second Shot: " + vaccine.twoShotDate +
+            "\nFully Vaccinated Date: " + vaccine.fullyVaxDate;
 
     }
 

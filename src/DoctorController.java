@@ -25,7 +25,7 @@ public class DoctorController {
 
         Person updated = addVaxInfo(person);
         fullyVaxDate(person);
-        System.out.println(updated.toString());
+        System.out.println(updated.toStringVaxInfo());
 
 
     }

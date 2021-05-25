@@ -29,8 +29,6 @@ public class TestDisplay {
         for (Person person : data) {
             if (person.vaccine == null) {
                 System.out.println(person.toString());
-            } else if (person.vaccine != null) {
-                System.out.println(person.toString());
             }
 
         }
@@ -130,7 +128,7 @@ public class TestDisplay {
     }
 
     public boolean returnToMainMenu() {
-        System.out.println("Would you like to return to the main menu?");
+        System.out.println("\nWould you like to return to the main menu?");
         Scanner scan = new Scanner(System.in);
         String returnToMain = scan.next();
         if(returnToMain.equalsIgnoreCase("Yes")) {
@@ -164,7 +162,6 @@ public class TestDisplay {
             //add a validator so it only pulls info on people on the list
             //Person updatePerson = searchIndividual();
             drController.navigateOptionThreeUpdate(searchIndividual());
-
         } else if (navigate == 4) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
             drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual());
