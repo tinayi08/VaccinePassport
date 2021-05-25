@@ -1,4 +1,7 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -68,18 +71,31 @@ public class DoctorController {
         int fullyVaxMonth;
         String fullyVaxDate;
         if (person.vaccine.requiredShots == 1 && person.vaccine.oneShotDate != null) {
-            month = person.getVaccine().getOneShotDate().substring(0,2);
-            dayYear = person.getVaccine().getOneShotDate().substring(2,person.getVaccine().getOneShotDate().length());
-            fullyVaxMonth = Integer.valueOf(month) + 1;
-            fullyVaxDate = String.valueOf(fullyVaxMonth) + dayYear;
+
+            SimpleDateFormat sdf = new SimpleDateFormat(("MM/dd/yyyy"));
+            String date = person.vaccine.oneShotDate;
+            Calendar cal = Calendar.getInstance();
+            try {
+                cal.setTime(sdf.parse(date));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            cal.add(Calendar.DAY_OF_MONTH, 30);
+            fullyVaxDate = sdf.format(cal.getTime());
             System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
             Vaccine vaxInfo = new Vaccine(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, null, fullyVaxDate);
             person.setVaccine(vaxInfo);
         } else if (person.vaccine.requiredShots == 2 && person.vaccine.twoShotDate != null) {
-            month = person.getVaccine().getTwoShotDate().substring(0,2);
-            dayYear = person.getVaccine().getTwoShotDate().substring(2,person.getVaccine().getTwoShotDate().length());
-            fullyVaxMonth = Integer.valueOf(month) + 1;
-            fullyVaxDate = String.valueOf(fullyVaxMonth) + dayYear;
+            SimpleDateFormat sdf = new SimpleDateFormat(("MM/dd/yyyy"));
+            String date = person.vaccine.twoShotDate;
+            Calendar cal = Calendar.getInstance();
+            try {
+                cal.setTime(sdf.parse(date));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            cal.add(Calendar.DAY_OF_MONTH, 30);
+            fullyVaxDate = sdf.format(cal.getTime());
             System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
             Vaccine vaxInfo = new Vaccine(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, person.getVaccine().twoShotDate, fullyVaxDate);
             person.setVaccine(vaxInfo);
@@ -94,11 +110,9 @@ public class DoctorController {
      */
     public ArrayList<Person> navigateOptionTwoSearching(Person person) {
 
-        //returns the ArrayList of people with matching names
         ArrayList<Person> searchResults = dbPerson.returnSearchResults(person);
-        //Displays ArrayList of people with matching names
-        return searchResults;
 
+        return searchResults;
     }
 
     /*
