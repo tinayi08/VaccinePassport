@@ -1,4 +1,7 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DBManager {
     private static ArrayList<Person> data;
@@ -53,6 +56,19 @@ public class DBManager {
         return searchResults;
     }
 
+    public String vax30Days (String shotDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat(("MM/dd/yyyy"));
+        String date = shotDate;
+        Calendar cal = Calendar.getInstance();
+        try {
+            cal.setTime(sdf.parse(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        cal.add(Calendar.DAY_OF_MONTH, 30);
+        return sdf.format(cal.getTime());
+
+    }
 
     public void search(Person target) {
 

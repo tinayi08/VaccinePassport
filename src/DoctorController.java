@@ -1,7 +1,4 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -71,31 +68,14 @@ public class DoctorController {
         int fullyVaxMonth;
         String fullyVaxDate;
         if (person.vaccine.requiredShots == 1 && person.vaccine.oneShotDate != null) {
+            fullyVaxDate = dbPerson.vax30Days(person.vaccine.oneShotDate);
 
-            SimpleDateFormat sdf = new SimpleDateFormat(("MM/dd/yyyy"));
-            String date = person.vaccine.oneShotDate;
-            Calendar cal = Calendar.getInstance();
-            try {
-                cal.setTime(sdf.parse(date));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            cal.add(Calendar.DAY_OF_MONTH, 30);
-            fullyVaxDate = sdf.format(cal.getTime());
             System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
             Vaccine vaxInfo = new Vaccine(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, null, fullyVaxDate);
             person.setVaccine(vaxInfo);
         } else if (person.vaccine.requiredShots == 2 && person.vaccine.twoShotDate != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat(("MM/dd/yyyy"));
-            String date = person.vaccine.twoShotDate;
-            Calendar cal = Calendar.getInstance();
-            try {
-                cal.setTime(sdf.parse(date));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            cal.add(Calendar.DAY_OF_MONTH, 30);
-            fullyVaxDate = sdf.format(cal.getTime());
+            fullyVaxDate = dbPerson.vax30Days(person.vaccine.twoShotDate);
+
             System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
             Vaccine vaxInfo = new Vaccine(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, person.getVaccine().twoShotDate, fullyVaxDate);
             person.setVaccine(vaxInfo);
