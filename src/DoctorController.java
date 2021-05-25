@@ -14,9 +14,10 @@ public class DoctorController {
 
     }
 
-    /*
-
-    This method will update the details of a existing Person object in the Arraylist
+    /**
+     * This method will update the details of a existing Person object in the Arraylist
+     *
+     * @param person
      */
     public void navigateOptionThreeUpdate(Person person) {
 
@@ -26,6 +27,12 @@ public class DoctorController {
 
 
     }
+
+    /**
+     * This method will add the vaccination information for a Person object
+     * @param person
+     * @return updated Person object with vaccination information added
+     */
 
     public Person addVaxInfo(Person person) {
         Scanner scan = new Scanner(System.in);
@@ -54,18 +61,14 @@ public class DoctorController {
         return person;
     }
 
-    /*
-
-
-    Fully Vaccinated will be 1 month after last required injection
-    This method will set the fully vaccinated date to the Person object
-
-    This method takes in a person object.
+    /**
+     * Fully Vaccinated will be 1 month after last required injection
+     * This method will set the fully vaccinated date to the Person object
+     *
+     * @param person
      */
     public void fullyVaxDate(Person person) {
-        String month;
-        String dayYear;
-        int fullyVaxMonth;
+
         String fullyVaxDate;
         if (person.vaccine.requiredShots == 1 && person.vaccine.oneShotDate != null) {
             fullyVaxDate = dbPerson.vax30Days(person.vaccine.oneShotDate);
@@ -84,9 +87,10 @@ public class DoctorController {
 
     }
 
-    /*
-
-    This method will search for an individual and display the results
+    /**
+     * This method will search for an individual and display the results
+     * @param person
+     * @return ArrayList of results
      */
     public ArrayList<Person> navigateOptionTwoSearching(Person person) {
 
@@ -95,34 +99,30 @@ public class DoctorController {
         return searchResults;
     }
 
-    /*
-
-    This method will ask obtain information of a new user and add it to the ArrayList
+    /**
+     * This method will ask obtain information of a new user and add it to the ArrayList
+     * @param data
      */
+
     public void navigateOptionOneAddNew(ArrayList<Person> data) {
-        //System.out.println("before obtainUserInfo() " + data);
+
         Person person = obtainUserInfo();
-
         while (dbPerson.doesPersonExist(person)) {
-
             System.out.println("This entry already exists.");
             person = obtainUserInfo();
-
         }
-        //System.out.println("after while loop" + data);
         dbPerson.addPersonEntry(person); //, data);
         System.out.println("The following entry has been added:");
         System.out.println(person.toString());
-        //System.out.println(data + "after to String()");
-
-
     }
-    /*
 
-    This method navigates to option 4 which deletes a person from the database.
-
-    Takes in the database ArrayList and a Person object to delete.
+    /**
+     * This method navigates to option 4 which deletes a person from the database.
+     *
+     * @param data
+     * @param person
      */
+
     public void navigateOptionFourDelete(ArrayList<Person> data, Person person) {
         dbPerson.deletePersonEntry(person);
         System.out.println(person.getfName() + " " + person.getlName() + " has been deleted.");
@@ -135,11 +135,12 @@ public class DoctorController {
         return rd.nextBoolean();
     }
 
-    /*
-    This method takes in the user's basic information.
-
-    Returns a new Person object
+    /**
+     * This method takes in the user's basic information.
+     *
+     * @return Returns a new Person object
      */
+
     public Person obtainUserInfo() {
 
         String searchFName;

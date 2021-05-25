@@ -11,13 +11,11 @@ public class TestDisplay {
         drController = new DoctorController();
     }
 
-    /*
-
-    This method will take in a ArrayList and a string for a title.
-    It will iterate through the ArrayList of data.
-    It will display all elements of the ArrayList
-
-    Later will be displayed by a GUI
+    /**
+     * It will iterate through the ArrayList of data.
+     * It will display all elements of the ArrayList
+     * @param data
+     * @param title
      */
     public void displayPerson(ArrayList<Person> data, String title) {
         System.out.println();
@@ -34,12 +32,10 @@ public class TestDisplay {
         }
     }
 
-    /*
-
-    This method sets up an initial bach of people to have in the ArrayList of data.
-    No vaccine information has been added yet.
-
-    Need to later change this into SQL
+    /**
+     *
+     * This method sets up an initial bach of people to have in the ArrayList of data.
+     * No vaccine information has been added yet.
      */
     public void setUpDataTesting() {
         //add people into the array to have some people in there
@@ -68,11 +64,12 @@ public class TestDisplay {
         drController.dbPerson.addPersonEntry(ten);
     }
 
-    /*
+    /**
+     * This method asks the user to enter a first name and a last name.
+     * The name will be added to a Person object
+     * @return Person object
+      */
 
-    This method asks the user to enter a first name and a last name.
-    The name will be added to a Person object and method will return a person.
-     */
     public Person searchIndividual() {
         Person search;
 
@@ -107,9 +104,9 @@ public class TestDisplay {
         return drController.dbPerson.getData().get(object);
     }
 
-    /*
-
-    Initial start of program. User has an option to select what the program does
+    /**
+     *  Initial start of program. User has an option to select what the program does
+     * @return int for the user selected option
      */
     public int menu() {
         System.out.println("Please select from the following options:");
@@ -126,6 +123,11 @@ public class TestDisplay {
         return option;
     }
 
+    /**
+     * This method prompts the user if they would like to return to the main menu
+     *
+     * @return true if user wants to continue, false if user wants to end program
+     */
     public boolean returnToMainMenu() {
         System.out.println("\nWould you like to return to the main menu?");
         Scanner scan = new Scanner(System.in);
@@ -138,7 +140,7 @@ public class TestDisplay {
 
     public void run() {
 
-        setUpDataTesting();//drController.dbPerson.getData());
+        setUpDataTesting();
         do {
 
             navigateMainMenu(menu());
@@ -146,8 +148,12 @@ public class TestDisplay {
 
     }
 
+    /**
+     * This method navigates through the program
+     *
+     * @param navigate
+     */
     public void navigateMainMenu(int navigate) {
-
 
         if (navigate == 1) {
             drController.navigateOptionOneAddNew(drController.dbPerson.getData());
