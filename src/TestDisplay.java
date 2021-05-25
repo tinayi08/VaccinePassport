@@ -25,10 +25,7 @@ public class TestDisplay {
             return;
         }
         for (Person person : data) {
-            if (person.vaccine == null) {
-                System.out.println(person.toString());
-            }
-
+            System.out.println(person.toString());
         }
     }
 
@@ -84,7 +81,6 @@ public class TestDisplay {
                 String createNew = scan.next();
                 if (createNew.equalsIgnoreCase("yes")) {
                     drController.dbPerson.addPersonEntry(search);
-                    System.out.println("New profile has been created.");
                 } else {
                     b = true;
                 }
@@ -112,7 +108,7 @@ public class TestDisplay {
         System.out.println("Please select from the following options:");
         System.out.println("1. Enter a new individual to the database");
         System.out.println("2. Search for an individual on the database");
-        System.out.println("3. Update an existing individual on the database");
+        System.out.println("3. Add vaccination information");
         System.out.println("4. Delete an entry from the database");
         Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();
@@ -149,6 +145,31 @@ public class TestDisplay {
     }
 
     /**
+     *
+     * This method will show Person's vax information or will allow the the user to enter vax information
+     *
+     * @param person
+     */
+    public void navigateOption2Part2(Person person) {
+        Scanner scan = new Scanner(System.in);
+        if (person.getVaccine() == null) {
+            System.out.println(person.getfName() + " does not have their vaccination information entered, would you" +
+                    " like to enter it now?");
+            String addInfo = scan.next();
+            if (addInfo.equalsIgnoreCase("yes")) {
+                drController.navigateOptionThreeAddVaxInfo(person);
+            }
+        } else {
+            System.out.println("Would you like to view " + person.getfName() + "'s vaccine information?");
+            String option = scan.next();
+            if (option.equalsIgnoreCase("yes")) {
+                System.out.println("\n" + person.toStringVaxInfo());
+
+            }
+
+        }
+    }
+    /**
      * This method navigates through the program
      *
      * @param navigate
@@ -160,13 +181,14 @@ public class TestDisplay {
             displayPerson(drController.dbPerson.getData(), "Entries:");
         } else if (navigate == 2) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
-            ArrayList<Person> searchResults = drController.navigateOptionTwoSearching(searchIndividual());
-            displayPerson(searchResults, "Search Results");
+            //Do we need to return an arraylist here?
+            //ArrayList<Person> searchResults = drController.navigateOptionTwoSearching(searchIndividual());
+            navigateOption2Part2(searchIndividual());
+
+            //displayPerson(searchResults, "Search Results");
         } else if (navigate == 3) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
-            //add a validator so it only pulls info on people on the list
-            //Person updatePerson = searchIndividual();
-            drController.navigateOptionThreeUpdate(searchIndividual());
+            drController.navigateOptionThreeAddVaxInfo(searchIndividual());
         } else if (navigate == 4) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
             drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual());

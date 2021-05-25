@@ -13,12 +13,7 @@ public class Person {
     }
 
     public  String toStringVaxInfo() {
-        if (vaccine == null) {
-            return "First Name: " + fName +
-                    ", Last Name: " + lName +
-                    ", DOB: " + dob.month + "/" + dob.day + "/" + dob.year;
-
-        } else if (vaccine.requiredShots == 1 & vaccine.oneShotDate != null) {
+        if (vaccine.requiredShots == 1 & vaccine.oneShotDate != null) {
             return "First Name: " + fName +
                     "\nLast Name: " + lName +
                     "\nDOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year +

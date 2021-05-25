@@ -19,12 +19,11 @@ public class DoctorController {
      *
      * @param person
      */
-    public void navigateOptionThreeUpdate(Person person) {
+    public void navigateOptionThreeAddVaxInfo (Person person) {
 
         Person updated = addVaxInfo(person);
         fullyVaxDate(person);
         System.out.println(updated.toStringVaxInfo());
-
 
     }
 
@@ -33,7 +32,6 @@ public class DoctorController {
      * @param person
      * @return updated Person object with vaccination information added
      */
-
     public Person addVaxInfo(Person person) {
         Scanner scan = new Scanner(System.in);
         if (person.vaccine == null) {
