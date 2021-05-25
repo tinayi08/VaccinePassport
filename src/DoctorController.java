@@ -162,21 +162,25 @@ public class DoctorController {
      */
     public Person obtainUserInfo() {
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("What is your first name?");
-        String fName = scan.next();
-        //if first name is blank, return null
-        System.out.println("What is your last name?");
-        String lName = scan.next();
-        System.out.println("What is your birthday month? Enter 01-12");
-        int mM = scan.nextInt();
-        System.out.println("What is your birth date?");
-        int dD = scan.nextInt();
-        System.out.println("What is your birth year?");
-        int year = scan.nextInt();
+        String searchFName;
+        String searchLName;
+        int searchMonth;
+        int searchDay;
+        int searchYear;
 
-        Person newPerson = new Person(fName, lName, mM, dD, year);
-        return newPerson;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("\nPlease enter the first name:");
+        searchFName = scan.next();
+        System.out.println("Please enter the last name:");
+        searchLName = scan.next();
+        System.out.println("Please enter the birth month:");
+        searchMonth = scan.nextInt();
+        System.out.println("Please enter the birth day:");
+        searchDay = scan.nextInt();
+        System.out.println("Please enter the year:");
+        searchYear = scan.nextInt();
+        Person searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+        return searchUser;
 
     }
     
