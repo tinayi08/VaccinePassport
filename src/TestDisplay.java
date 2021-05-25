@@ -75,33 +75,19 @@ public class TestDisplay {
      */
     public Person searchIndividual() {
         Person search;
-        String searchFName;
-        String searchLName;
-        int searchMonth;
-        int searchDay;
-        int searchYear;
+
         boolean b = false;
         do {
             Scanner scan = new Scanner(System.in);
-            System.out.println("Please enter the first name of the individual you are searching for:");
-            searchFName = scan.next();
-            System.out.println("Please enter the last name of the individual you are searching for:");
-            searchLName = scan.next();
-            System.out.println("Please enter the birth month:");
-            searchMonth = scan.nextInt();
-            System.out.println("Please enter the birth day:");
-            searchDay = scan.nextInt();
-            System.out.println("Please enter the year:");
-            searchYear = scan.nextInt();
-            search = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+
+            search = drController.obtainUserInfo();
 
             if (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, would you like to " +
                     "create a new profile?")) {
                 String createNew = scan.next();
                 if (createNew.equalsIgnoreCase("yes")) {
                     drController.dbPerson.addPersonEntry(search);
-                    System.out.println("The following entry has been added:");
-                    System.out.println(search.toString());
+                    System.out.println("New profile has been created.");
                 } else {
                     b = true;
                 }
@@ -113,14 +99,12 @@ public class TestDisplay {
 
         int object = 0;
         for (Person p : drController.dbPerson.getData()) {
-            if (searchFName.equalsIgnoreCase(p.getfName()) && searchLName.equalsIgnoreCase(p.getlName()) &&
-                    searchMonth == p.getDob().month && searchDay == p.getDob().day && searchYear == p.getDob().year) {
+            if (search.getfName().equalsIgnoreCase(p.getfName()) && search.getlName().equalsIgnoreCase(p.getlName()) &&
+                    search.getDob().month == p.getDob().month && search.getDob().day == p.getDob().day && search.getDob().year == p.getDob().year) {
                 object = drController.dbPerson.getData().indexOf(p);
             }
         }
-
         return drController.dbPerson.getData().get(object);
-        
     }
 
     /*
