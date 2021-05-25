@@ -80,7 +80,7 @@ public class TestDisplay {
         int searchMonth;
         int searchDay;
         int searchYear;
-
+        boolean b = false;
         do {
             Scanner scan = new Scanner(System.in);
             System.out.println("Please enter the first name of the individual you are searching for:");
@@ -94,7 +94,22 @@ public class TestDisplay {
             System.out.println("Please enter the year:");
             searchYear = scan.nextInt();
             search = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
-        } while (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, please re-enter your search."));
+
+            if (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, would you like to " +
+                    "create a new profile?")) {
+                String createNew = scan.next();
+                if (createNew.equalsIgnoreCase("yes")) {
+                    drController.dbPerson.addPersonEntry(search);
+                    System.out.println("The following entry has been added:");
+                    System.out.println(search.toString());
+                } else {
+                    b = true;
+                }
+            } else {
+                b = false;
+            }
+
+        } while (b);
 
         int object = 0;
         for (Person p : drController.dbPerson.getData()) {
@@ -120,7 +135,7 @@ public class TestDisplay {
         System.out.println("4. Delete an entry from the database");
         Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();
-        while(option == 0 || option > 4) {
+        while (option == 0 || option > 4) {
             System.out.println("Please select a valid entry: 1 - 4");
             option = scan.nextInt();
         }
@@ -131,7 +146,7 @@ public class TestDisplay {
         System.out.println("\nWould you like to return to the main menu?");
         Scanner scan = new Scanner(System.in);
         String returnToMain = scan.next();
-        if(returnToMain.equalsIgnoreCase("Yes")) {
+        if (returnToMain.equalsIgnoreCase("Yes")) {
             return true;
         }
         return false;
@@ -167,7 +182,7 @@ public class TestDisplay {
             drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual());
         }
 
-        while(navigate == 0 || navigate > 4) {
+        while (navigate == 0 || navigate > 4) {
             Scanner scan = new Scanner(System.in);
             System.out.println("Please select a valid entry: 1 - 4");
             navigate = scan.nextInt();
