@@ -132,7 +132,7 @@ public class TestDisplay {
      * @return true if user wants to continue, false if user wants to end program
      */
     public boolean returnToMainMenu() {
-        System.out.println("Would you like to return to the main menu?");
+        System.out.println("\nWould you like to return to the main menu?");
         Scanner scan = new Scanner(System.in);
         String returnToMain = scan.next();
         if (returnToMain.equalsIgnoreCase("Yes")) {
