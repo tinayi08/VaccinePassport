@@ -81,15 +81,21 @@ public class TestDisplay {
             if (search.getDob() == null) {
                 ArrayList<Person> searchResults = drController.dbPerson.returnSearchResults(search);
                 displayPerson(searchResults, "Results:");
-                search = drController.obtainUserInfo(3, search.getfName(), search.getlName());
+                if (searchResults.isEmpty()) {
+                    search = drController.obtainUserInfo(4, null, null);
+                } else {
+                    search = drController.obtainUserInfo(3, search.getfName(), search.getlName());
+                }
             }
             if (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, would you like to " +
                     "create a new profile?")) {
                 String createNew = scan.next();
                 if (createNew.equalsIgnoreCase("yes")) {
                     drController.dbPerson.addPersonEntry(search);
+
                 } else {
-                    b = true;
+                    b = false;
+                    return null;
                 }
             } else {
                 b = false;
@@ -137,6 +143,7 @@ public class TestDisplay {
         String returnToMain = scan.next();
         if (returnToMain.equalsIgnoreCase("Yes")) {
             return true;
+
         }
         return false;
     }
@@ -163,6 +170,8 @@ public class TestDisplay {
             String addInfo = scan.next();
             if (addInfo.equalsIgnoreCase("yes")) {
                 drController.navigateOptionThreeAddVaxInfo(person);
+            } else {
+                return;
             }
         } else {
             System.out.println("\nWould you like to view " + person.getfName() + "'s vaccine information?");
@@ -189,11 +198,12 @@ public class TestDisplay {
             navigateOption2Part2(newlyAdded);
         } else if (navigate == 2) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
-            //Do we need to return an arraylist here?
-            //ArrayList<Person> searchResults = drController.navigateOptionTwoSearching(searchIndividual());
-            navigateOption2Part2(searchIndividual());
 
-            //displayPerson(searchResults, "Search Results");
+            Person p = searchIndividual();
+            if (p != null) {
+                navigateOption2Part2(p);
+            } else
+                return;
         } else if (navigate == 3) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
             drController.navigateOptionThreeAddVaxInfo(searchIndividual());

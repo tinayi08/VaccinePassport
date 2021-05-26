@@ -183,6 +183,18 @@ public class DoctorController {
             System.out.println("Please enter the year:");
             searchYear = scan.nextInt();
             searchUser = new Person(firstName,lastName, searchMonth, searchDay, searchYear);
+        } else if (option == 4) {
+            System.out.println("\nPlease enter the first name:");
+            searchFName = scan.next();
+            System.out.println("Please enter the last name:");
+            searchLName = scan.next();
+            System.out.println("Please enter the birth month:");
+            searchMonth = scan.nextInt();
+            System.out.println("Please enter the birth day:");
+            searchDay = scan.nextInt();
+            System.out.println("Please enter the year:");
+            searchYear = scan.nextInt();
+            searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
         } else {
             System.out.println("\nPlease select from the following options:");
             System.out.println("1. Enter First/Last Name only");
