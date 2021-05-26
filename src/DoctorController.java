@@ -109,10 +109,10 @@ public class DoctorController {
 
     public Person navigateOptionOneAddNew(ArrayList<Person> data) {
 
-        Person person = obtainUserInfo(3);
+        Person person = obtainUserInfo(3, null, null);
         while (dbPerson.doesPersonExist(person)) {
             System.out.println("This entry already exists.");
-            person = obtainUserInfo(3);
+            person = obtainUserInfo(3, null, null);
         }
         dbPerson.addPersonEntry(person); //, data);
         System.out.println("The following entry has been added:");
@@ -163,7 +163,7 @@ public class DoctorController {
      *
      * @return Returns a new Person object
      */
-    public Person obtainUserInfo(int option) {
+    public Person obtainUserInfo(int option, String firstName, String lastName) {
         Scanner scan = new Scanner(System.in);
         String searchFName;
         String searchLName;
@@ -172,17 +172,17 @@ public class DoctorController {
         int searchYear;
         Person searchUser;
         if (option == 3) {
-            System.out.println("\nPlease enter the first name:");
-            searchFName = scan.next();
-            System.out.println("Please enter the last name:");
-            searchLName = scan.next();
+            //System.out.println("\nPlease enter the first name:");
+            //searchFName = scan.next();
+            //System.out.println("Please enter the last name:");
+            //searchLName = scan.next();
             System.out.println("Please enter the birth month:");
             searchMonth = scan.nextInt();
             System.out.println("Please enter the birth day:");
             searchDay = scan.nextInt();
             System.out.println("Please enter the year:");
             searchYear = scan.nextInt();
-            searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+            searchUser = new Person(firstName,lastName, searchMonth, searchDay, searchYear);
         } else {
             System.out.println("\nPlease select from the following options:");
             System.out.println("1. Enter First/Last Name only");
@@ -201,7 +201,7 @@ public class DoctorController {
             if (option == 1) {
                 searchUser = new Person(searchFName, searchLName);
             } else {
-                System.out.println("Please enter the birth month:");
+                System.out.println("\nPlease enter the birth month:");
                 searchMonth = scan.nextInt();
                 System.out.println("Please enter the birth day:");
                 searchDay = scan.nextInt();

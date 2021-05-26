@@ -77,11 +77,11 @@ public class TestDisplay {
 
             Scanner scan = new Scanner(System.in);
 
-            search = drController.obtainUserInfo(0);
+            search = drController.obtainUserInfo(0, null, null);
             if (search.getDob() == null) {
                 ArrayList<Person> searchResults = drController.dbPerson.returnSearchResults(search);
                 displayPerson(searchResults, "Results:");
-                search = drController.obtainUserInfo(3);
+                search = drController.obtainUserInfo(3, search.getfName(), search.getlName());
             }
             if (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, would you like to " +
                     "create a new profile?")) {
