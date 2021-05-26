@@ -1,5 +1,7 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Date;
 import java.util.Scanner;
 
 public class DoctorController {
@@ -22,8 +24,11 @@ public class DoctorController {
     public void navigateOptionThreeAddVaxInfo (Person person) {
 
         Person updated = addVaxInfo(person);
+
         fullyVaxDate(person);
-        System.out.println(updated.toStringVaxInfo());
+
+
+        //System.out.println(updated.toStringVaxInfo());
 
     }
 
@@ -128,9 +133,27 @@ public class DoctorController {
     }
 
 
-    public boolean isPersonVaccinated(Person person) {
-        Random rd = new Random();
-        return rd.nextBoolean();
+    public void personVaccinated(Person person) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        if (person.getVaccine().fullyVaxDate != null) {
+            Date vaxDate = null;
+            Date todayDate = null;
+            try {
+                vaxDate = sdf.parse(person.getVaccine().fullyVaxDate);
+                todayDate = sdf.parse(sdf.format(new Date()));
+                String str = sdf.format(new Date());
+                if (vaxDate.compareTo(todayDate) < 0 || vaxDate.compareTo(todayDate) == 0) {
+                    System.out.println("\nAs of today's date, " + person.getfName() + " is fully vaccinated.");
+                } else
+                    System.out.println("\nAs of today's date, " + person.getfName() + " is not fully vaccinated.");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+
     }
 
     /**

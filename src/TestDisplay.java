@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -131,7 +132,7 @@ public class TestDisplay {
      * @return true if user wants to continue, false if user wants to end program
      */
     public boolean returnToMainMenu() {
-        System.out.println("\nWould you like to return to the main menu?");
+        System.out.println("Would you like to return to the main menu?");
         Scanner scan = new Scanner(System.in);
         String returnToMain = scan.next();
         if (returnToMain.equalsIgnoreCase("Yes")) {
@@ -158,8 +159,7 @@ public class TestDisplay {
     public void navigateOption2Part2(Person person) {
         Scanner scan = new Scanner(System.in);
         if (person.getVaccine() == null) {
-            System.out.println(person.getfName() + " does not have their vaccination information entered, would you" +
-                    " like to enter it now?");
+            System.out.println("Would you like to enter their vaccination information as well?");
             String addInfo = scan.next();
             if (addInfo.equalsIgnoreCase("yes")) {
                 drController.navigateOptionThreeAddVaxInfo(person);
@@ -169,15 +169,18 @@ public class TestDisplay {
             String option = scan.next();
             if (option.equalsIgnoreCase("yes")) {
                 System.out.println("\n" + person.toStringVaxInfo());
+
             }
+
         }
+        drController.personVaccinated(person);
     }
     /**
      * This method navigates through the program
      *
      * @param navigate
      */
-    public void navigateMainMenu(int navigate) {
+    public void navigateMainMenu(int navigate)  {
 
         if (navigate == 1) {
             drController.navigateOptionOneAddNew(drController.dbPerson.getData());
@@ -185,9 +188,7 @@ public class TestDisplay {
         } else if (navigate == 2) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
             //Do we need to return an arraylist here?
-            System.out.println("before arraylist");
             //ArrayList<Person> searchResults = drController.navigateOptionTwoSearching(searchIndividual());
-            System.out.println("before option2 part 2");
             navigateOption2Part2(searchIndividual());
 
             //displayPerson(searchResults, "Search Results");
