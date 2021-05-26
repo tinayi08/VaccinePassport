@@ -86,7 +86,7 @@ public class DoctorController {
             Vaccine vaxInfo = new Vaccine(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, person.getVaccine().twoShotDate, fullyVaxDate);
             person.setVaccine(vaxInfo);
         } else
-            System.out.println(person.getfName() + " " + person.getlName() + " will need a 2nd injection between 3 to 5 weeks in order to determine fully vaccinated date. \n");
+            System.out.println(person.getfName() + " " + person.getlName() + " will need a 2nd injection between 3 to 5 weeks from " + person.getVaccine().oneShotDate +  " in order to determine fully vaccinated date. \n");
 
     }
 
@@ -107,7 +107,7 @@ public class DoctorController {
      * @param data
      */
 
-    public void navigateOptionOneAddNew(ArrayList<Person> data) {
+    public Person navigateOptionOneAddNew(ArrayList<Person> data) {
 
         Person person = obtainUserInfo(3);
         while (dbPerson.doesPersonExist(person)) {
@@ -117,6 +117,8 @@ public class DoctorController {
         dbPerson.addPersonEntry(person); //, data);
         System.out.println("The following entry has been added:");
         System.out.println(person.toString());
+
+        return person;
     }
 
     /**
@@ -143,9 +145,9 @@ public class DoctorController {
                 todayDate = sdf.parse(sdf.format(new Date()));
                 String str = sdf.format(new Date());
                 if (vaxDate.compareTo(todayDate) < 0 || vaxDate.compareTo(todayDate) == 0) {
-                    System.out.println("\nAs of today's date, " + person.getfName() + " is fully vaccinated.");
+                    System.out.println("As of today's date, " + person.getfName() + " is fully vaccinated.");
                 } else
-                    System.out.println("\nAs of today's date, " + person.getfName() + " is not fully vaccinated.");
+                    System.out.println("As of today's date, " + person.getfName() + " is not fully vaccinated.");
             } catch (ParseException e) {
                 e.printStackTrace();
             }

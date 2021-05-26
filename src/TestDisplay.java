@@ -159,16 +159,17 @@ public class TestDisplay {
     public void navigateOption2Part2(Person person) {
         Scanner scan = new Scanner(System.in);
         if (person.getVaccine() == null) {
-            System.out.println("Would you like to enter their vaccination information as well?");
+            System.out.println("\nWould you like to enter their vaccination information as well?");
             String addInfo = scan.next();
             if (addInfo.equalsIgnoreCase("yes")) {
                 drController.navigateOptionThreeAddVaxInfo(person);
             }
         } else {
-            System.out.println("Would you like to view " + person.getfName() + "'s vaccine information?");
+            System.out.println("\nWould you like to view " + person.getfName() + "'s vaccine information?");
             String option = scan.next();
             if (option.equalsIgnoreCase("yes")) {
                 System.out.println("\n" + person.toStringVaxInfo());
+                drController.fullyVaxDate(person);
 
             }
 
@@ -183,8 +184,9 @@ public class TestDisplay {
     public void navigateMainMenu(int navigate)  {
 
         if (navigate == 1) {
-            drController.navigateOptionOneAddNew(drController.dbPerson.getData());
-            displayPerson(drController.dbPerson.getData(), "Entries:");
+            Person newlyAdded = drController.navigateOptionOneAddNew(drController.dbPerson.getData());
+            //displayPerson(drController.dbPerson.getData(), "Entries:");
+            navigateOption2Part2(newlyAdded);
         } else if (navigate == 2) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
             //Do we need to return an arraylist here?
