@@ -19,8 +19,8 @@ public class Person {
                     "\nDOB: " + this.dob.month + "/" + this.dob.day + "/" + this.dob.year +
                     "\nVaccine Brand: " + vaccine.brand +
                     "\nRequired Shots: " + vaccine.requiredShots +
-                    "\nDate of First Shot: " + vaccine.oneShotDate +
-                    "\nFully Vaccinated Date: " + vaccine.fullyVaxDate;
+                    "\nDate of First Shot: " + vaccine.oneShotDate;
+                    //"\nFully Vaccinated Date: " + vaccine.fullyVaxDate;
 
         } else if (vaccine.twoShotDate == null) {
             return "First Name: " + fName +
@@ -36,8 +36,8 @@ public class Person {
             "\nVaccine Brand: " + vaccine.brand +
             "\nRequired Shots: " + vaccine.requiredShots +
             "\nDate of First Shot: " + vaccine.oneShotDate +
-            "\nDate of Second Shot: " + vaccine.twoShotDate +
-            "\nFully Vaccinated Date: " + vaccine.fullyVaxDate;
+            "\nDate of Second Shot: " + vaccine.twoShotDate;
+            //"\nFully Vaccinated Date: " + vaccine.fullyVaxDate;
 
     }
 
