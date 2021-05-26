@@ -104,10 +104,10 @@ public class DoctorController {
 
     public void navigateOptionOneAddNew(ArrayList<Person> data) {
 
-        Person person = obtainUserInfo();
+        Person person = obtainUserInfo(3);
         while (dbPerson.doesPersonExist(person)) {
             System.out.println("This entry already exists.");
-            person = obtainUserInfo();
+            person = obtainUserInfo(3);
         }
         dbPerson.addPersonEntry(person); //, data);
         System.out.println("The following entry has been added:");
@@ -138,27 +138,53 @@ public class DoctorController {
      *
      * @return Returns a new Person object
      */
-
-    public Person obtainUserInfo() {
-
+    public Person obtainUserInfo(int option) {
+        Scanner scan = new Scanner(System.in);
         String searchFName;
         String searchLName;
         int searchMonth;
         int searchDay;
         int searchYear;
+        Person searchUser;
+        if (option == 3) {
+            System.out.println("\nPlease enter the first name:");
+            searchFName = scan.next();
+            System.out.println("Please enter the last name:");
+            searchLName = scan.next();
+            System.out.println("Please enter the birth month:");
+            searchMonth = scan.nextInt();
+            System.out.println("Please enter the birth day:");
+            searchDay = scan.nextInt();
+            System.out.println("Please enter the year:");
+            searchYear = scan.nextInt();
+            searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+        } else {
+            System.out.println("\nPlease select from the following options:");
+            System.out.println("1. Enter First/Last Name only");
+            System.out.println("2. Enter First/Last Name & Date of Birth");
+            option = scan.nextInt();
+            while (option == 0 || option > 2) {
+                System.out.println("Please select a valid entry: 1 - 2");
+                option = scan.nextInt();
+            }
 
-        Scanner scan = new Scanner(System.in);
-        System.out.println("\nPlease enter the first name:");
-        searchFName = scan.next();
-        System.out.println("Please enter the last name:");
-        searchLName = scan.next();
-        System.out.println("Please enter the birth month:");
-        searchMonth = scan.nextInt();
-        System.out.println("Please enter the birth day:");
-        searchDay = scan.nextInt();
-        System.out.println("Please enter the year:");
-        searchYear = scan.nextInt();
-        Person searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+            System.out.println("\nPlease enter the first name:");
+            searchFName = scan.next();
+            System.out.println("Please enter the last name:");
+            searchLName = scan.next();
+
+            if (option == 1) {
+                searchUser = new Person(searchFName, searchLName);
+            } else {
+                System.out.println("Please enter the birth month:");
+                searchMonth = scan.nextInt();
+                System.out.println("Please enter the birth day:");
+                searchDay = scan.nextInt();
+                System.out.println("Please enter the year:");
+                searchYear = scan.nextInt();
+                searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+            }
+        }
         return searchUser;
 
     }

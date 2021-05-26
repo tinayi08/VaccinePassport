@@ -52,15 +52,16 @@ public class DBManager {
      */
     public ArrayList<Person> returnSearchResults(Person searchPerson) {
         ArrayList<Person> searchResults = new ArrayList<Person>();
-        //System.out.println(data.size() + " data size in returnSearchResults");
-        for (Person p : data) {
-            if (searchPerson.getfName().equalsIgnoreCase(p.getfName()) && searchPerson.getlName().equalsIgnoreCase(p.getlName()) &&
-                searchPerson.getDob().month == p.getDob().month && searchPerson.getDob().day == p.getDob().day
-                && searchPerson.getDob().year == p.getDob().year) {
-                searchResults.add(p);
+        if (searchPerson.getDob() == null) {
+            for (Person p : data) {
+                if (searchPerson.getfName().equalsIgnoreCase(p.getfName()) && searchPerson.getlName().equalsIgnoreCase(p.getlName())) {
+                    searchResults.add(p);
+                }
             }
         }
+
         return searchResults;
+
     }
 
     /**
@@ -80,10 +81,6 @@ public class DBManager {
         }
         cal.add(Calendar.DAY_OF_MONTH, 30);
         return sdf.format(cal.getTime());
-
-    }
-
-    public void search(Person target) {
 
     }
 

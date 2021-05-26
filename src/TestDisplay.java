@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -66,16 +67,21 @@ public class TestDisplay {
      * The name will be added to a Person object
      * @return Person object
       */
-
     public Person searchIndividual() {
         Person search;
 
         boolean b = false;
+
         do {
+
             Scanner scan = new Scanner(System.in);
 
-            search = drController.obtainUserInfo();
-
+            search = drController.obtainUserInfo(0);
+            if (search.getDob() == null) {
+                ArrayList<Person> searchResults = drController.dbPerson.returnSearchResults(search);
+                displayPerson(searchResults, "Results:");
+                search = drController.obtainUserInfo(3);
+            }
             if (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, would you like to " +
                     "create a new profile?")) {
                 String createNew = scan.next();
@@ -138,7 +144,6 @@ public class TestDisplay {
 
         setUpDataTesting();
         do {
-
             navigateMainMenu(menu());
         } while (returnToMainMenu());
 
@@ -164,9 +169,7 @@ public class TestDisplay {
             String option = scan.next();
             if (option.equalsIgnoreCase("yes")) {
                 System.out.println("\n" + person.toStringVaxInfo());
-
             }
-
         }
     }
     /**
@@ -182,7 +185,9 @@ public class TestDisplay {
         } else if (navigate == 2) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
             //Do we need to return an arraylist here?
+            System.out.println("before arraylist");
             //ArrayList<Person> searchResults = drController.navigateOptionTwoSearching(searchIndividual());
+            System.out.println("before option2 part 2");
             navigateOption2Part2(searchIndividual());
 
             //displayPerson(searchResults, "Search Results");
