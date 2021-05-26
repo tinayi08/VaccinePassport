@@ -159,7 +159,7 @@ public class TestDisplay {
     public void navigateOption2Part2(Person person) {
         Scanner scan = new Scanner(System.in);
         if (person.getVaccine() == null) {
-            System.out.println("\nWould you like to enter their vaccination information as well?");
+            System.out.println("\nWould you like to enter their vaccination information?");
             String addInfo = scan.next();
             if (addInfo.equalsIgnoreCase("yes")) {
                 drController.navigateOptionThreeAddVaxInfo(person);
