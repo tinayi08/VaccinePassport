@@ -110,7 +110,7 @@ public class TestDisplay {
      * The name will be added to a Person object
      * @return Person object
       */
-    public Person searchIndividual() {
+    public Person searchIndividual(String title, int option) {
         Person search;
 
         boolean b = false;
@@ -129,17 +129,27 @@ public class TestDisplay {
                     search = drController.obtainUserInfo(3, search.getfName(), search.getlName());
                 }
             }
-            if (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, would you like to " +
-                    "create a new profile?")) {
-                String createNew = scan.next();
-                if (createNew.equalsIgnoreCase("yes")) {
-                    drController.dbPerson.addPersonEntry(search);
-
+//            if (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, would you like to " +
+//                    "create a new profile?")) {
+                if (!drController.dbPerson.doesPersonExist(search, title)) {
+                    if (option == 1) {
+                        String createNew = scan.next();
+                        if (createNew.equalsIgnoreCase("yes")) {
+                            drController.dbPerson.addPersonEntry(search);
+                        } else {
+                            b = false;
+                            return null;
+                        }
+                    } else {
+                        String reenter = scan.next();
+                        if (!reenter.equalsIgnoreCase("yes")) {
+                            b = false;
+                            return null;
+                        } else {
+                            b = true;
+                        }
+                    }
                 } else {
-                    b = false;
-                    return null;
-                }
-            } else {
                 b = false;
             }
 
@@ -242,7 +252,7 @@ public class TestDisplay {
         } else if (navigate == 2) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
 
-            Person p = searchIndividual();
+            Person p = searchIndividual("This entry does not exist, would you like to create a new profile?", 1);
             if (p != null) {
                 navigateOption2Part2(p);
             } else
@@ -250,17 +260,18 @@ public class TestDisplay {
         } else if (navigate == 3) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
 
-            Person p = searchIndividual();
+            Person p = searchIndividual("This entry does not exist, would you like to create a new profile?", 1);
             if (p != null) {
                 drController.navigateOptionThreeAddVaxInfo(p);
             } else
                 return;
         } else if (navigate == 4) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
-            drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual());
+            drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual("This entry does not exist, would you like to create a new profile?", 1));
         } else if (navigate == 5) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
-            Person p = searchForVaxStatus();
+            //Person p = searchForVaxStatus();
+            Person p = searchIndividual("This entry does not exist, would you like to re-enter your search?", 0);
             if (p != null) {
                 drController.fullyVaxDate(p);
             } else
