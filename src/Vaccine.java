@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Vaccine {
 
     String brand;
@@ -5,6 +7,10 @@ public class Vaccine {
     String oneShotDate;
     String twoShotDate;
     String fullyVaxDate;
+
+//    public Vaccine() {
+//
+//    }
 
     public String getBrand() {
         return brand;
@@ -27,6 +33,7 @@ public class Vaccine {
     }
 
     public void setRequiredShots(int requiredShots) {
+
         this.requiredShots = requiredShots;
     }
 
@@ -44,6 +51,25 @@ public class Vaccine {
 
     public void setTwoShotDate(String twoShotDate) {
         this.twoShotDate = twoShotDate;
+    }
+
+    public String vaxBrand (int brand) {
+        if (brand == 1) {
+            return "Johnson & Johnson";
+        } else if (brand == 2) {
+            return "Pfizer";
+        } else {
+            return "Moderna";
+        }
+    }
+
+    public int vaxBrandEqualsNumShots (int brand) {
+
+        if (brand == 1) {
+            return 1;
+        } else {
+            return 2;
+        }
     }
 
     public Vaccine(String brand, int requiredShots, String oneShotDate, String twoShotDate, String fullyVaxDate) {
