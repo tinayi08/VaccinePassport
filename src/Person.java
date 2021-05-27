@@ -5,6 +5,12 @@ public class Person {
     Vaccine vaccine;
     DOB dob;
 
+//    public Person () {
+//        if (vaccine == null) {
+//            vaccine = new Vaccine();
+//        }
+//
+//    }
 
     public  String toString() {
         return "First Name: " + fName +

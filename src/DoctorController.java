@@ -44,6 +44,19 @@ public class DoctorController {
             String vaxBrand = scan.next();
             System.out.println("How many shots are required?");
             int numShots = scan.nextInt();
+//            System.out.println("1. Johnson & Johnson");
+//            System.out.println("2. Pfizer");
+//            System.out.println("3. Moderna");
+//            int vaxOption = 0;
+//            while (vaxOption == 0 || vaxOption > 3) {
+//                System.out.println("Please select a valid entry: 1 - 3");
+//                vaxOption = scan.nextInt();
+//            }
+//
+//            String vaxBrand = person.getVaccine().vaxBrand(vaxOption);
+//            int numShots = person.getVaccine().vaxBrandEqualsNumShots(vaxOption);
+
+
             System.out.println("Please enter the date of the first injection (Format: MM/DD/YYYY)");
             String oneShotDate = scan.next();
             Vaccine vaxInfo = new Vaccine(vaxBrand, numShots, oneShotDate, null);
@@ -73,7 +86,9 @@ public class DoctorController {
     public void fullyVaxDate(Person person) {
 
         String fullyVaxDate;
-        if (person.vaccine.requiredShots == 1 && person.vaccine.oneShotDate != null) {
+        if (person.vaccine == null) {
+            System.out.println(person.getfName() + " " + person.getlName() + " has not started the vaccination process yet.");
+        } else if (person.vaccine.requiredShots == 1 && person.vaccine.oneShotDate != null) {
             fullyVaxDate = dbPerson.vax30Days(person.vaccine.oneShotDate);
 
             System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
@@ -87,6 +102,9 @@ public class DoctorController {
             person.setVaccine(vaxInfo);
         } else
             System.out.println(person.getfName() + " " + person.getlName() + " will need a 2nd injection between 3 to 5 weeks from " + person.getVaccine().oneShotDate +  " in order to determine fully vaccinated date. \n");
+
+
+
 
     }
 

@@ -62,6 +62,48 @@ public class TestDisplay {
         drController.dbPerson.addPersonEntry(nine);
         drController.dbPerson.addPersonEntry(ten);
     }
+    public Person searchForVaxStatus() {
+        Person search;
+
+        boolean b = false;
+
+        do {
+
+            Scanner scan = new Scanner(System.in);
+
+            search = drController.obtainUserInfo(0, null, null);
+            if (search.getDob() == null) {
+                ArrayList<Person> searchResults = drController.dbPerson.returnSearchResults(search);
+                displayPerson(searchResults, "Results:");
+                if (searchResults.isEmpty()) {
+                    search = drController.obtainUserInfo(4, null, null);
+                } else {
+                    search = drController.obtainUserInfo(3, search.getfName(), search.getlName());
+                }
+            }
+            if (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, would you like to re-enter your search?")) {
+                String createNew = scan.next();
+                if (!createNew.equalsIgnoreCase("yes")) {
+                    b = false;
+                    return null;
+                } else {
+                    b = true;
+                }
+            } else {
+                b = false;
+            }
+
+        } while (b);
+
+        int object = 0;
+        for (Person p : drController.dbPerson.getData()) {
+            if (search.getfName().equalsIgnoreCase(p.getfName()) && search.getlName().equalsIgnoreCase(p.getlName()) &&
+                    search.getDob().month == p.getDob().month && search.getDob().day == p.getDob().day && search.getDob().year == p.getDob().year) {
+                object = drController.dbPerson.getData().indexOf(p);
+            }
+        }
+        return drController.dbPerson.getData().get(object);
+    }
 
     /**
      * This method asks the user to enter a first name and a last name.
@@ -123,9 +165,10 @@ public class TestDisplay {
         System.out.println("2. Search for an individual on the database");
         System.out.println("3. Add vaccination information");
         System.out.println("4. Delete an entry from the database");
+        System.out.println("5. View vaccination status");
         Scanner scan = new Scanner(System.in);
         int option = scan.nextInt();
-        while (option == 0 || option > 4) {
+        while (option == 0 || option > 5) {
             System.out.println("Please select a valid entry: 1 - 4");
             option = scan.nextInt();
         }
@@ -206,19 +249,30 @@ public class TestDisplay {
                 return;
         } else if (navigate == 3) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
-            drController.navigateOptionThreeAddVaxInfo(searchIndividual());
+
+            Person p = searchIndividual();
+            if (p != null) {
+                drController.navigateOptionThreeAddVaxInfo(p);
+            } else
+                return;
         } else if (navigate == 4) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
             drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual());
+        } else if (navigate == 5) {
+            displayPerson(drController.dbPerson.getData(), "Entries:");
+            Person p = searchForVaxStatus();
+            if (p != null) {
+                drController.fullyVaxDate(p);
+            } else
+                return;
+
         }
 
-        while (navigate == 0 || navigate > 4) {
+        while (navigate == 0 || navigate > 5) {
             Scanner scan = new Scanner(System.in);
-            System.out.println("Please select a valid entry: 1 - 4");
+            System.out.println("Please select a valid entry: 1 - 5");
             navigate = scan.nextInt();
         }
-        //NEED TO ADD LOOP SO THEY HAVE TO ENTER CORRECT ENTRY
-
     }
 
 
