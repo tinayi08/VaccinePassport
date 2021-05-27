@@ -62,54 +62,14 @@ public class TestDisplay {
         drController.dbPerson.addPersonEntry(nine);
         drController.dbPerson.addPersonEntry(ten);
     }
-    public Person searchForVaxStatus() {
-        Person search;
-
-        boolean b = false;
-
-        do {
-
-            Scanner scan = new Scanner(System.in);
-
-            search = drController.obtainUserInfo(0, null, null);
-            if (search.getDob() == null) {
-                ArrayList<Person> searchResults = drController.dbPerson.returnSearchResults(search);
-                displayPerson(searchResults, "Results:");
-                if (searchResults.isEmpty()) {
-                    search = drController.obtainUserInfo(4, null, null);
-                } else {
-                    search = drController.obtainUserInfo(3, search.getfName(), search.getlName());
-                }
-            }
-            if (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, would you like to re-enter your search?")) {
-                String createNew = scan.next();
-                if (!createNew.equalsIgnoreCase("yes")) {
-                    b = false;
-                    return null;
-                } else {
-                    b = true;
-                }
-            } else {
-                b = false;
-            }
-
-        } while (b);
-
-        int object = 0;
-        for (Person p : drController.dbPerson.getData()) {
-            if (search.getfName().equalsIgnoreCase(p.getfName()) && search.getlName().equalsIgnoreCase(p.getlName()) &&
-                    search.getDob().month == p.getDob().month && search.getDob().day == p.getDob().day && search.getDob().year == p.getDob().year) {
-                object = drController.dbPerson.getData().indexOf(p);
-            }
-        }
-        return drController.dbPerson.getData().get(object);
-    }
 
     /**
      * This method asks the user to enter a first name and a last name.
      * The name will be added to a Person object
+     * @param title this refers to the statement if the Person does not exist
+     * @param option is to signal which option it should go through, whether we want the option to create a new user or not
      * @return Person object
-      */
+     */
     public Person searchIndividual(String title, int option) {
         Person search;
 
