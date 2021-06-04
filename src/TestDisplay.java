@@ -1,6 +1,5 @@
-import java.lang.reflect.Array;
-import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TestDisplay {
@@ -136,13 +135,14 @@ public class TestDisplay {
         System.out.println("3. Add vaccination information");
         System.out.println("4. Delete an entry from the database");
         System.out.println("5. View vaccination status");
-        Scanner scan = new Scanner(System.in);
-        int option = scan.nextInt();
-        while (option == 0 || option > 5) {
-            System.out.println("Please select a valid entry: 1 - 4");
-            option = scan.nextInt();
-        }
-        return option;
+        //Scanner scan = new Scanner(System.in);
+        return validator(5);
+//        int option = scan.nextInt();
+//        while (option == 0 || option > 5) {
+//            System.out.println("Please select a valid entry: 1 - 4");
+//            option = scan.nextInt();
+//        }
+//        return option;
     }
 
     /**
@@ -246,6 +246,25 @@ public class TestDisplay {
         }
     }
 
+    public int validator (int option) {
+        Scanner scan = new Scanner(System.in);
+        boolean isValid = false;
+        int selection = 0;
+        while (!isValid) {
+            try {
+                selection = scan.nextInt();
+                while (selection == 0 || selection > (option+1)) {
+                    System.out.println("Please select a valid entry: 1 - " + option);
+                    selection = scan.nextInt();
+                }
+                isValid = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid entry: 1 - " + option);
+                scan.next();
+            }
+        }
+        return selection;
+    }
 
 
 }
