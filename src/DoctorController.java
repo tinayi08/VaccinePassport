@@ -103,9 +103,6 @@ public class DoctorController {
         } else
             System.out.println(person.getfName() + " " + person.getlName() + " will need a 2nd injection between 3 to 5 weeks from " + person.getVaccine().oneShotDate +  " in order to determine fully vaccinated date. \n");
 
-
-
-
     }
 
     /**
@@ -169,11 +166,7 @@ public class DoctorController {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
         }
-
-
-
     }
 
     /**

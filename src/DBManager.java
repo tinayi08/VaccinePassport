@@ -31,7 +31,7 @@ public class DBManager {
      */
     public void addPersonEntry(Person person) {
         data.add(person);
-        //System.out.println("Inside addPersonEntry()" + data);
+
     }
 
     /**

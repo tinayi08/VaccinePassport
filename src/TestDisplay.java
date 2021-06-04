@@ -135,14 +135,9 @@ public class TestDisplay {
         System.out.println("3. Add vaccination information");
         System.out.println("4. Delete an entry from the database");
         System.out.println("5. View vaccination status");
-        //Scanner scan = new Scanner(System.in);
-        return validator(5);
-//        int option = scan.nextInt();
-//        while (option == 0 || option > 5) {
-//            System.out.println("Please select a valid entry: 1 - 4");
-//            option = scan.nextInt();
-//        }
-//        return option;
+
+        return new Utility().getValidIntInput(5);
+
     }
 
     /**
@@ -198,6 +193,7 @@ public class TestDisplay {
         }
         drController.personVaccinated(person);
     }
+
     /**
      * This method navigates through the program
      *
@@ -239,32 +235,16 @@ public class TestDisplay {
 
         }
 
-        while (navigate == 0 || navigate > 5) {
-            Scanner scan = new Scanner(System.in);
-            System.out.println("Please select a valid entry: 1 - 5");
-            navigate = scan.nextInt();
-        }
+        //I DONT THINK I NEED THE BELOW HERE -- IF NOTHING BREAKS - DELETE
+        //navigate = validator(5);
+//        while (navigate == 0 || navigate > 5) {
+//            Scanner scan = new Scanner(System.in);
+//            System.out.println("Please select a valid entry: 1 - 5");
+//            navigate = scan.nextInt();
+//        }
     }
 
-    public int validator (int option) {
-        Scanner scan = new Scanner(System.in);
-        boolean isValid = false;
-        int selection = 0;
-        while (!isValid) {
-            try {
-                selection = scan.nextInt();
-                while (selection == 0 || selection > (option+1)) {
-                    System.out.println("Please select a valid entry: 1 - " + option);
-                    selection = scan.nextInt();
-                }
-                isValid = true;
-            } catch (InputMismatchException e) {
-                System.out.println("Please enter a valid entry: 1 - " + option);
-                scan.next();
-            }
-        }
-        return selection;
-    }
+
 
 
 }
