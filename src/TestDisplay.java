@@ -203,7 +203,6 @@ public class TestDisplay {
 
         if (navigate == 1) {
             Person newlyAdded = drController.navigateOptionOneAddNew(drController.dbPerson.getData());
-            //displayPerson(drController.dbPerson.getData(), "Entries:");
             navigateOption2Part2(newlyAdded);
         } else if (navigate == 2) {
             displayPerson(drController.dbPerson.getData(), "Entries:");

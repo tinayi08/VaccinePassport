@@ -2,15 +2,15 @@ public class Person {
 
     String fName;
     String lName;
-    Vaccine vaccine;
+    //Vaccine vaccine;
     DOB dob;
+    VaccineCard vaccine;
 
-//    public Person () {
-//        if (vaccine == null) {
-//            vaccine = new Vaccine();
-//        }
-//
-//    }
+
+    public Person () {
+        vaccine = new VaccineCard();
+
+    }
 
     public  String toString() {
         return "First Name: " + fName +
@@ -63,7 +63,7 @@ public class Person {
         return dob;
     }
 
-    public void setVaccine(Vaccine vaccine) {
+    public void setVaccine(VaccineCard vaccine) {
         this.vaccine = vaccine;
     }
 
@@ -84,7 +84,7 @@ public class Person {
     public Person(String fName, String lName, String brand, int requiredShots, String one, String two, DOB dob) {
         this.fName = fName;
         this.lName = lName;
-        this.vaccine = new Vaccine(brand, requiredShots, one, two);
+        this.vaccine = new VaccineCard(brand, requiredShots, one, two);
         this.dob = dob;
     }
 

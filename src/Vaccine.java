@@ -1,6 +1,7 @@
-import java.util.ArrayList;
 
 public class Vaccine {
+    //should be related to the vaccine itself
+    //shot dates has to do with the person not the vaccine brand
 
     String brand;
     int requiredShots;
@@ -8,9 +9,9 @@ public class Vaccine {
     String twoShotDate;
     String fullyVaxDate;
 
-//    public Vaccine() {
-//
-//    }
+    public Vaccine() {
+        requiredShots = 1;
+    }
 
     public String getBrand() {
         return brand;

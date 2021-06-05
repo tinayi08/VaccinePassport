@@ -59,7 +59,7 @@ public class DoctorController {
 
             System.out.println("Please enter the date of the first injection (Format: MM/DD/YYYY)");
             String oneShotDate = scan.next();
-            Vaccine vaxInfo = new Vaccine(vaxBrand, numShots, oneShotDate, null);
+            VaccineCard vaxInfo = new VaccineCard(vaxBrand, numShots, oneShotDate, null);
             person.setVaccine(vaxInfo);
 
             return person;
@@ -72,7 +72,7 @@ public class DoctorController {
         System.out.println("Please enter the date of the second injection (Format: MM/DD/YYYY)");
         String twoShotDate = scan.next();
 
-        Vaccine vaxInfo = new Vaccine(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, twoShotDate);
+        VaccineCard vaxInfo = new VaccineCard(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, twoShotDate);
         person.setVaccine(vaxInfo);
         return person;
     }
@@ -84,7 +84,7 @@ public class DoctorController {
      * @param person
      */
     public void fullyVaxDate(Person person) {
-
+    //MOVE TO VACCINECARD CLASS
         String fullyVaxDate;
         if (person.vaccine == null) {
             System.out.println(person.getfName() + " " + person.getlName() + " has not started the vaccination process yet.");
@@ -92,13 +92,13 @@ public class DoctorController {
             fullyVaxDate = dbPerson.vax30Days(person.vaccine.oneShotDate);
 
             System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
-            Vaccine vaxInfo = new Vaccine(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, null, fullyVaxDate);
+            VaccineCard vaxInfo = new VaccineCard(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, null, fullyVaxDate);
             person.setVaccine(vaxInfo);
         } else if (person.vaccine.requiredShots == 2 && person.vaccine.twoShotDate != null) {
             fullyVaxDate = dbPerson.vax30Days(person.vaccine.twoShotDate);
 
             System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
-            Vaccine vaxInfo = new Vaccine(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, person.getVaccine().twoShotDate, fullyVaxDate);
+            VaccineCard vaxInfo = new VaccineCard(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, person.getVaccine().twoShotDate, fullyVaxDate);
             person.setVaccine(vaxInfo);
         } else
             System.out.println(person.getfName() + " " + person.getlName() + " will need a 2nd injection between 3 to 5 weeks from " + person.getVaccine().oneShotDate +  " in order to determine fully vaccinated date. \n");
