@@ -36,6 +36,7 @@ public class TestDisplay {
      * No vaccine information has been added yet.
      */
     public void setUpDataTesting() {
+
         //add people into the array to have some people in there
         //practice purposes only - will use text file or DB later on
 
@@ -60,6 +61,26 @@ public class TestDisplay {
         drController.dbPerson.addPersonEntry(eight);
         drController.dbPerson.addPersonEntry(nine);
         drController.dbPerson.addPersonEntry(ten);
+    }
+
+    public void setUpVaxBrand() {
+        //TODO - add vax information
+        //add people into the array to have some people in there
+        //practice purposes only - will use text file or DB later on
+
+        CollectionOfVaxBrands vaccineBrand = new CollectionOfVaxBrands();
+        ArrayList<Integer> days = new ArrayList<>();
+        days.add(25);
+        vaccineBrand.addToBrandDB("Johnson & Johnson", 1, days);
+        days.set(0, 14);
+        days.add(14);
+        vaccineBrand.addToBrandDB("Pfizer", 2, days);
+        days.set(0,21);
+        days.set(1,21);
+        vaccineBrand.addToBrandDB("Moderna", 2, days);
+
+
+
     }
 
     /**
@@ -158,7 +179,9 @@ public class TestDisplay {
 
     public void run() {
 
+        setUpVaxBrand();
         setUpDataTesting();
+
         do {
             navigateMainMenu(menu());
         } while (returnToMainMenu());

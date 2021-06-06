@@ -10,10 +10,11 @@ public class DoctorController {
     //vendor - compares the "ID" with the DB to pull information. Once it pulls one person,
     //ready to check the next person
     DBManager dbPerson;
+    CollectionOfVaxBrands collection;
 
     public DoctorController() {
         dbPerson = new DBManager();
-
+        collection = new CollectionOfVaxBrands();
     }
 
     /**
@@ -32,34 +33,42 @@ public class DoctorController {
 
     }
 
+    private int listAvailableVax() {
+
+        int numOfVaxBrands = collection.sizeOfCollection();
+
+        for (int i = 0; i < numOfVaxBrands; i++) {
+            Vaccine theBrand = collection.getVaxBrandAtIndex(i);
+            System.out.println("ID: " + theBrand.getBrandID() + " Brand: " + theBrand.getBrand());
+        }
+        return numOfVaxBrands;
+    }
+
     /**
      * This method will add the vaccination information for a Person object
      * @param person
      * @return updated Person object with vaccination information added
      */
     public Person addVaxInfo(Person person) {
+
+        int numOfBrands = 0;
         Scanner scan = new Scanner(System.in);
         if (person.vaccine == null) {
+            numOfBrands = listAvailableVax();
             System.out.println("What is the Vaccine brand?");
-            String vaxBrand = scan.next();
-            System.out.println("How many shots are required?");
-            int numShots = scan.nextInt();
-//            System.out.println("1. Johnson & Johnson");
-//            System.out.println("2. Pfizer");
-//            System.out.println("3. Moderna");
-//            int vaxOption = 0;
-//            while (vaxOption == 0 || vaxOption > 3) {
-//                System.out.println("Please select a valid entry: 1 - 3");
-//                vaxOption = scan.nextInt();
-//            }
-//
-//            String vaxBrand = person.getVaccine().vaxBrand(vaxOption);
-//            int numShots = person.getVaccine().vaxBrandEqualsNumShots(vaxOption);
-
+            int vaxBrand = 0;
+            //TODO - put verifier in another method
+            while (vaxBrand == 0 || vaxBrand > numOfBrands) {
+                System.out.println("Please enter: 1 - " + numOfBrands + ": ");
+                vaxBrand = scan.nextInt();
+            }
+            Vaccine selectedVax = collection.getVaxBrandAtIndex(vaxBrand-1);
 
             System.out.println("Please enter the date of the first injection (Format: MM/DD/YYYY)");
             String oneShotDate = scan.next();
-            VaccineCard vaxInfo = new VaccineCard(vaxBrand, numShots, oneShotDate, null);
+            VaccineCard vaxInfo = new VaccineCard(selectedVax.brandID, selectedVax.getBrand(),
+                    selectedVax.getRequiredShots(), selectedVax.getNumDaysToBeEffective(),
+                    oneShotDate, null, null);
             person.setVaccine(vaxInfo);
 
             return person;
@@ -72,7 +81,10 @@ public class DoctorController {
         System.out.println("Please enter the date of the second injection (Format: MM/DD/YYYY)");
         String twoShotDate = scan.next();
 
-        VaccineCard vaxInfo = new VaccineCard(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, twoShotDate);
+        VaccineCard vaxInfo = new VaccineCard(person.getVaccine().getBrandID(), person.getVaccine().getBrand(),
+                person.getVaccine().getRequiredShots(), person.getVaccine().getNumDaysToBeEffective(),
+                person.getVaccine().getOneShotDate(), twoShotDate, null);
+
         person.setVaccine(vaxInfo);
         return person;
     }
@@ -84,7 +96,7 @@ public class DoctorController {
      * @param person
      */
     public void fullyVaxDate(Person person) {
-    //MOVE TO VACCINECARD CLASS
+    //TODO - MOVE TO VACCINECARD CLASS
         String fullyVaxDate;
         if (person.vaccine == null) {
             System.out.println(person.getfName() + " " + person.getlName() + " has not started the vaccination process yet.");
@@ -92,13 +104,20 @@ public class DoctorController {
             fullyVaxDate = dbPerson.vax30Days(person.vaccine.oneShotDate);
 
             System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
-            VaccineCard vaxInfo = new VaccineCard(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, null, fullyVaxDate);
+
+
+            VaccineCard vaxInfo = new VaccineCard(person.getVaccine().getBrandID(), person.getVaccine().getBrand(),
+                    person.getVaccine().getRequiredShots(), person.getVaccine().getNumDaysToBeEffective(),
+                    person.getVaccine().getOneShotDate(), person.getVaccine().getTwoShotDate(), fullyVaxDate);
             person.setVaccine(vaxInfo);
         } else if (person.vaccine.requiredShots == 2 && person.vaccine.twoShotDate != null) {
             fullyVaxDate = dbPerson.vax30Days(person.vaccine.twoShotDate);
 
             System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
-            VaccineCard vaxInfo = new VaccineCard(person.getVaccine().brand, person.getVaccine().requiredShots, person.getVaccine().oneShotDate, person.getVaccine().twoShotDate, fullyVaxDate);
+
+            VaccineCard vaxInfo = new VaccineCard(person.getVaccine().getBrandID(), person.getVaccine().getBrand(),
+                    person.getVaccine().getRequiredShots(), person.getVaccine().getNumDaysToBeEffective(),
+                    person.getVaccine().getOneShotDate(), person.getVaccine().getTwoShotDate(), fullyVaxDate);
             person.setVaccine(vaxInfo);
         } else
             System.out.println(person.getfName() + " " + person.getlName() + " will need a 2nd injection between 3 to 5 weeks from " + person.getVaccine().oneShotDate +  " in order to determine fully vaccinated date. \n");
