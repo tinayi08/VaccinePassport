@@ -25,13 +25,8 @@ public class DoctorController {
      */
     public void navigateOptionThreeAddVaxInfo (Person person) {
 
-        Person updated = addVaxInfo(person);
-
+        addVaxInfo(person);
         fullyVaxDate(person);
-
-
-        //System.out.println(updated.toStringVaxInfo());
-
     }
 
     private int listAvailableVax() {
