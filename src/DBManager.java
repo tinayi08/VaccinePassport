@@ -31,7 +31,6 @@ public class DBManager {
      */
     public void addPersonEntry(Person person) {
         data.add(person);
-
     }
 
     /**
@@ -136,9 +135,7 @@ public class DBManager {
 
             if (fName.equalsIgnoreCase(p.getfName()) && lName.equalsIgnoreCase(p.getlName()) && month == p.getDob().month &&
                     day == p.getDob().day && year == p.getDob().year) {
-                //need to capture this index so we know thats the object we want to update
                 int object = data.indexOf(p);
-                //System.out.println(object + " Found at index of");
                 return true;
             }
         }
