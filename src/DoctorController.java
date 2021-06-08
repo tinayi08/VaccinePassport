@@ -29,6 +29,11 @@ public class DoctorController {
         fullyVaxDate(person);
     }
 
+    /**
+     * This method will display the available vaccines
+     *
+     * @return number of vaccine brands available
+     */
     private int listAvailableVax() {
 
         int numOfVaxBrands = collection.sizeOfCollection();
@@ -51,13 +56,10 @@ public class DoctorController {
         Scanner scan = new Scanner(System.in);
         if (person.vaccine == null) {
             numOfBrands = listAvailableVax();
-            System.out.println("What is the Vaccine brand?");
-            int vaxBrand = new Utility().getValidIntInput(numOfBrands);
-
+            int vaxBrand = new TestDisplayVaccine().selectedVaxBrand(numOfBrands);
             Vaccine selectedVax = collection.getVaxBrandAtIndex(vaxBrand-1);
 
-            System.out.println("Please enter the date of the first injection (Format: MM/DD/YYYY)");
-            String oneShotDate = scan.next();
+            String oneShotDate = new TestDisplayVaccine().assignShotDate("first");
             VaccineCard vaxInfo = new VaccineCard(selectedVax.brandID, selectedVax.getBrand(),
                     selectedVax.getRequiredShots(), selectedVax.getNumDaysToBeEffective(),
                     oneShotDate, null, null);
@@ -70,8 +72,7 @@ public class DoctorController {
             return person;
         }
 
-        System.out.println("Please enter the date of the second injection (Format: MM/DD/YYYY)");
-        String twoShotDate = scan.next();
+        String twoShotDate = new TestDisplayVaccine().assignShotDate("second");
 
         VaccineCard vaxInfo = new VaccineCard(person.getVaccine().getBrandID(), person.getVaccine().getBrand(),
                 person.getVaccine().getRequiredShots(), person.getVaccine().getNumDaysToBeEffective(),
@@ -159,7 +160,7 @@ public class DoctorController {
     public void navigateOptionFourDelete(ArrayList<Person> data, Person person) {
         dbPerson.deletePersonEntry(person);
         System.out.println(person.getfName() + " " + person.getlName() + " has been deleted.");
-
+        //TODO -- If person does not exist -- need to state does not exist and go back to main menu
     }
 
 
