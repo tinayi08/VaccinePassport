@@ -19,9 +19,7 @@ public class Vaccine {
     public int getBrandID() {
         return brandID;
     }
-//    String oneShotDate;
-//    String twoShotDate;
-//    String fullyVaxDate;
+
 
     public Vaccine() {
         requiredShots = 1;
@@ -55,8 +53,6 @@ public class Vaccine {
         }
     }
 
-
-
     private int assignNumDaysBetweenShot(ArrayList<Integer> inputNumDaysBetweenShot) {
         for (int days : inputNumDaysBetweenShot) {
             numDaysToBeEffective.add(days);
@@ -64,44 +60,4 @@ public class Vaccine {
         return numDaysToBeEffective.size();
     }
 
-    //    public String getFullyVaxDate() {
-//        return fullyVaxDate;
-//    }
-//
-//    public void setFullyVaxDate(String fullyVaxDate) {
-//        this.fullyVaxDate = fullyVaxDate;
-//    }
-
-//    public String getOneShotDate() {
-//        return oneShotDate;
-//    }
-//
-//    public void setOneShotDate(String oneShotDate) {
-//        this.oneShotDate = oneShotDate;
-//    }
-//
-//    public String getTwoShotDate() {
-//        return twoShotDate;
-//    }
-//
-//    public void setTwoShotDate(String twoShotDate) {
-//        this.twoShotDate = twoShotDate;
-//    }
-
-
-//    public Vaccine(String brand, int requiredShots, String oneShotDate, String twoShotDate, String fullyVaxDate) {
-//        this.brand = brand;
-//        this.requiredShots = requiredShots;
-//        this.oneShotDate = oneShotDate;
-//        this.twoShotDate = twoShotDate;
-//        this.fullyVaxDate = fullyVaxDate;
-//    }
-//
-//    public Vaccine(String brand, int requiredShots, String oneShotDate, String twoShotDate) {
-//        this.brand = brand;
-//        this.requiredShots = requiredShots;
-//        this.oneShotDate = oneShotDate;
-//        this.twoShotDate = twoShotDate;
-//
-//    }
 }

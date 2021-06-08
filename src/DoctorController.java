@@ -11,6 +11,7 @@ public class DoctorController {
     //ready to check the next person
     DBManager dbPerson;
     CollectionOfVaxBrands collection;
+    TestDisplayVaccine vaxDisplay;
 
     public DoctorController() {
         dbPerson = new DBManager();
@@ -50,7 +51,7 @@ public class DoctorController {
      * @return updated Person object with vaccination information added
      */
     public Person addVaxInfo(Person person) {
-
+        //TODO - SCANNER part should be in testDisplay, pass through "vaxBrand"
         int numOfBrands = 0;
         Scanner scan = new Scanner(System.in);
         if (person.vaccine == null) {
@@ -120,7 +121,9 @@ public class DoctorController {
                     person.getVaccine().getOneShotDate(), person.getVaccine().getTwoShotDate(), fullyVaxDate);
             person.setVaccine(vaxInfo);
         } else
-            System.out.println(person.getfName() + " " + person.getlName() + " will need a 2nd injection between 3 to 5 weeks from " + person.getVaccine().oneShotDate +  " in order to determine fully vaccinated date. \n");
+            System.out.println(person.getfName() + " " + person.getlName()
+                    + " will need a 2nd injection between 3 to 5 weeks from "
+                    + person.getVaccine().oneShotDate +  " in order to determine fully vaccinated date. \n");
 
     }
 
