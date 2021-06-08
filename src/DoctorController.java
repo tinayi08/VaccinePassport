@@ -57,12 +57,8 @@ public class DoctorController {
         if (person.vaccine == null) {
             numOfBrands = listAvailableVax();
             System.out.println("What is the Vaccine brand?");
-            int vaxBrand = 0;
-            //TODO - put verifier in another method
-            while (vaxBrand == 0 || vaxBrand > numOfBrands) {
-                System.out.println("Please enter: 1 - " + numOfBrands + ": ");
-                vaxBrand = scan.nextInt();
-            }
+            int vaxBrand = new Utility().getValidIntInput(numOfBrands);
+
             Vaccine selectedVax = collection.getVaxBrandAtIndex(vaxBrand-1);
 
             System.out.println("Please enter the date of the first injection (Format: MM/DD/YYYY)");

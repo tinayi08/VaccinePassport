@@ -59,8 +59,6 @@ public class DBManager {
                 }
             }
         }
-
-
         return searchResults;
 
     }

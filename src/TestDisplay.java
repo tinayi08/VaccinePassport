@@ -64,9 +64,6 @@ public class TestDisplay {
     }
 
     public void setUpVaxBrand() {
-        //TODO - add vax information
-        //add people into the array to have some people in there
-        //practice purposes only - will use text file or DB later on
 
         CollectionOfVaxBrands vaccineBrand = new CollectionOfVaxBrands();
         ArrayList<Integer> days = new ArrayList<>();
@@ -78,8 +75,6 @@ public class TestDisplay {
         days.set(0,21);
         days.set(1,21);
         vaccineBrand.addToBrandDB("Moderna", 2, days);
-
-
 
     }
 
