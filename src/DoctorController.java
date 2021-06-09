@@ -53,7 +53,6 @@ public class DoctorController {
     public Person addVaxInfo(Person person) {
         //TODO - SCANNER part should be in testDisplay, pass through "vaxBrand"
         int numOfBrands = 0;
-        Scanner scan = new Scanner(System.in);
         if (person.vaccine == null) {
             numOfBrands = listAvailableVax();
             int vaxBrand = new TestDisplayVaccine().selectedVaxBrand(numOfBrands);
@@ -189,6 +188,7 @@ public class DoctorController {
      * @return Returns a new Person object
      */
     public Person obtainUserInfo(int option, String firstName, String lastName) {
+        //TODO - move to TestDisplayPerson -- part of it? all of it? still need to figure that part out
         Scanner scan = new Scanner(System.in);
         String searchFName;
         String searchLName;
@@ -197,53 +197,30 @@ public class DoctorController {
         int searchYear;
         Person searchUser;
         if (option == 3) {
-            //System.out.println("\nPlease enter the first name:");
-            //searchFName = scan.next();
-            //System.out.println("Please enter the last name:");
-            //searchLName = scan.next();
-            System.out.println("Please enter the birth month:");
-            searchMonth = scan.nextInt();
-            System.out.println("Please enter the birth day:");
-            searchDay = scan.nextInt();
-            System.out.println("Please enter the year:");
-            searchYear = scan.nextInt();
+
+            searchMonth = new TestDisplayPerson().searchBirth("month");
+            searchDay = new TestDisplayPerson().searchBirth("day");
+            searchYear = new TestDisplayPerson().searchBirth("year");
             searchUser = new Person(firstName,lastName, searchMonth, searchDay, searchYear);
         } else if (option == 4) {
-            System.out.println("\nPlease enter the first name:");
-            searchFName = scan.next();
-            System.out.println("Please enter the last name:");
-            searchLName = scan.next();
-            System.out.println("Please enter the birth month:");
-            searchMonth = scan.nextInt();
-            System.out.println("Please enter the birth day:");
-            searchDay = scan.nextInt();
-            System.out.println("Please enter the year:");
-            searchYear = scan.nextInt();
+
+            searchFName = new TestDisplayPerson().searchName("first");
+            searchLName = new TestDisplayPerson().searchName("last");
+            searchMonth = new TestDisplayPerson().searchBirth("month");
+            searchDay = new TestDisplayPerson().searchBirth("day");
+            searchYear = new TestDisplayPerson().searchBirth("year");
             searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
         } else {
-            System.out.println("\nPlease select from the following options:");
-            System.out.println("1. Enter First/Last Name only");
-            System.out.println("2. Enter First/Last Name & Date of Birth");
-            option = scan.nextInt();
-            while (option == 0 || option > 2) {
-                System.out.println("Please select a valid entry: 1 - 2");
-                option = scan.nextInt();
-            }
 
-            System.out.println("\nPlease enter the first name:");
-            searchFName = scan.next();
-            System.out.println("Please enter the last name:");
-            searchLName = scan.next();
-
-            if (option == 1) {
+            int searchOption = new TestDisplayPerson().searchOption();
+            searchFName = new TestDisplayPerson().searchName("first");
+            searchLName = new TestDisplayPerson().searchName("last");
+            if (searchOption == 1) {
                 searchUser = new Person(searchFName, searchLName);
             } else {
-                System.out.println("\nPlease enter the birth month:");
-                searchMonth = scan.nextInt();
-                System.out.println("Please enter the birth day:");
-                searchDay = scan.nextInt();
-                System.out.println("Please enter the year:");
-                searchYear = scan.nextInt();
+                searchMonth = new TestDisplayPerson().searchBirth("month");
+                searchDay = new TestDisplayPerson().searchBirth("day");
+                searchYear = new TestDisplayPerson().searchBirth("year");
                 searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
             }
         }
