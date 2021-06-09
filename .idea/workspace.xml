@@ -12,6 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="957c1931-04bd-4550-baff-f764c3b2432b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/TestDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestDisplayPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestDisplayPerson.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

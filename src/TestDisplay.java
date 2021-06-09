@@ -13,24 +13,6 @@ public class TestDisplay {
     }
 
     /**
-     * It will iterate through the ArrayList of data.
-     * It will display all elements of the ArrayList
-     * @param data
-     * @param title
-     */
-    public void displayPerson(ArrayList<Person> data, String title) {
-        System.out.println();
-        System.out.println(title);
-        if (data == null || data.isEmpty()) {
-            System.out.println("There are no matching results.");
-            return;
-        }
-        for (Person person : data) {
-            System.out.println(person.toString());
-        }
-    }
-
-    /**
      *
      * This method sets up an initial bach of people to have in the ArrayList of data.
      * No vaccine information has been added yet.
@@ -97,7 +79,7 @@ public class TestDisplay {
             search = drController.obtainUserInfo(0, null, null);
             if (search.getDob() == null) {
                 ArrayList<Person> searchResults = drController.dbPerson.returnSearchResults(search);
-                displayPerson(searchResults, "Results:");
+                new TestDisplayPerson().displayPerson(searchResults,"Results:");
                 if (searchResults.isEmpty()) {
                     search = drController.obtainUserInfo(4, null, null);
                 } else {
@@ -223,7 +205,7 @@ public class TestDisplay {
             Person newlyAdded = drController.navigateOptionOneAddNew(drController.dbPerson.getData());
             navigateOption2Part2(newlyAdded);
         } else if (navigate == 2) {
-            displayPerson(drController.dbPerson.getData(), "Entries:");
+            new TestDisplayPerson().displayPerson(drController.dbPerson.getData(), "Entries:");
 
             Person p = searchIndividual("This entry does not exist, would you like to create a new profile?", 1);
             if (p != null) {
@@ -231,7 +213,7 @@ public class TestDisplay {
             } else
                 return;
         } else if (navigate == 3) {
-            displayPerson(drController.dbPerson.getData(), "Entries:");
+            new TestDisplayPerson().displayPerson(drController.dbPerson.getData(), "Entries:");
 
             Person p = searchIndividual("This entry does not exist, would you like to create a new profile?", 1);
             if (p != null) {
@@ -239,7 +221,7 @@ public class TestDisplay {
             } else
                 return;
         } else if (navigate == 4) {
-            displayPerson(drController.dbPerson.getData(), "Entries:");
+            new TestDisplayPerson().displayPerson(drController.dbPerson.getData(), "Entries:");
             Person p = searchIndividual("This entry does not exist, would you like to re-enter your search?", 0);
             if (p != null) {
                 drController.navigateOptionFourDelete(drController.dbPerson.getData(), p);
@@ -247,7 +229,7 @@ public class TestDisplay {
                 return;
 
         } else if (navigate == 5) {
-            displayPerson(drController.dbPerson.getData(), "Entries:");
+            new TestDisplayPerson().displayPerson(drController.dbPerson.getData(), "Entries:");
             //Person p = searchForVaxStatus();
             Person p = searchIndividual("This entry does not exist, would you like to re-enter your search?", 0);
             if (p != null) {
