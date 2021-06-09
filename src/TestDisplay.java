@@ -104,8 +104,6 @@ public class TestDisplay {
                     search = drController.obtainUserInfo(3, search.getfName(), search.getlName());
                 }
             }
-//            if (!drController.dbPerson.doesPersonExist(search, "This entry does not exist, would you like to " +
-//                    "create a new profile?")) {
                 if (!drController.dbPerson.doesPersonExist(search, title)) {
                     if (option == 1) {
                         //if the person does not exist, will ask if want to create a new profile
@@ -259,13 +257,6 @@ public class TestDisplay {
 
         }
 
-        //I DONT THINK I NEED THE BELOW HERE -- IF NOTHING BREAKS - DELETE
-        //navigate = validator(5);
-//        while (navigate == 0 || navigate > 5) {
-//            Scanner scan = new Scanner(System.in);
-//            System.out.println("Please select a valid entry: 1 - 5");
-//            navigate = scan.nextInt();
-//        }
     }
 
 
