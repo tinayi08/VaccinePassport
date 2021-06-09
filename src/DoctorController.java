@@ -122,12 +122,12 @@ public class DoctorController {
 
     public Person navigateOptionOneAddNew(ArrayList<Person> data) {
 
-        Person person = obtainUserInfo(3, null, null);
+        Person person = obtainUserInfo(4, null, null);
         while (dbPerson.doesPersonExist(person)) {
             System.out.println("This entry already exists.");
             person = obtainUserInfo(3, null, null);
         }
-        dbPerson.addPersonEntry(person); //, data);
+        dbPerson.addPersonEntry(person);
         System.out.println("The following entry has been added:");
         System.out.println(person.toString());
 
