@@ -108,6 +108,7 @@ public class TestDisplay {
 //                    "create a new profile?")) {
                 if (!drController.dbPerson.doesPersonExist(search, title)) {
                     if (option == 1) {
+                        //if the person does not exist, will ask if want to create a new profile
                         String createNew = scan.next();
                         if (createNew.equalsIgnoreCase("yes")) {
                             drController.dbPerson.addPersonEntry(search);
@@ -116,6 +117,7 @@ public class TestDisplay {
                             return null;
                         }
                     } else {
+                        //if the person does not exist, will ask if re-enter
                         String reenter = scan.next();
                         if (!reenter.equalsIgnoreCase("yes")) {
                             b = false;
@@ -240,7 +242,12 @@ public class TestDisplay {
                 return;
         } else if (navigate == 4) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
-            drController.navigateOptionFourDelete(drController.dbPerson.getData(), searchIndividual("This entry does not exist, would you like to create a new profile?", 1));
+            Person p = searchIndividual("This entry does not exist, would you like to re-enter your search?", 0);
+            if (p != null) {
+                drController.navigateOptionFourDelete(drController.dbPerson.getData(), p);
+            } else
+                return;
+
         } else if (navigate == 5) {
             displayPerson(drController.dbPerson.getData(), "Entries:");
             //Person p = searchForVaxStatus();

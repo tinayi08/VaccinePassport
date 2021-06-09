@@ -142,6 +142,9 @@ public class DoctorController {
      */
 
     public void navigateOptionFourDelete(ArrayList<Person> data, Person person) {
+        if (!dbPerson.doesPersonExist(person)) {
+            System.out.println("this entry does not exist");
+        } else
         dbPerson.deletePersonEntry(person);
         System.out.println(person.getfName() + " " + person.getlName() + " has been deleted.");
         //TODO -- If person does not exist -- need to state does not exist and go back to main menu
