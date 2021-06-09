@@ -12,38 +12,6 @@ public class TestDisplay {
         drController = new DoctorController();
     }
 
-    /**
-     *
-     * This method sets up an initial bach of people to have in the ArrayList of data.
-     * No vaccine information has been added yet.
-     */
-    public void setUpDataTesting() {
-
-        //add people into the array to have some people in there
-        //practice purposes only - will use text file or DB later on
-
-        Person one = new Person("Tina", "Lee", 4, 3, 1993);
-        Person two = new Person("Angela", "Jones", 11, 4, 1994);
-        Person three = new Person("Alexa", "Smith", 9, 22, 1998);
-        Person four = new Person("Jay", "Kealy", 5, 22, 1965);
-        Person five = new Person("Amy", "Perry", 1, 22, 1965);
-        Person six = new Person("Jordan", "Clarke", 11, 27, 1990);
-        Person seven = new Person("Kameron","Clarke", 4, 2, 1991);
-        Person eight = new Person("Amy", "Lee", 1, 22, 1965);
-        Person nine = new Person("Amy", "Lee", 3, 22, 1994);
-        Person ten = new Person("amy", "lee", 3, 4, 1999);
-
-        drController.dbPerson.addPersonEntry(one);
-        drController.dbPerson.addPersonEntry(two);
-        drController.dbPerson.addPersonEntry(three);
-        drController.dbPerson.addPersonEntry(four);
-        drController.dbPerson.addPersonEntry(five);
-        drController.dbPerson.addPersonEntry(six);
-        drController.dbPerson.addPersonEntry(seven);
-        drController.dbPerson.addPersonEntry(eight);
-        drController.dbPerson.addPersonEntry(nine);
-        drController.dbPerson.addPersonEntry(ten);
-    }
 
     public void setUpVaxBrand() {
 
@@ -69,7 +37,6 @@ public class TestDisplay {
      */
     public Person searchIndividual(String title, int option) {
         Person search;
-
         boolean b = false;
 
         do {
@@ -157,7 +124,7 @@ public class TestDisplay {
     public void run() {
 
         setUpVaxBrand();
-        setUpDataTesting();
+        new TestDisplayPerson().setUpDataTesting();
 
         do {
             navigateMainMenu(menu());
@@ -187,9 +154,7 @@ public class TestDisplay {
             if (option.equalsIgnoreCase("yes")) {
                 System.out.println("\n" + person.toStringVaxInfo());
                 drController.fullyVaxDate(person);
-
             }
-
         }
         drController.personVaccinated(person);
     }
@@ -240,8 +205,5 @@ public class TestDisplay {
         }
 
     }
-
-
-
 
 }
