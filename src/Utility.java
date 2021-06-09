@@ -10,7 +10,7 @@ public class Utility {
         while (!isValid) {
             try {
                 selection = scan.nextInt();
-                while (selection == 0 || selection > (option+1)) {
+                while (selection == 0 || selection > (option)) {
                     System.out.println("Please select a valid entry: 1 - " + option);
                     selection = scan.nextInt();
                 }

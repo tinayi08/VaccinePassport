@@ -63,7 +63,6 @@ public class DoctorController {
                     selectedVax.getRequiredShots(), selectedVax.getNumDaysToBeEffective(),
                     oneShotDate, null, null);
             person.setVaccine(vaxInfo);
-
             return person;
 
         } else if (person.vaccine.requiredShots == 1) {
@@ -73,11 +72,7 @@ public class DoctorController {
 
         String twoShotDate = new TestDisplayVaccine().assignShotDate("second");
 
-        VaccineCard vaxInfo = new VaccineCard(person.getVaccine().getBrandID(), person.getVaccine().getBrand(),
-                person.getVaccine().getRequiredShots(), person.getVaccine().getNumDaysToBeEffective(),
-                person.getVaccine().getOneShotDate(), twoShotDate, null);
-
-        person.setVaccine(vaxInfo);
+        person.vaccine.setTwoShotDate(twoShotDate);
         return person;
     }
 
@@ -94,23 +89,13 @@ public class DoctorController {
             System.out.println(person.getfName() + " " + person.getlName() + " has not started the vaccination process yet.");
         } else if (person.vaccine.requiredShots == 1 && person.vaccine.oneShotDate != null) {
             fullyVaxDate = dbPerson.vax30Days(person.vaccine.oneShotDate);
-
             System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
+            person.vaccine.setFullyVaxDate(fullyVaxDate);
 
-
-            VaccineCard vaxInfo = new VaccineCard(person.getVaccine().getBrandID(), person.getVaccine().getBrand(),
-                    person.getVaccine().getRequiredShots(), person.getVaccine().getNumDaysToBeEffective(),
-                    person.getVaccine().getOneShotDate(), person.getVaccine().getTwoShotDate(), fullyVaxDate);
-            person.setVaccine(vaxInfo);
         } else if (person.vaccine.requiredShots == 2 && person.vaccine.twoShotDate != null) {
             fullyVaxDate = dbPerson.vax30Days(person.vaccine.twoShotDate);
-
             System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
-
-            VaccineCard vaxInfo = new VaccineCard(person.getVaccine().getBrandID(), person.getVaccine().getBrand(),
-                    person.getVaccine().getRequiredShots(), person.getVaccine().getNumDaysToBeEffective(),
-                    person.getVaccine().getOneShotDate(), person.getVaccine().getTwoShotDate(), fullyVaxDate);
-            person.setVaccine(vaxInfo);
+            person.vaccine.setFullyVaxDate(fullyVaxDate);
         } else
             System.out.println(person.getfName() + " " + person.getlName()
                     + " will need a 2nd injection between 3 to 5 weeks from "
@@ -188,8 +173,7 @@ public class DoctorController {
      * @return Returns a new Person object
      */
     public Person obtainUserInfo(int option, String firstName, String lastName) {
-        //TODO - move to TestDisplayPerson -- part of it? all of it? still need to figure that part out
-        Scanner scan = new Scanner(System.in);
+        //TODO - move to TestDisplayPerson?
         String searchFName;
         String searchLName;
         int searchMonth;
@@ -197,13 +181,11 @@ public class DoctorController {
         int searchYear;
         Person searchUser;
         if (option == 3) {
-
             searchMonth = new TestDisplayPerson().searchBirth("month");
             searchDay = new TestDisplayPerson().searchBirth("day");
             searchYear = new TestDisplayPerson().searchBirth("year");
             searchUser = new Person(firstName,lastName, searchMonth, searchDay, searchYear);
         } else if (option == 4) {
-
             searchFName = new TestDisplayPerson().searchName("first");
             searchLName = new TestDisplayPerson().searchName("last");
             searchMonth = new TestDisplayPerson().searchBirth("month");
@@ -211,7 +193,6 @@ public class DoctorController {
             searchYear = new TestDisplayPerson().searchBirth("year");
             searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
         } else {
-
             int searchOption = new TestDisplayPerson().searchOption();
             searchFName = new TestDisplayPerson().searchName("first");
             searchLName = new TestDisplayPerson().searchName("last");
