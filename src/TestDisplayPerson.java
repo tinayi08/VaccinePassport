@@ -57,26 +57,27 @@ public class TestDisplayPerson {
         //add people into the array to have some people in there
         //practice purposes only - will use text file or DB later on
 
-        Person one = new Person("Tina", "Lee", 4, 3, 1993);
-        Person two = new Person("Angela", "Jones", 11, 4, 1994);
-        Person three = new Person("Alexa", "Smith", 9, 22, 1998);
-        Person four = new Person("Jay", "Kealy", 5, 22, 1965);
-        Person five = new Person("Amy", "Perry", 1, 22, 1965);
-        Person six = new Person("Jordan", "Clarke", 11, 27, 1990);
-        Person seven = new Person("Kameron","Clarke", 4, 2, 1991);
-        Person eight = new Person("Amy", "Lee", 1, 22, 1965);
-        Person nine = new Person("Amy", "Lee", 3, 22, 1994);
-        Person ten = new Person("amy", "lee", 3, 4, 1999);
+        boolean saveItToDatabase = true;
+        Person one = new Person("Tina", "Lee", 4, 3, 1993, saveItToDatabase);
+        Person two = new Person("Angela", "Jones", 11, 4, 1994, saveItToDatabase);
+        Person three = new Person("Alexa", "Smith", 9, 22, 1998, saveItToDatabase);
+        Person four = new Person("Jay", "Kealy", 5, 22, 1965, saveItToDatabase);
+        Person five = new Person("Amy", "Perry", 1, 22, 1965, saveItToDatabase);
+        Person six = new Person("Jordan", "Clarke", 11, 27, 1990, saveItToDatabase);
+        Person seven = new Person("Kameron","Clarke", 4, 2, 1991, saveItToDatabase);
+        Person eight = new Person("Amy", "Lee", 1, 22, 1965, saveItToDatabase);
+        Person nine = new Person("Amy", "Lee", 3, 22, 1994, saveItToDatabase);
+        Person ten = new Person("amy", "lee", 3, 4, 1999, saveItToDatabase);
 
-        new DoctorController().dbPerson.addPersonEntry(one);
-        new DoctorController().dbPerson.addPersonEntry(two);
-        new DoctorController().dbPerson.addPersonEntry(three);
-        new DoctorController().dbPerson.addPersonEntry(four);
-        new DoctorController().dbPerson.addPersonEntry(five);
-        new DoctorController().dbPerson.addPersonEntry(six);
-        new DoctorController().dbPerson.addPersonEntry(seven);
-        new DoctorController().dbPerson.addPersonEntry(eight);
-        new DoctorController().dbPerson.addPersonEntry(nine);
-        new DoctorController().dbPerson.addPersonEntry(ten);
+//        new DBManager().addPersonEntry(one);
+//        new DBManager().addPersonEntry(two);
+//        new DBManager().addPersonEntry(three);
+//        new DBManager().addPersonEntry(four);
+//        new DBManager().addPersonEntry(five);
+//        new DBManager().addPersonEntry(six);
+//        new DBManager().addPersonEntry(seven);
+//        new DBManager().addPersonEntry(eight);
+//        new DBManager().addPersonEntry(nine);
+//        new DBManager().addPersonEntry(ten);
     }
 }

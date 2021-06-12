@@ -6,7 +6,7 @@ public class Person {
     DOB dob;
     VaccineCard vaccine;
 
-    public Person () {
+    public Person() {
         vaccine = new VaccineCard();
 
     }
@@ -14,14 +14,24 @@ public class Person {
     public Person(String fName, String lName) {
         this.fName = fName;
         this.lName = lName;
-
+        vaccine = new VaccineCard();
     }
     public Person(String fName, String lName, int month, int day, int year) {
 
         this.fName = fName;
         this.lName = lName;
         this.dob = new DOB(month, day, year);
+        vaccine = new VaccineCard();
+    }
 
+    public Person(String fName, String lName, int month, int day, int year, boolean saveIt) {
+        this.fName = fName;
+        this.lName = lName;
+        this.dob = new DOB(month, day, year);
+        vaccine = new VaccineCard();
+        if (saveIt) {
+            new DBManager().addPersonEntry(this);
+        }
     }
 
 //    public Person(String fName, String lName, DOB dob, VaccineCard vaccine) {

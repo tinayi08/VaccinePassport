@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class TestDisplay {
 
     DoctorController drController;
-
+    TestDisplayPerson tDisplayP;
 
     public TestDisplay() {
 
