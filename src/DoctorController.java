@@ -26,13 +26,11 @@ public class DoctorController {
     public Person assignVaxBrandInfo(Person person, int brandID) {
         //this method should just be assigning the brand info to the person
         //another method to assign shot date information --- should be in testDisplay
-        if (person.vaccine.brand == null) {
-            Vaccine selectedVax = collection.getVaxBrandAtIndex(brandID - 1);
-            VaccineCard assignedBrandInfo = new VaccineCard(selectedVax.brandID, selectedVax.getBrand(),
-                    selectedVax.getRequiredShots(), selectedVax.getNumDaysToBeEffective());
-            person.setVaccine(assignedBrandInfo);
+        Vaccine selectedVax = collection.getVaxBrandAtIndex(brandID - 1);
+        VaccineCard assignedBrandInfo = new VaccineCard(selectedVax.brandID, selectedVax.getBrand(),
+                selectedVax.getRequiredShots(), selectedVax.getNumDaysToBeEffective());
+        person.setVaccine(assignedBrandInfo);
 
-        }
         return person;
     }
 

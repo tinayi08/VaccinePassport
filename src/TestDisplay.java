@@ -10,6 +10,7 @@ public class TestDisplay {
     public TestDisplay() {
         tDisplayV = new TestDisplayVaccine();
         drController = new DoctorController();
+        tDisplayP = new TestDisplayPerson();
     }
 
 
@@ -150,11 +151,18 @@ public class TestDisplay {
      * @param person
      */
     public void navigateOptionThreeAddVaxInfo (Person person) {
-        if (person.vaccine.brand == null) {
+        System.out.println(person.vaxStatus);
+        if (person.vaxStatus == 1) {
+            System.out.println("No additional shots necessary at this time");
+            return;
+        } else if (person.vaxStatus == 0) {
+
             int numOfBrands = drController.collection.listAvailableVax();
             int vaxBrand = tDisplayV.selectedVaxBrand(numOfBrands);
             drController.assignVaxBrandInfo(person, vaxBrand);
+
         }
+
         tDisplayV.assignShotDate(person);
         drController.fullyVaxDate(person);
     }
@@ -172,6 +180,7 @@ public class TestDisplay {
             navigateOption2Part2(newlyAdded);
         } else if (navigate == 2) {
             new TestDisplayPerson().displayPerson(drController.dbPerson.getData(), "Entries:");
+            tDisplayP.displayPerson(drController.dbPerson.getData(), "Entries:");
 
             Person p = searchIndividual("This entry does not exist, would you like to create a new profile?", 1);
             if (p != null) {
@@ -179,7 +188,7 @@ public class TestDisplay {
             } else
                 return;
         } else if (navigate == 3) {
-            new TestDisplayPerson().displayPerson(drController.dbPerson.getData(), "Entries:");
+            tDisplayP.displayPerson(drController.dbPerson.getData(), "Entries:");
 
             Person p = searchIndividual("This entry does not exist, would you like to create a new profile?", 1);
             if (p != null) {
@@ -187,7 +196,7 @@ public class TestDisplay {
             } else
                 return;
         } else if (navigate == 4) {
-            new TestDisplayPerson().displayPerson(drController.dbPerson.getData(), "Entries:");
+            tDisplayP.displayPerson(drController.dbPerson.getData(), "Entries:");
             Person p = searchIndividual("This entry does not exist, would you like to re-enter your search?", 0);
             if (p != null) {
                 drController.navigateOptionFourDelete(drController.dbPerson.getData(), p);
@@ -195,7 +204,7 @@ public class TestDisplay {
                 return;
 
         } else if (navigate == 5) {
-            new TestDisplayPerson().displayPerson(drController.dbPerson.getData(), "Entries:");
+            tDisplayP.displayPerson(drController.dbPerson.getData(), "Entries:");
             //Person p = searchForVaxStatus();
             Person p = searchIndividual("This entry does not exist, would you like to re-enter your search?", 0);
             if (p != null) {

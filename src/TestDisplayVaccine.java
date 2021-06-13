@@ -4,15 +4,12 @@ import java.util.Scanner;
 public class TestDisplayVaccine {
 
     public Person assignShotDate(Person person) {
+
         //assigns shot date to person
         int numShotsTaken = person.vaccine.adminShot(enterShotDate());
 
-        if (person.vaccine.requiredShots == numShotsTaken) {
-            System.out.println("No additional shots necessary at this time");
-            return person;
-        }
         //TODO: handle adminShot error (1 shot required but has 2 shots) (Return code 0)
-
+        person.updateVaxStatus();
         return person;
     }
 
@@ -30,24 +27,6 @@ public class TestDisplayVaccine {
         return shotDate;
     }
 
-    public String vaxBrand (int brand) {
-        if (brand == 1) {
-            return "Johnson & Johnson";
-        } else if (brand == 2) {
-            return "Pfizer";
-        } else {
-            return "Moderna";
-        }
-    }
-
-    public int vaxBrandEqualsNumShots (int brand) {
-
-        if (brand == 1) {
-            return 1;
-        } else {
-            return 2;
-        }
-    }
 
     public void setUpVaxBrand() {
 

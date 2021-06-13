@@ -74,12 +74,15 @@ public class Person {
         return vaxStatus;
     }
 
-    private void updateVaxStatus() {
+    public void updateVaxStatus() {
 
-//        if (vaccine == null) {
-//            vaxStatus = 0;
-//        } else if (v)
-//            //vax status
+
+        if (vaccine.brand == null) {
+            vaxStatus = 0;
+        } else if (vaccine.requiredShots == vaccine.numShotsTaken) {
+            vaxStatus = 1;
+        } else
+            vaxStatus = 2;
 
     }
 
