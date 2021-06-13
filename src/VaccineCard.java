@@ -7,6 +7,7 @@ public class VaccineCard extends Vaccine {
     String oneShotDate;
     String twoShotDate;
     String fullyVaxDate;
+    int numShotsTaken;
 
     public String getOneShotDate() {
         return oneShotDate;
@@ -33,6 +34,27 @@ public class VaccineCard extends Vaccine {
     }
 
     public VaccineCard() {
+        numShotsTaken = 0;
+
+    }
+
+    public int adminShot(String vaxDate) {
+
+        if (oneShotDate == null) {
+            oneShotDate = vaxDate;
+            numShotsTaken = 1;
+        } else if (requiredShots >= 2 && twoShotDate == null) {
+            twoShotDate = vaxDate;
+            numShotsTaken = 2;
+        } else {
+
+            System.out.println("error");
+            return 0;
+        }
+
+        return numShotsTaken;
+
+
 
     }
 
@@ -42,5 +64,14 @@ public class VaccineCard extends Vaccine {
         this.oneShotDate = oneShotDate;
         this.twoShotDate = twoShotDate;
         this.fullyVaxDate = fullyVaxDate;
+
+    }
+
+    public VaccineCard(int brandID, String brand, int requiredShots, ArrayList<Integer> inputNumDaysBetweenShot) {
+        super(brandID, brand, requiredShots, inputNumDaysBetweenShot);
+//        this.oneShotDate = oneShotDate;
+//        this.twoShotDate = twoShotDate;
+//        this.fullyVaxDate = fullyVaxDate;
+
     }
 }

@@ -2,9 +2,11 @@ public class Person {
 
     String fName;
     String lName;
-    //Vaccine vaccine;
     DOB dob;
     VaccineCard vaccine;
+    //TODO: create Enum to identify vaxStatus
+    int vaxStatus; //0 == no vax status, 1 == shotsInProgress, 2 == allShotsGiven(has waiting time), 3 == fullyVax
+
 
     public Person() {
         vaccine = new VaccineCard();
@@ -14,7 +16,7 @@ public class Person {
     public Person(String fName, String lName) {
         this.fName = fName;
         this.lName = lName;
-        vaccine = new VaccineCard();
+        //vaccine = new VaccineCard();
     }
     public Person(String fName, String lName, int month, int day, int year) {
 
@@ -28,7 +30,7 @@ public class Person {
         this.fName = fName;
         this.lName = lName;
         this.dob = new DOB(month, day, year);
-        vaccine = new VaccineCard();
+        //vaccine = new VaccineCard();
         if (saveIt) {
             new DBManager().addPersonEntry(this);
         }
@@ -68,7 +70,24 @@ public class Person {
         this.vaccine = vaccine;
     }
 
+    public int getVaxStatus() {
+        return vaxStatus;
+    }
 
+    private void updateVaxStatus() {
+
+//        if (vaccine == null) {
+//            vaxStatus = 0;
+//        } else if (v)
+//            //vax status
+
+    }
+
+    private int shotsInProgress() {
+//        if (vaccine.requiredShots == 2 && vaccine.)
+//            //if required shots == 2 but 2ndshot date == null
+        return 0;
+    }
 
     public  String toString() {
         return "First Name: " + fName +

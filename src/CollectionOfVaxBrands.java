@@ -45,6 +45,22 @@ public class CollectionOfVaxBrands {
         return brand;
     }
 
+    /**
+     * This method will display the available vaccines
+     *
+     * @return number of vaccine brands available
+     */
+    public int listAvailableVax() {
+
+        int numOfVaxBrands = sizeOfCollection();
+
+        for (int i = 0; i < numOfVaxBrands; i++) {
+            Vaccine theBrand = getVaxBrandAtIndex(i);
+            System.out.println("ID: " + theBrand.getBrandID() + " Brand: " + theBrand.getBrand());
+        }
+        return numOfVaxBrands;
+    }
+
     //TODO - create a method to return brand information - 1 brand not the whole arraylist
     //return brand name, req shots, days between shots --> when fully effective
 

@@ -47,6 +47,8 @@ public class TestDisplayPerson {
         }
     }
 
+
+
     /**
      *
      * This method sets up an initial bach of people to have in the ArrayList of data.
@@ -69,15 +71,7 @@ public class TestDisplayPerson {
         Person nine = new Person("Amy", "Lee", 3, 22, 1994, saveItToDatabase);
         Person ten = new Person("amy", "lee", 3, 4, 1999, saveItToDatabase);
 
-//        new DBManager().addPersonEntry(one);
-//        new DBManager().addPersonEntry(two);
-//        new DBManager().addPersonEntry(three);
-//        new DBManager().addPersonEntry(four);
-//        new DBManager().addPersonEntry(five);
-//        new DBManager().addPersonEntry(six);
-//        new DBManager().addPersonEntry(seven);
-//        new DBManager().addPersonEntry(eight);
-//        new DBManager().addPersonEntry(nine);
-//        new DBManager().addPersonEntry(ten);
     }
+
+
 }

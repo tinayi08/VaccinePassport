@@ -1,32 +1,17 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TestDisplay {
 
     DoctorController drController;
     TestDisplayPerson tDisplayP;
+    TestDisplayVaccine tDisplayV;
 
     public TestDisplay() {
-
+        tDisplayV = new TestDisplayVaccine();
         drController = new DoctorController();
     }
 
-
-    public void setUpVaxBrand() {
-
-        CollectionOfVaxBrands vaccineBrand = new CollectionOfVaxBrands();
-        ArrayList<Integer> days = new ArrayList<>();
-        days.add(25);
-        vaccineBrand.addToBrandDB("Johnson & Johnson", 1, days);
-        days.set(0, 14);
-        days.add(14);
-        vaccineBrand.addToBrandDB("Pfizer", 2, days);
-        days.set(0,21);
-        days.set(1,21);
-        vaccineBrand.addToBrandDB("Moderna", 2, days);
-
-    }
 
     /**
      * This method asks the user to enter a first name and a last name.
@@ -123,7 +108,7 @@ public class TestDisplay {
 
     public void run() {
 
-        setUpVaxBrand();
+        tDisplayV.setUpVaxBrand();
         new TestDisplayPerson().setUpDataTesting();
 
         do {
@@ -144,7 +129,7 @@ public class TestDisplay {
             System.out.println("\nWould you like to enter their vaccination information?");
             String addInfo = scan.next();
             if (addInfo.equalsIgnoreCase("yes")) {
-                drController.navigateOptionThreeAddVaxInfo(person);
+                navigateOptionThreeAddVaxInfo(person);
             } else {
                 return;
             }
@@ -158,6 +143,22 @@ public class TestDisplay {
         }
         drController.personVaccinated(person);
     }
+
+    /**
+     * This method will update the details of a existing Person object in the Arraylist
+     *
+     * @param person
+     */
+    public void navigateOptionThreeAddVaxInfo (Person person) {
+        if (person.vaccine.brand == null) {
+            int numOfBrands = drController.collection.listAvailableVax();
+            int vaxBrand = tDisplayV.selectedVaxBrand(numOfBrands);
+            drController.assignVaxBrandInfo(person, vaxBrand);
+        }
+        tDisplayV.assignShotDate(person);
+        drController.fullyVaxDate(person);
+    }
+
 
     /**
      * This method navigates through the program
@@ -182,7 +183,7 @@ public class TestDisplay {
 
             Person p = searchIndividual("This entry does not exist, would you like to create a new profile?", 1);
             if (p != null) {
-                drController.navigateOptionThreeAddVaxInfo(p);
+                navigateOptionThreeAddVaxInfo(p);
             } else
                 return;
         } else if (navigate == 4) {
@@ -199,6 +200,8 @@ public class TestDisplay {
             Person p = searchIndividual("This entry does not exist, would you like to re-enter your search?", 0);
             if (p != null) {
                 drController.fullyVaxDate(p);
+                System.out.println(p.toStringVaxInfo());
+                System.out.println(p);
             } else
                 return;
 

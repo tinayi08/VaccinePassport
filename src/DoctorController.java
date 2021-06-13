@@ -2,7 +2,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
+
 
 public class DoctorController {
 
@@ -11,68 +11,28 @@ public class DoctorController {
     //ready to check the next person
     DBManager dbPerson;
     CollectionOfVaxBrands collection;
-    TestDisplayVaccine vaxDisplay;
 
     public DoctorController() {
         dbPerson = new DBManager();
         collection = new CollectionOfVaxBrands();
     }
 
+
     /**
-     * This method will update the details of a existing Person object in the Arraylist
-     *
+     * This method will add the vaccination brand for a Person object
      * @param person
+     * @return updated Person object with vaccination brand information added
      */
-    public void navigateOptionThreeAddVaxInfo (Person person) {
+    public Person assignVaxBrandInfo(Person person, int brandID) {
+        //this method should just be assigning the brand info to the person
+        //another method to assign shot date information --- should be in testDisplay
+        if (person.vaccine.brand == null) {
+            Vaccine selectedVax = collection.getVaxBrandAtIndex(brandID - 1);
+            VaccineCard assignedBrandInfo = new VaccineCard(selectedVax.brandID, selectedVax.getBrand(),
+                    selectedVax.getRequiredShots(), selectedVax.getNumDaysToBeEffective());
+            person.setVaccine(assignedBrandInfo);
 
-        addVaxInfo(person);
-        fullyVaxDate(person);
-    }
-
-    /**
-     * This method will display the available vaccines
-     *
-     * @return number of vaccine brands available
-     */
-    private int listAvailableVax() {
-
-        int numOfVaxBrands = collection.sizeOfCollection();
-
-        for (int i = 0; i < numOfVaxBrands; i++) {
-            Vaccine theBrand = collection.getVaxBrandAtIndex(i);
-            System.out.println("ID: " + theBrand.getBrandID() + " Brand: " + theBrand.getBrand());
         }
-        return numOfVaxBrands;
-    }
-
-    /**
-     * This method will add the vaccination information for a Person object
-     * @param person
-     * @return updated Person object with vaccination information added
-     */
-    public Person addVaxInfo(Person person) {
-        //TODO - SCANNER part should be in testDisplay, pass through "vaxBrand"
-        int numOfBrands = 0;
-        if (person.vaccine == null) {
-            numOfBrands = listAvailableVax();
-            int vaxBrand = new TestDisplayVaccine().selectedVaxBrand(numOfBrands);
-            Vaccine selectedVax = collection.getVaxBrandAtIndex(vaxBrand-1);
-
-            String oneShotDate = new TestDisplayVaccine().assignShotDate("first");
-            VaccineCard vaxInfo = new VaccineCard(selectedVax.brandID, selectedVax.getBrand(),
-                    selectedVax.getRequiredShots(), selectedVax.getNumDaysToBeEffective(),
-                    oneShotDate, null, null);
-            person.setVaccine(vaxInfo);
-            return person;
-
-        } else if (person.vaccine.requiredShots == 1) {
-            System.out.println("No additional shots necessary at this time");
-            return person;
-        }
-
-        String twoShotDate = new TestDisplayVaccine().assignShotDate("second");
-
-        person.vaccine.setTwoShotDate(twoShotDate);
         return person;
     }
 
@@ -121,11 +81,11 @@ public class DoctorController {
      */
 
     public Person navigateOptionOneAddNew(ArrayList<Person> data) {
-
+    //TODO - should be in TestDisplayPerson
         Person person = obtainUserInfo(4, null, null);
         while (dbPerson.doesPersonExist(person)) {
-            System.out.println("This entry already exists.");
-            person = obtainUserInfo(3, null, null);
+            System.out.println("This entry already exists."); //nice to know but not necessary -- maybe display existing info and move forward to adding vax info
+            person = obtainUserInfo(4, null, null);
         }
         dbPerson.addPersonEntry(person);
         System.out.println("The following entry has been added:");
@@ -140,7 +100,6 @@ public class DoctorController {
      * @param data
      * @param person
      */
-
     public void navigateOptionFourDelete(ArrayList<Person> data, Person person) {
         if (!dbPerson.doesPersonExist(person)) {
             System.out.println("this entry does not exist");
@@ -176,7 +135,7 @@ public class DoctorController {
      * @return Returns a new Person object
      */
     public Person obtainUserInfo(int option, String firstName, String lastName) {
-        //TODO - move to TestDisplayPerson?
+        //TODO - move to TestDisplayPerson
         String searchFName;
         String searchLName;
         int searchMonth;
