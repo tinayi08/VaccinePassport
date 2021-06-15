@@ -101,26 +101,16 @@ public class TestDisplayPerson {
      * @return Returns a new Person object
      */
     public Person obtainUserInfo(int option, String firstName, String lastName) {
-        String searchFName;
-        String searchLName;
-        int searchMonth;
-        int searchDay;
-        int searchYear;
+
         Person searchUser;
         if (option == 3) { //asks just the birthday info
             searchUser = searchPersonBDay(firstName, lastName);
         } else if (option == 4) { //asks name & birthday info
-            searchFName = searchName("first");
-            searchLName = searchName("last");
-            searchMonth = searchBirth("month");
-            searchDay = searchBirth("day");
-            searchYear = searchBirth("year");
-            searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
-            //searchUser = searchPersonAllInfo();
+            searchUser = searchPersonAllInfo();
         } else {
             int searchOption = searchOption();
-            searchFName = searchName("first");
-            searchLName = searchName("last");
+            String searchFName = searchName("first");
+            String searchLName = searchName("last");
             if (searchOption == 1) { //asks just name info
                 searchUser = new Person(searchFName, searchLName);
             } else { //asks just bday info
