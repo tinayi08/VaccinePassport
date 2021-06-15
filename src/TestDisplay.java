@@ -167,9 +167,12 @@ public class TestDisplay {
         drController.assignVaxBrandInfo(person, vaxBrand);
     }
 
-    private void fullyVaccinated() {
+    private void fullyVaccinated(Person person) {
         //TODO
         //not necessarily for the doctors use -- probably used more for the vendor to determine if patron is allowed in
+
+        System.out.println(person.getfName() + " is fully vaccinated and has waiting the allotted time for" +
+                "the vaccine to take into effect");
     }
 
     /**
@@ -178,7 +181,6 @@ public class TestDisplay {
      * @param person
      */
     public void navigateOptionThreeAddVaxInfo(Person person) {
-        //System.out.println(person.vaxStatus);
         //0 == no vax status, 1 == allShotsGiven(has waiting time), 2 == needs to get shot, 3 == fullyVax
         //TODO -- need to update 3
 
@@ -196,7 +198,7 @@ public class TestDisplay {
                 drController.fullyVaxDate(person);
                 break;
             case 3:
-                fullyVaccinated();
+                fullyVaccinated(person);
                 break;
             default:
                 System.out.println("invalid vaccine status");
