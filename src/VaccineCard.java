@@ -54,8 +54,6 @@ public class VaccineCard extends Vaccine {
 
         return numShotsTaken;
 
-
-
     }
 
 

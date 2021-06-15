@@ -5,7 +5,7 @@ public class Person {
     DOB dob;
     VaccineCard vaccine;
     //TODO: create Enum to identify vaxStatus
-    int vaxStatus; //0 == no vax status, 1 == shotsInProgress, 2 == allShotsGiven(has waiting time), 3 == fullyVax
+    private int vaxStatus; //0 == no vax status, 1 == allShotsGiven(has waiting time), 2 == needs to get shot, 3 == fullyVax
 
 
     public Person() {
@@ -75,8 +75,8 @@ public class Person {
     }
 
     public void updateVaxStatus() {
-
-
+        //TODO - update all 3 numbers need to add option 3
+        //0 == no vax status, 1 == allShotsGiven(has waiting time), 2 == needs to get shot, 3 == fullyVax
         if (vaccine.brand == null) {
             vaxStatus = 0;
         } else if (vaccine.requiredShots == vaccine.numShotsTaken) {

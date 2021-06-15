@@ -22,6 +22,7 @@ public class TestDisplay {
      * @return Person object
      */
     public Person searchIndividual(String title, int option) {
+        //TODO -- move to displayPerson
         Person search;
         boolean b = false;
 
@@ -150,13 +151,13 @@ public class TestDisplay {
      *
      * @param person
      */
-    public void navigateOptionThreeAddVaxInfo (Person person) {
-        System.out.println(person.vaxStatus);
-        if (person.vaxStatus == 1) {
+    public void navigateOptionThreeAddVaxInfo(Person person) {
+        //System.out.println(person.vaxStatus);
+        //0 == no vax status, 1 == allShotsGiven(has waiting time), 2 == needs to get shot, 3 == fullyVax
+        if (person.getVaxStatus() == 1) {
             System.out.println("No additional shots necessary at this time");
             return;
-        } else if (person.vaxStatus == 0) {
-
+        } else if (person.getVaxStatus() == 0) {
             int numOfBrands = drController.collection.listAvailableVax();
             int vaxBrand = tDisplayV.selectedVaxBrand(numOfBrands);
             drController.assignVaxBrandInfo(person, vaxBrand);
@@ -167,6 +168,45 @@ public class TestDisplay {
         drController.fullyVaxDate(person);
     }
 
+    private void assignBrandInfo(Person person) {
+        int numOfBrands = drController.collection.listAvailableVax();
+        int vaxBrand = tDisplayV.selectedVaxBrand(numOfBrands);
+        drController.assignVaxBrandInfo(person, vaxBrand);
+    }
+
+    private void fullyVaccinated() {
+        //TODO
+        //not necessarily for the doctors use -- probably used more for the vendor to determine if patron is allowed in
+    }
+
+    public void navigateOptionThreeAddVaxInfoSC(Person person) {
+        //System.out.println(person.vaxStatus);
+        //0 == no vax status, 1 == allShotsGiven(has waiting time), 2 == needs to get shot, 3 == fullyVax
+        //TODO -- need to update 3
+
+        switch (person.getVaxStatus()) {
+            case 0 :
+                assignBrandInfo(person);
+                tDisplayV.assignShotDate(person);
+                drController.fullyVaxDate(person);
+                break;
+            case 1 :
+                System.out.println("No additional shots necessary at this time");
+                break;
+            case 2 :
+                tDisplayV.assignShotDate(person);
+                drController.fullyVaxDate(person);
+                break;
+            case 3 :
+                fullyVaccinated();
+                break;
+            default:
+                System.out.println("invalid vaccine status");
+                break;
+
+        }
+
+    }
 
     /**
      * This method navigates through the program
@@ -209,7 +249,7 @@ public class TestDisplay {
             Person p = searchIndividual("This entry does not exist, would you like to re-enter your search?", 0);
             if (p != null) {
                 drController.fullyVaxDate(p);
-                System.out.println(p.toStringVaxInfo());
+                //System.out.println(p.toStringVaxInfo());
                 System.out.println(p);
             } else
                 return;
