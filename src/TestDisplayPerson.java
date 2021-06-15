@@ -79,10 +79,51 @@ public class TestDisplayPerson {
     }
 
     /**
+     * This method takes in the user's basic information.
      *
-     * This method sets up an initial bach of people to have in the ArrayList of data.
-     * No vaccine information has been added yet.
+     * @return Returns a new Person object
      */
+    public Person obtainUserInfo(int option, String firstName, String lastName) {
+
+        String searchFName;
+        String searchLName;
+        int searchMonth;
+        int searchDay;
+        int searchYear;
+        Person searchUser;
+        if (option == 3) {
+            searchMonth = searchBirth("month");
+            searchDay = searchBirth("day");
+            searchYear = searchBirth("year");
+            searchUser = new Person(firstName, lastName, searchMonth, searchDay, searchYear);
+        } else if (option == 4) {
+            searchFName = searchName("first");
+            searchLName = searchName("last");
+            searchMonth = searchBirth("month");
+            searchDay = searchBirth("day");
+            searchYear = searchBirth("year");
+            searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+        } else {
+            int searchOption = searchOption();
+            searchFName = searchName("first");
+            searchLName = searchName("last");
+            if (searchOption == 1) {
+                searchUser = new Person(searchFName, searchLName);
+            } else {
+                searchMonth = searchBirth("month");
+                searchDay = searchBirth("day");
+                searchYear = searchBirth("year");
+                searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+            }
+        }
+        return searchUser;
+    }
+
+        /**
+         *
+         * This method sets up an initial bach of people to have in the ArrayList of data.
+         * No vaccine information has been added yet.
+         */
     public void setUpDataTesting() {
 
         //add people into the array to have some people in there

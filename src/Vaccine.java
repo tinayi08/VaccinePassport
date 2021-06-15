@@ -22,7 +22,7 @@ public class Vaccine {
 
 
     public Vaccine() {
-        requiredShots = 1;
+        requiredShots = 0;
     }
 
     public String getBrand() {

@@ -31,15 +31,15 @@ public class TestDisplay {
 
             Scanner scan = new Scanner(System.in);
 
-            search = drController.obtainUserInfo(0, null, null);
+            search = tDisplayP.obtainUserInfo(0, null, null);
             if (search.getDob() == null) {
                 ArrayList<Person> searchResults = tDisplayP.returnSearchResults(search, drController.dbPerson.getData());
                 //ArrayList<Person> searchResults = drController.dbPerson.returnSearchResults(search);
                 new TestDisplayPerson().displayPerson(searchResults,"Results:");
                 if (searchResults.isEmpty()) {
-                    search = drController.obtainUserInfo(4, null, null);
+                    search = tDisplayP.obtainUserInfo(4, null, null);
                 } else {
-                    search = drController.obtainUserInfo(3, search.getfName(), search.getlName());
+                    search = tDisplayP.obtainUserInfo(3, search.getfName(), search.getlName());
                 }
             }
                 if (!drController.dbPerson.doesPersonExist(search, title)) {
@@ -226,6 +226,26 @@ public class TestDisplay {
     }
 
     /**
+     *
+     * This method will ask obtain information of a new user and add it to the ArrayList
+     * @param data
+     */
+    public Person navigateOptionOneAddNew(ArrayList<Person> data) {
+
+        Person person = tDisplayP.obtainUserInfo(4, null, null);
+        while (drController.dbPerson.doesPersonExist(person)) {
+            System.out.println("This entry already exists."); //nice to know but not necessary -- maybe display existing info and move forward to adding vax info
+            person = tDisplayP.obtainUserInfo(4, null, null);
+        }
+        drController.dbPerson.addPersonEntry(person);
+        System.out.println("The following entry has been added:");
+        System.out.println(person.toString());
+
+        return person;
+    }
+
+
+    /**
      * This method navigates through the program
      *
      * @param navigate
@@ -233,7 +253,7 @@ public class TestDisplay {
     public void navigateMainMenu(int navigate)  {
 
         if (navigate == 1) {
-            Person newlyAdded = drController.navigateOptionOneAddNew(drController.dbPerson.getData());
+            Person newlyAdded = navigateOptionOneAddNew(drController.dbPerson.getData());
             navigateOption2Part2(newlyAdded);
         } else if (navigate == 2) {
             tDisplayP.displayPerson(drController.dbPerson.getData(), "Entries:");
@@ -266,7 +286,7 @@ public class TestDisplay {
             if (p != null) {
                 drController.fullyVaxDate(p);
                 //System.out.println(p.toStringVaxInfo());
-                System.out.println(p);
+                //System.out.println(p);
             } else
                 return;
 

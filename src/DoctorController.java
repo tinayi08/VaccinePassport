@@ -44,7 +44,7 @@ public class DoctorController {
     //TODO - MOVE TO VACCINECARD CLASS
         //use VaxStatus variable to determine status/printout -- use Switch Case
     String fullyVaxDate;
-    if (person.vaccine == null) {
+    if (person.vaccine.getBrand() == null) {
         System.out.println(person.getfName() + " " + person.getlName() + " has not started the vaccination process yet.");
     } else if (person.vaccine.requiredShots == 1 && person.vaccine.oneShotDate != null) {
         //TODO - this needs to use the days from setUpVaxBrand() in Collection of VaxBrands
@@ -65,25 +65,6 @@ public class DoctorController {
     }
 
 
-    /**
-     * This method will ask obtain information of a new user and add it to the ArrayList
-     * @param data
-     */
-
-    public Person navigateOptionOneAddNew(ArrayList<Person> data) {
-    //TODO - should be in TestDisplayPerson
-        Person person = obtainUserInfo(4, null, null);
-        while (dbPerson.doesPersonExist(person)) {
-            System.out.println("This entry already exists."); //nice to know but not necessary -- maybe display existing info and move forward to adding vax info
-            person = obtainUserInfo(4, null, null);
-        }
-        dbPerson.addPersonEntry(person);
-        System.out.println("The following entry has been added:");
-        System.out.println(person.toString());
-
-        return person;
-    }
-
     public void personVaccinated(Person person) {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         if (person.getVaccine().fullyVaxDate != null) {
@@ -103,46 +84,5 @@ public class DoctorController {
         }
     }
 
-    /**
-     * This method takes in the user's basic information.
-     *
-     * @return Returns a new Person object
-     */
-    public Person obtainUserInfo(int option, String firstName, String lastName) {
-        //TODO - move to TestDisplayPerson
-        String searchFName;
-        String searchLName;
-        int searchMonth;
-        int searchDay;
-        int searchYear;
-        Person searchUser;
-        if (option == 3) {
-            searchMonth = new TestDisplayPerson().searchBirth("month");
-            searchDay = new TestDisplayPerson().searchBirth("day");
-            searchYear = new TestDisplayPerson().searchBirth("year");
-            searchUser = new Person(firstName,lastName, searchMonth, searchDay, searchYear);
-        } else if (option == 4) {
-            searchFName = new TestDisplayPerson().searchName("first");
-            searchLName = new TestDisplayPerson().searchName("last");
-            searchMonth = new TestDisplayPerson().searchBirth("month");
-            searchDay = new TestDisplayPerson().searchBirth("day");
-            searchYear = new TestDisplayPerson().searchBirth("year");
-            searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
-        } else {
-            int searchOption = new TestDisplayPerson().searchOption();
-            searchFName = new TestDisplayPerson().searchName("first");
-            searchLName = new TestDisplayPerson().searchName("last");
-            if (searchOption == 1) {
-                searchUser = new Person(searchFName, searchLName);
-            } else {
-                searchMonth = new TestDisplayPerson().searchBirth("month");
-                searchDay = new TestDisplayPerson().searchBirth("day");
-                searchYear = new TestDisplayPerson().searchBirth("year");
-                searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
-            }
-        }
-        return searchUser;
-
-    }
     
 }
