@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -34,7 +33,6 @@ public class TestDisplay {
             search = tDisplayP.obtainUserInfo(0, null, null);
             if (search.getDob() == null) {
                 ArrayList<Person> searchResults = tDisplayP.returnSearchResults(search, drController.dbPerson.getData());
-                //ArrayList<Person> searchResults = drController.dbPerson.returnSearchResults(search);
                 new TestDisplayPerson().displayPerson(searchResults,"Results:");
                 if (searchResults.isEmpty()) {
                     search = tDisplayP.obtainUserInfo(4, null, null);
@@ -163,28 +161,6 @@ public class TestDisplay {
         drController.personVaccinated(person);
     }
 
-    /**
-     * This method will update the details of a existing Person object in the Arraylist
-     *
-     * @param person
-     */
-    public void navigateOptionThreeAddVaxInfo(Person person) {
-        //System.out.println(person.vaxStatus);
-        //0 == no vax status, 1 == allShotsGiven(has waiting time), 2 == needs to get shot, 3 == fullyVax
-        if (person.getVaxStatus() == 1) {
-            System.out.println("No additional shots necessary at this time");
-            return;
-        } else if (person.getVaxStatus() == 0) {
-            int numOfBrands = drController.collection.listAvailableVax();
-            int vaxBrand = tDisplayV.selectedVaxBrand(numOfBrands);
-            drController.assignVaxBrandInfo(person, vaxBrand);
-
-        }
-
-        tDisplayV.assignShotDate(person);
-        drController.fullyVaxDate(person);
-    }
-
     private void assignBrandInfo(Person person) {
         int numOfBrands = drController.collection.listAvailableVax();
         int vaxBrand = tDisplayV.selectedVaxBrand(numOfBrands);
@@ -196,25 +172,30 @@ public class TestDisplay {
         //not necessarily for the doctors use -- probably used more for the vendor to determine if patron is allowed in
     }
 
-    public void navigateOptionThreeAddVaxInfoSC(Person person) {
+    /**
+     * This method will update the details of a existing Person object in the Arraylist
+     *
+     * @param person
+     */
+    public void navigateOptionThreeAddVaxInfo(Person person) {
         //System.out.println(person.vaxStatus);
         //0 == no vax status, 1 == allShotsGiven(has waiting time), 2 == needs to get shot, 3 == fullyVax
         //TODO -- need to update 3
 
-        switch (person.getVaxStatus()) {
-            case 0 :
+        switch(person.getVaxStatus()) {
+            case 0:
                 assignBrandInfo(person);
                 tDisplayV.assignShotDate(person);
                 drController.fullyVaxDate(person);
                 break;
-            case 1 :
+            case 1:
                 System.out.println("No additional shots necessary at this time");
                 break;
-            case 2 :
+            case 2:
                 tDisplayV.assignShotDate(person);
                 drController.fullyVaxDate(person);
                 break;
-            case 3 :
+            case 3:
                 fullyVaccinated();
                 break;
             default:
