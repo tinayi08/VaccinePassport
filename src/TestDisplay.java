@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,7 +33,8 @@ public class TestDisplay {
 
             search = drController.obtainUserInfo(0, null, null);
             if (search.getDob() == null) {
-                ArrayList<Person> searchResults = drController.dbPerson.returnSearchResults(search);
+                ArrayList<Person> searchResults = tDisplayP.returnSearchResults(search, drController.dbPerson.getData());
+                //ArrayList<Person> searchResults = drController.dbPerson.returnSearchResults(search);
                 new TestDisplayPerson().displayPerson(searchResults,"Results:");
                 if (searchResults.isEmpty()) {
                     search = drController.obtainUserInfo(4, null, null);
@@ -74,6 +76,21 @@ public class TestDisplay {
             }
         }
         return drController.dbPerson.getData().get(object);
+    }
+
+    /**
+     * This method navigates to option 4 which deletes a person from the database.
+     *
+     * @param data
+     * @param person
+     */
+    public void navigateOptionFourDelete(ArrayList<Person> data, Person person) {
+        if (!drController.dbPerson.doesPersonExist(person)) {
+            System.out.println("this entry does not exist");
+        } else
+            drController.dbPerson.deletePersonEntry(person);
+        System.out.println(person.getfName() + " " + person.getlName() + " has been deleted.");
+        //TODO -- If person does not exist -- need to state does not exist and go back to main menu
     }
 
     /**
@@ -219,7 +236,6 @@ public class TestDisplay {
             Person newlyAdded = drController.navigateOptionOneAddNew(drController.dbPerson.getData());
             navigateOption2Part2(newlyAdded);
         } else if (navigate == 2) {
-            new TestDisplayPerson().displayPerson(drController.dbPerson.getData(), "Entries:");
             tDisplayP.displayPerson(drController.dbPerson.getData(), "Entries:");
 
             Person p = searchIndividual("This entry does not exist, would you like to create a new profile?", 1);
@@ -239,7 +255,7 @@ public class TestDisplay {
             tDisplayP.displayPerson(drController.dbPerson.getData(), "Entries:");
             Person p = searchIndividual("This entry does not exist, would you like to re-enter your search?", 0);
             if (p != null) {
-                drController.navigateOptionFourDelete(drController.dbPerson.getData(), p);
+                navigateOptionFourDelete(drController.dbPerson.getData(), p);
             } else
                 return;
 

@@ -30,6 +30,37 @@ public class TestDisplayPerson {
     }
 
     /**
+     * This method takes in a person and will search for matching profile in database
+     *
+     * @param searchPerson
+     * @return ArrayList of search results
+     */
+    public ArrayList<Person> returnSearchResults(Person searchPerson, ArrayList<Person> data) {
+        ArrayList<Person> searchResults = new ArrayList<Person>();
+        if (searchPerson.getDob() == null) {
+            for (Person p : data) {
+                if (searchPerson.getfName().equalsIgnoreCase(p.getfName()) && searchPerson.getlName().equalsIgnoreCase(p.getlName())) {
+                    searchResults.add(p);
+                }
+            }
+        }
+        return searchResults;
+
+    }
+
+    /**
+     * This method will search for an individual and display the results
+     * @param person
+     * @return ArrayList of results
+     */
+    public ArrayList<Person> navigateOptionTwoSearching(Person person, ArrayList<Person> data) {
+
+        ArrayList<Person> searchResults = returnSearchResults(person, data);
+
+        return searchResults;
+    }
+
+    /**
      * It will iterate through the ArrayList of data.
      * It will display all elements of the ArrayList
      * @param data
@@ -46,8 +77,6 @@ public class TestDisplayPerson {
             System.out.println(person.toString());
         }
     }
-
-
 
     /**
      *
@@ -72,8 +101,6 @@ public class TestDisplayPerson {
         Person ten = new Person("amy", "lee", 3, 4, 1999, saveItToDatabase);
 
     }
-
-
 
 
 }

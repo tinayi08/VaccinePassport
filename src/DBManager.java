@@ -42,26 +42,6 @@ public class DBManager {
         data.remove(person);
     }
 
-
-    /**
-     * This method takes in a person and will search for matching profile in database
-     *
-     * @param searchPerson
-     * @return ArrayList of search results
-     */
-    public ArrayList<Person> returnSearchResults(Person searchPerson) {
-        ArrayList<Person> searchResults = new ArrayList<Person>();
-        if (searchPerson.getDob() == null) {
-            for (Person p : data) {
-                if (searchPerson.getfName().equalsIgnoreCase(p.getfName()) && searchPerson.getlName().equalsIgnoreCase(p.getlName())) {
-                    searchResults.add(p);
-                }
-            }
-        }
-        return searchResults;
-
-    }
-
     /**
      * This method will calculate 30 calendar days from a given date.
      *
