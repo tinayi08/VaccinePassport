@@ -6,7 +6,6 @@ public class TestDisplayPerson {
     Scanner scan = new Scanner(System.in);
 
     public int searchBirth(String search) {
-
         System.out.println("Please enter the birth " + search + ":");
         int birth = scan.nextInt();
         return birth;
@@ -78,42 +77,54 @@ public class TestDisplayPerson {
         }
     }
 
+    private Person searchPersonBDay(String firstName, String lastName) {
+        int searchMonth = searchBirth("month");
+        int searchDay = searchBirth("day");
+        int searchYear = searchBirth("year");
+        Person searchUser = new Person(firstName, lastName, searchMonth, searchDay, searchYear);
+        return searchUser;
+    }
+
+    private Person searchPersonAllInfo() {
+        String searchFName = searchName("first");
+        String searchLName = searchName("last");
+        int searchMonth = searchBirth("month");
+        int searchDay = searchBirth("day");
+        int searchYear = searchBirth("year");
+        Person searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+        return searchUser;
+    }
+
     /**
      * This method takes in the user's basic information.
      *
      * @return Returns a new Person object
      */
     public Person obtainUserInfo(int option, String firstName, String lastName) {
-
         String searchFName;
         String searchLName;
         int searchMonth;
         int searchDay;
         int searchYear;
         Person searchUser;
-        if (option == 3) {
-            searchMonth = searchBirth("month");
-            searchDay = searchBirth("day");
-            searchYear = searchBirth("year");
-            searchUser = new Person(firstName, lastName, searchMonth, searchDay, searchYear);
-        } else if (option == 4) {
+        if (option == 3) { //asks just the birthday info
+            searchUser = searchPersonBDay(firstName, lastName);
+        } else if (option == 4) { //asks name & birthday info
             searchFName = searchName("first");
             searchLName = searchName("last");
             searchMonth = searchBirth("month");
             searchDay = searchBirth("day");
             searchYear = searchBirth("year");
             searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+            //searchUser = searchPersonAllInfo();
         } else {
             int searchOption = searchOption();
             searchFName = searchName("first");
             searchLName = searchName("last");
-            if (searchOption == 1) {
+            if (searchOption == 1) { //asks just name info
                 searchUser = new Person(searchFName, searchLName);
-            } else {
-                searchMonth = searchBirth("month");
-                searchDay = searchBirth("day");
-                searchYear = searchBirth("year");
-                searchUser = new Person(searchFName, searchLName, searchMonth, searchDay, searchYear);
+            } else { //asks just bday info
+                searchUser = searchPersonBDay(searchFName, searchLName);
             }
         }
         return searchUser;
