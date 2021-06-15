@@ -20,7 +20,7 @@ public class TestDisplayVaccine {
         return vaxBrand;
     }
 
-    public String enterShotDate() {
+    private String enterShotDate() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Please enter the date of the injection (Format: MM/DD/YYYY)");
         String shotDate = scan.next();
