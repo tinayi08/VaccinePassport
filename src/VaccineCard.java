@@ -8,6 +8,8 @@ public class VaccineCard extends Vaccine {
     String twoShotDate;
     String fullyVaxDate;
     int numShotsTaken;
+    Vaccine vaccine;
+
 
     public String getOneShotDate() {
         return oneShotDate;
@@ -35,16 +37,20 @@ public class VaccineCard extends Vaccine {
 
     public VaccineCard() {
         numShotsTaken = 0;
+        vaccine = new Vaccine();
+    }
 
+    public int getNumShotsTaken() {
+        return numShotsTaken;
     }
 
     public int adminShot(String vaxDate) {
 
         if (oneShotDate == null) {
-            oneShotDate = vaxDate;
+            setOneShotDate(vaxDate);
             numShotsTaken = 1;
         } else if (requiredShots >= 2 && twoShotDate == null) {
-            twoShotDate = vaxDate;
+            setTwoShotDate(vaxDate);
             numShotsTaken = 2;
         } else {
 
@@ -53,6 +59,47 @@ public class VaccineCard extends Vaccine {
         }
 
         return numShotsTaken;
+
+    }
+
+    /**
+     * Fully Vaccinated will be 1 month after last required injection
+     * This method will set the fully vaccinated date to the Person object
+     *
+     * @param person
+     */
+    public void fullyVaxDate(Person person) {
+
+        //use VaxStatus variable to determine status/printout -- use Switch Case
+        String fullyVaxDate;
+
+        int numShotsTaken = person.getVaxStatus();
+
+        switch(numShotsTaken) {
+            case 0: //0 == no vax status
+                System.out.println(person.getfName() + " has not started the vaccination process yet.");
+                break;
+            case 1: //1 == allShotsGiven(has waiting time)
+                fullyVaxDate = vaccine.vax30Days(person.vaccine.oneShotDate);
+                //fullyVaxDate = dbPerson.vax30Days(person.vaccine.oneShotDate);
+                System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
+                person.vaccine.setFullyVaxDate(fullyVaxDate);
+
+                System.out.println(person.getfName() +  " has received all necessary shots" +
+                        " and is fully vaccinated on " + fullyVaxDate + "\n");
+                break;
+            case 2: //2 == needs to get shot
+                //TODO - this needs to use the days from setUpVaxBrand() in Collection of VaxBrands
+                System.out.println(person.getfName() + " " + person.getlName()
+                        + " will need a 2nd injection between 3 to 5 weeks from "
+                        + person.getVaccine().oneShotDate +  " in order to determine fully vaccinated date. \n");
+
+                break;
+            case 3: //3 == fullyVax
+                System.out.println(person.getfName() + " is fully vaccinated and has waiting the allotted time for" +
+                        "the vaccine to take into effect");
+                break;
+        }
 
     }
 

@@ -36,19 +36,6 @@ public class Person {
         }
     }
 
-//    public Person(String fName, String lName, DOB dob, VaccineCard vaccine) {
-//        this.fName = fName;
-//        this.lName = lName;
-//        this.dob = dob;
-//        this.vaccine = vaccine;
-//    }
-
-//    public Person(String fName, String lName, String brand, int requiredShots, String one, String two, DOB dob) {
-//        this.fName = fName;
-//        this.lName = lName;
-//        this.vaccine = new VaccineCard(brand, requiredShots, one, two);
-//        this.dob = dob;
-//    }
 
     public String getfName() {
         return fName;
@@ -126,5 +113,7 @@ public class Person {
         //"\nFully Vaccinated Date: " + vaccine.fullyVaxDate;
 
     }
+
+
 
 }

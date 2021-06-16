@@ -14,6 +14,8 @@ public class TestDisplay {
     }
 
 
+
+
     /**
      * This method asks the user to enter a first name and a last name.
      * The name will be added to a Person object
@@ -22,7 +24,7 @@ public class TestDisplay {
      * @return Person object
      */
     public Person searchIndividual(String title, int option) {
-        //TODO -- move to displayPerson
+        //TODO -- move to displayPerson & need to simplify this method
         Person search;
         boolean b = false;
 
@@ -31,16 +33,16 @@ public class TestDisplay {
             Scanner scan = new Scanner(System.in);
 
             search = tDisplayP.obtainUserInfo(0, null, null);
-            if (search.getDob() == null) {
+            if (search.getDob() == null) { //if new search and no DOB
                 ArrayList<Person> searchResults = tDisplayP.returnSearchResults(search, drController.dbPerson.getData());
-                new TestDisplayPerson().displayPerson(searchResults,"Results:");
+                tDisplayP.displayPerson(searchResults,"Results:");
                 if (searchResults.isEmpty()) {
                     search = tDisplayP.obtainUserInfo(4, null, null);
                 } else {
                     search = tDisplayP.obtainUserInfo(3, search.getfName(), search.getlName());
                 }
             }
-                if (!drController.dbPerson.doesPersonExist(search, title)) {
+                if (!drController.dbPerson.doesPersonExist(search, title, true)) {
                     if (option == 1) {
                         //if the person does not exist, will ask if want to create a new profile
                         String createNew = scan.next();
@@ -83,7 +85,7 @@ public class TestDisplay {
      * @param person
      */
     public void navigateOptionFourDelete(ArrayList<Person> data, Person person) {
-        if (!drController.dbPerson.doesPersonExist(person)) {
+        if (!drController.dbPerson.doesPersonExist(person, null, false)) {
             System.out.println("this entry does not exist");
         } else
             drController.dbPerson.deletePersonEntry(person);
@@ -155,7 +157,8 @@ public class TestDisplay {
             String option = scan.next();
             if (option.equalsIgnoreCase("yes")) {
                 System.out.println("\n" + person.toStringVaxInfo());
-                drController.fullyVaxDate(person);
+                drController.dbPerson.person.vaccine.fullyVaxDate(person);
+                //drController.fullyVaxDate(person);
             }
         }
         drController.personVaccinated(person);
@@ -188,14 +191,15 @@ public class TestDisplay {
             case 0:
                 assignBrandInfo(person);
                 tDisplayV.assignShotDate(person);
-                drController.fullyVaxDate(person);
+                drController.dbPerson.person.vaccine.fullyVaxDate(person);
                 break;
             case 1:
                 System.out.println("No additional shots necessary at this time");
+                //TODO Add a date where vaccine takes into effect (call from one of the vaccine classes)
                 break;
             case 2:
                 tDisplayV.assignShotDate(person);
-                drController.fullyVaxDate(person);
+                drController.dbPerson.person.vaccine.fullyVaxDate(person);
                 break;
             case 3:
                 fullyVaccinated(person);
@@ -216,7 +220,7 @@ public class TestDisplay {
     public Person navigateOptionOneAddNew(ArrayList<Person> data) {
 
         Person person = tDisplayP.obtainUserInfo(4, null, null);
-        while (drController.dbPerson.doesPersonExist(person)) {
+        while (drController.dbPerson.doesPersonExist(person, null, false)) {
             System.out.println("This entry already exists."); //nice to know but not necessary -- maybe display existing info and move forward to adding vax info
             person = tDisplayP.obtainUserInfo(4, null, null);
         }
@@ -267,7 +271,9 @@ public class TestDisplay {
             //Person p = searchForVaxStatus();
             Person p = searchIndividual("This entry does not exist, would you like to re-enter your search?", 0);
             if (p != null) {
-                drController.fullyVaxDate(p);
+                drController.dbPerson.person.vaccine.fullyVaxDate(p);
+                //drController.fullyVaxDate(p);
+
                 //System.out.println(p.toStringVaxInfo());
                 //System.out.println(p);
             } else

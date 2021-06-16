@@ -16,6 +16,7 @@ public class DBManager {
         if (data == null) {
             data = new ArrayList<Person>();
         }
+        person = new Person();
 
     }
 
