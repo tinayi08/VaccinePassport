@@ -49,6 +49,7 @@ public class DBManager {
      * @return a new date in String format
      */
     public String vax30Days (String shotDate) {
+        //TODO move to a vax class
         SimpleDateFormat sdf = new SimpleDateFormat(("MM/dd/yyyy"));
         String date = shotDate;
         Calendar cal = Calendar.getInstance();
@@ -70,7 +71,7 @@ public class DBManager {
      *     Returns true if person does exist.
      *     Returns false if person does not exist.
      */
-    public boolean doesPersonExist(Person person, String title) {
+    public boolean doesPersonExist(Person person, String title, boolean needTitle) {
 
         String fName = person.getfName();
         String lName = person.getlName();
@@ -89,37 +90,12 @@ public class DBManager {
                 return true;
             }
         }
-
-        System.out.println(title);
-        return false;
-
-    }
-
-    /**
-     * This method checks the database to see if the person exists already.
-     *
-     * @param person
-     * @return
-     * Returns true if person does exist.
-     * Returns false if person does not exist.
-     */
-    public boolean doesPersonExist(Person person) {
-
-        String fName = person.getfName();
-        String lName = person.getlName();
-        int month = person.getDob().month;
-        int day = person.getDob().day;
-        int year = person.getDob().year;
-
-        for (Person p : data) {
-
-            if (fName.equalsIgnoreCase(p.getfName()) && lName.equalsIgnoreCase(p.getlName()) && month == p.getDob().month &&
-                    day == p.getDob().day && year == p.getDob().year) {
-                int object = data.indexOf(p);
-                return true;
-            }
+        if (true) {
+            System.out.println(title);
         }
+
         return false;
+
     }
 
 }
