@@ -4,11 +4,11 @@ public class VaccineCard extends Vaccine {
     //vaccine card is per person
     //vaccine is per brand -- list of array database
 
-    String oneShotDate;
-    String twoShotDate;
-    String fullyVaxDate;
-    int numShotsTaken;
-    Vaccine vaccine;
+    private String oneShotDate;
+    private String twoShotDate;
+    private String fullyVaxDate;
+    private int numShotsTaken;
+    private Vaccine vaccine;
 
 
     public String getOneShotDate() {
@@ -49,7 +49,7 @@ public class VaccineCard extends Vaccine {
         if (oneShotDate == null) {
             setOneShotDate(vaxDate);
             numShotsTaken = 1;
-        } else if (requiredShots >= 2 && twoShotDate == null) {
+        } else if (getRequiredShots() >= 2 && twoShotDate == null) {
             setTwoShotDate(vaxDate);
             numShotsTaken = 2;
         } else {
@@ -80,10 +80,12 @@ public class VaccineCard extends Vaccine {
                 System.out.println(person.getfName() + " has not started the vaccination process yet.");
                 break;
             case 1: //1 == allShotsGiven(has waiting time)
-                fullyVaxDate = vaccine.vax30Days(person.vaccine.oneShotDate);
+                fullyVaxDate = vaccine.vax30Days(person.getVaccine().oneShotDate);
+                //fullyVaxDate = vaccine.vax30Days(person.vaccine.oneShotDate);
                 //fullyVaxDate = dbPerson.vax30Days(person.vaccine.oneShotDate);
                 System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
-                person.vaccine.setFullyVaxDate(fullyVaxDate);
+                person.getVaccine().setFullyVaxDate(fullyVaxDate);
+                //person.vaccine.setFullyVaxDate(fullyVaxDate);
 
                 System.out.println(person.getfName() +  " has received all necessary shots" +
                         " and is fully vaccinated on " + fullyVaxDate + "\n");

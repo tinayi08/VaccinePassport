@@ -27,7 +27,7 @@ public class DoctorController {
         //this method should just be assigning the brand info to the person
         //another method to assign shot date information --- should be in testDisplay
         Vaccine selectedVax = collection.getVaxBrandAtIndex(brandID - 1);
-        VaccineCard assignedBrandInfo = new VaccineCard(selectedVax.brandID, selectedVax.getBrand(),
+        VaccineCard assignedBrandInfo = new VaccineCard(selectedVax.getBrandID(), selectedVax.getBrand(),
                 selectedVax.getRequiredShots(), selectedVax.getNumDaysToBeEffective());
         person.setVaccine(assignedBrandInfo);
 
@@ -66,11 +66,11 @@ public class DoctorController {
 
     public void personVaccinated(Person person) {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        if (person.getVaccine().fullyVaxDate != null) {
+        if (person.getVaccine().getFullyVaxDate() != null) {
             Date vaxDate = null;
             Date todayDate = null;
             try {
-                vaxDate = sdf.parse(person.getVaccine().fullyVaxDate);
+                vaxDate = sdf.parse(person.getVaccine().getFullyVaxDate());
                 todayDate = sdf.parse(sdf.format(new Date()));
                 String str = sdf.format(new Date());
                 if (vaxDate.compareTo(todayDate) < 0 || vaxDate.compareTo(todayDate) == 0) {

@@ -20,7 +20,7 @@ public class DBManager {
 
     }
 
-    public static Person getPerson(Person person) {
+    private static Person getPerson(Person person) {
 
         return person;
     }

@@ -52,7 +52,7 @@ public class TestDisplayPerson {
      * @param person
      * @return ArrayList of results
      */
-    public ArrayList<Person> navigateOptionTwoSearching(Person person, ArrayList<Person> data) {
+    private ArrayList<Person> navigateOptionTwoSearching(Person person, ArrayList<Person> data) {
 
         ArrayList<Person> searchResults = returnSearchResults(person, data);
 

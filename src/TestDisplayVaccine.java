@@ -6,10 +6,11 @@ public class TestDisplayVaccine {
     public Person assignShotDate(Person person) {
 
         //assigns shot date to person
-        int numShotsTaken = person.vaccine.adminShot(enterShotDate());
+        int numShotsTaken = person.getVaccine().adminShot(enterShotDate());
 
         //TODO: handle adminShot error (1 shot required but has 2 shots) (Return code 0)
         person.updateVaxStatus();
+
         return person;
     }
 

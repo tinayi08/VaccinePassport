@@ -10,10 +10,10 @@ public class Vaccine {
     //vaccine card is per person
     //vaccine is per brand -- list of array database
 
-    int brandID;
-    String brand;
-    int requiredShots;
-    ArrayList<Integer> numDaysToBeEffective;
+    private int brandID;
+    private String brand;
+    private int requiredShots;
+    private ArrayList<Integer> numDaysToBeEffective;
 
     public ArrayList<Integer> getNumDaysToBeEffective() {
         return numDaysToBeEffective;

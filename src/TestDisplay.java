@@ -23,7 +23,7 @@ public class TestDisplay {
      * @param option is to signal which option it should go through, whether we want the option to create a new user or not
      * @return Person object
      */
-    public Person searchIndividual(String title, int option) {
+    private Person searchIndividual(String title, int option) {
         //TODO -- move to displayPerson & need to simplify this method
         Person search;
         boolean b = false;
@@ -84,7 +84,7 @@ public class TestDisplay {
      * @param data
      * @param person
      */
-    public void navigateOptionFourDelete(ArrayList<Person> data, Person person) {
+    private void navigateOptionFourDelete(ArrayList<Person> data, Person person) {
         if (!drController.dbPerson.doesPersonExist(person, null, false)) {
             System.out.println("this entry does not exist");
         } else
@@ -97,7 +97,7 @@ public class TestDisplay {
      *  Initial start of program. User has an option to select what the program does
      * @return int for the user selected option
      */
-    public int menu() {
+    private int menu() {
         System.out.println("Please select from the following options:");
         System.out.println("1. Enter a new individual to the database");
         System.out.println("2. Search for an individual on the database");
@@ -114,7 +114,7 @@ public class TestDisplay {
      *
      * @return true if user wants to continue, false if user wants to end program
      */
-    public boolean returnToMainMenu() {
+    private boolean returnToMainMenu() {
         System.out.println("\nWould you like to return to the main menu?");
         Scanner scan = new Scanner(System.in);
         String returnToMain = scan.next();
@@ -142,7 +142,7 @@ public class TestDisplay {
      *
      * @param person
      */
-    public void navigateOption2Part2(Person person) {
+    private void navigateOption2Part2(Person person) {
         Scanner scan = new Scanner(System.in);
         if (person.getVaccine() == null) {
             System.out.println("\nWould you like to enter their vaccination information?");
@@ -157,7 +157,8 @@ public class TestDisplay {
             String option = scan.next();
             if (option.equalsIgnoreCase("yes")) {
                 System.out.println("\n" + person.toStringVaxInfo());
-                drController.dbPerson.person.vaccine.fullyVaxDate(person);
+                drController.dbPerson.person.getVaccine().fullyVaxDate(person);
+                //drController.dbPerson.person.vaccine.fullyVaxDate(person);
                 //drController.fullyVaxDate(person);
             }
         }
@@ -183,7 +184,7 @@ public class TestDisplay {
      *
      * @param person
      */
-    public void navigateOptionThreeAddVaxInfo(Person person) {
+    private void navigateOptionThreeAddVaxInfo(Person person) {
         //0 == no vax status, 1 == allShotsGiven(has waiting time), 2 == needs to get shot, 3 == fullyVax
         //TODO -- need to update 3
 
@@ -191,7 +192,8 @@ public class TestDisplay {
             case 0:
                 assignBrandInfo(person);
                 tDisplayV.assignShotDate(person);
-                drController.dbPerson.person.vaccine.fullyVaxDate(person);
+                drController.dbPerson.person.getVaccine().fullyVaxDate(person);
+
                 break;
             case 1:
                 System.out.println("No additional shots necessary at this time");
@@ -199,7 +201,8 @@ public class TestDisplay {
                 break;
             case 2:
                 tDisplayV.assignShotDate(person);
-                drController.dbPerson.person.vaccine.fullyVaxDate(person);
+                drController.dbPerson.person.getVaccine().fullyVaxDate(person);
+
                 break;
             case 3:
                 fullyVaccinated(person);
@@ -217,7 +220,7 @@ public class TestDisplay {
      * This method will ask obtain information of a new user and add it to the ArrayList
      * @param data
      */
-    public Person navigateOptionOneAddNew(ArrayList<Person> data) {
+    private Person navigateOptionOneAddNew(ArrayList<Person> data) {
 
         Person person = tDisplayP.obtainUserInfo(4, null, null);
         while (drController.dbPerson.doesPersonExist(person, null, false)) {
@@ -237,7 +240,7 @@ public class TestDisplay {
      *
      * @param navigate
      */
-    public void navigateMainMenu(int navigate)  {
+    private void navigateMainMenu(int navigate)  {
 
         if (navigate == 1) {
             Person newlyAdded = navigateOptionOneAddNew(drController.dbPerson.getData());
@@ -271,7 +274,8 @@ public class TestDisplay {
             //Person p = searchForVaxStatus();
             Person p = searchIndividual("This entry does not exist, would you like to re-enter your search?", 0);
             if (p != null) {
-                drController.dbPerson.person.vaccine.fullyVaxDate(p);
+                drController.dbPerson.person.getVaccine().fullyVaxDate(p);
+                //drController.dbPerson.person.vaccine.fullyVaxDate(p);
                 //drController.fullyVaxDate(p);
 
                 //System.out.println(p.toStringVaxInfo());
