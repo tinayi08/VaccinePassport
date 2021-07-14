@@ -84,4 +84,21 @@ public class Vaccine {
 
     }
 
+    public String vax30Days (String shotDate, ArrayList<Integer> inputNumDaysBetweenShot) {
+        //TODO move to a vax class
+        SimpleDateFormat sdf = new SimpleDateFormat(("MM/dd/yyyy"));
+        String date = shotDate;
+        Calendar cal = Calendar.getInstance();
+        try {
+            cal.setTime(sdf.parse(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        cal.add(Calendar.DAY_OF_MONTH, assignNumDaysBetweenShot(inputNumDaysBetweenShot));
+        cal.add(Calendar.DAY_OF_MONTH, 30);
+        return sdf.format(cal.getTime());
+
+    }
+
 }

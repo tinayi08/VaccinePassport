@@ -81,11 +81,10 @@ public class VaccineCard extends Vaccine {
                 break;
             case 1: //1 == allShotsGiven(has waiting time)
                 fullyVaxDate = vaccine.vax30Days(person.getVaccine().oneShotDate);
-                //fullyVaxDate = vaccine.vax30Days(person.vaccine.oneShotDate);
-                //fullyVaxDate = dbPerson.vax30Days(person.vaccine.oneShotDate);
+                //fullyVaxDate = vaccine.vax30Days(person.getVaccine().oneShotDate, person.getVaccine().getNumDaysToBeEffective());
+               //TODO - how do i get the specific number of days based on the brand
                 System.out.println(person.getfName() + " " + person.getlName() + " is fully vaccinated on " + fullyVaxDate + "\n");
                 person.getVaccine().setFullyVaxDate(fullyVaxDate);
-                //person.vaccine.setFullyVaxDate(fullyVaxDate);
 
                 System.out.println(person.getfName() +  " has received all necessary shots" +
                         " and is fully vaccinated on " + fullyVaxDate + "\n");

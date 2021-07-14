@@ -44,27 +44,6 @@ public class DBManager {
     }
 
     /**
-     * This method will calculate 30 calendar days from a given date.
-     *
-     * @param shotDate based on when the vaccine was given
-     * @return a new date in String format
-     */
-    public String vax30Days (String shotDate) {
-        //TODO move to a vax class
-        SimpleDateFormat sdf = new SimpleDateFormat(("MM/dd/yyyy"));
-        String date = shotDate;
-        Calendar cal = Calendar.getInstance();
-        try {
-            cal.setTime(sdf.parse(date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        cal.add(Calendar.DAY_OF_MONTH, 30);
-        return sdf.format(cal.getTime());
-
-    }
-
-    /**
      * This method checks the database to see if the person exists already.
      * @param person
      * @param title

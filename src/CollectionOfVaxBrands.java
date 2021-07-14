@@ -28,6 +28,7 @@ public class CollectionOfVaxBrands {
         return vaccineBrandList.size();
 
     }
+
     public void addToBrandDB(String brandName, int reqShots, ArrayList<Integer> daysBetweenShot) {
 
         Vaccine one = new Vaccine(vaccineID, brandName, reqShots, daysBetweenShot);

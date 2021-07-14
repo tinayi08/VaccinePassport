@@ -35,11 +35,11 @@ public class TestDisplayVaccine {
         ArrayList<Integer> days = new ArrayList<>();
         days.add(25);
         vaccineBrand.addToBrandDB("Johnson & Johnson", 1, days);
-        days.set(0, 14);
-        days.add(14);
+        days.set(0, 14); //set index 0 to 14
+        days.add(14); // add another element to array
         vaccineBrand.addToBrandDB("Pfizer", 2, days);
-        days.set(0,21);
-        days.set(1,21);
+        days.set(0,21); //set index 0 to 21
+        days.set(1,21); //set index1 to 21
         vaccineBrand.addToBrandDB("Moderna", 2, days);
 
     }
