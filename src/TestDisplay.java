@@ -13,9 +13,6 @@ public class TestDisplay {
         tDisplayP = new TestDisplayPerson();
     }
 
-
-
-
     /**
      * This method asks the user to enter a first name and a last name.
      * The name will be added to a Person object
